@@ -182,3 +182,15 @@ Excluded in one sensitivity run. This is a judgement list awaiting review (see t
 source("../R/fn_owner_managers.R")
 v12 |> filter(unit %in% owner_manager_draft) |> transmute(Unit = unit, Title = title) |> tab()
 ```
+
+## Rebuilding the usage-based score from task data
+
+The published occupation scores were rebuilt from the published task-level values, using O*NET task weights in place of the unpublished time shares Massenkoff and McCrory use. The rank correlation with the published scores falls short of the `0.9` target. The main analysis uses the published scores.
+
+```{r replication}
+read_csv(out_path("g_replication.csv"), show_col_types = FALSE) |>
+  transmute(`Task weights` = weights, `SOC codes compared` = socs_compared,
+            Spearman = round(spearman, 3), `Agreement on exact zeros` = scales::percent(zero_agreement, 1),
+            `Meets target` = if_else(meets_target, "yes", "no")) |>
+  tab()
+```

@@ -26,6 +26,7 @@ build:
 	$(R) R/12_charts.R
 	$(R) R/13_facts.R
 	$(R) R/14_explorer.R
+	$(R) R/15_replicate_g.R
 
 test:
 	$(R) -e 'testthat::test_dir("tests/testthat", stop_on_failure = TRUE)'

@@ -30,6 +30,10 @@ The project goes from "could be used" to "is being used". It does not go to labo
 
 See `docs/novelty.md` and the full search log in `docs/novelty_search.md`. The mapping of usage-based exposure onto ANZSCO builds on DEWR (2026).
 
+## Website
+
+`index.html` at the top of the repository is a landing page that links the note, appendix, summary, methods memo and explorer. It is published with GitHub Pages: Settings → Pages → Deploy from a branch → `main`, folder `/` (root). The empty `.nojekyll` file stops GitHub from hiding the `_rendered` folders. On a free GitHub plan, Pages works only once the repository is public.
+
 ## Repository layout
 
 | Path | Contents |

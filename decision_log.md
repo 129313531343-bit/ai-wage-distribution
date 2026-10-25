@@ -265,3 +265,28 @@ Each unit shows:
 - search by code and by title works.
 
 It passed on 25 Oct 2026. The screenshot is `explorer/check_375px.png`.
+
+### N18. Optional extension G: rebuilding observed exposure from task data (25 Oct 2026)
+
+`R/15_replicate_g.R` rebuilds occupation scores from the published task-level values (`task_penetration.csv`), joined to O*NET 31.0 task statements by text (99.2% of O*NET task rows join). Massenkoff and McCrory's time-share weights (Tamkin and McCrory 2025) are not published, so three stand-ins were tried:
+
+| Weights | Spearman with the published score |
+|---|---|
+| Equal | 0.871 |
+| O*NET importance | 0.869 |
+| Importance × relevance | 0.870 |
+
+The rebuilt and published scores agree on which occupations are exactly zero for about 93% of the 756 SOC codes.
+
+**The 0.9 target is not met.** The unpublished time weights are the likely reason, but this has not been tested. The result is reported as it stands (`data/out/g_replication.csv`); the main analysis uses the published scores unchanged.
+
+### N19. Clean-clone reproducibility test (25 Oct 2026)
+
+A fresh `git clone` of commit `66afec8` was tested at a colon-free path, with the updated `renv.lock`:
+
+- `renv::restore()` ran first.
+- `make all` re-downloaded all 27 scriptable inputs, and each matched its recorded sha256. It then rebuilt everything in 2 min 39 s and passed all 65 tests.
+- `make check` passed.
+- The key outputs are byte-for-byte identical to the working copy: decile profiles, gaps, sensitivity table, coverage, explorer data and note facts.
+
+renv's "out-of-sync" warning came from `dbplyr`, which renv detects as used. It is now installed and recorded, and the warning is gone.

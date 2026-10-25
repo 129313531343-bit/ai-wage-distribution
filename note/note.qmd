@@ -237,6 +237,7 @@ These pass through the crosswalk unchanged. The Retail Salespersons score domina
 - **The JSA correspondence** turned out to be coded to ANZSCO `v1.2`, not `v1.3` as its archived web page implied.
 - **Weighting scheme `4`** does not reproduce the primary decile profile. The influence check that explains it was added after the results were seen.
 - **The JSA automation gap** does not keep its sign in the bottom quintile across schemes.
+- **Rebuilding the usage-based score** from the published task data, with O*NET task weights in place of the unpublished time shares, gave a rank correlation with the published scores below the target of `0.9` (appendix).
 
 ## Contributions and AI use
 

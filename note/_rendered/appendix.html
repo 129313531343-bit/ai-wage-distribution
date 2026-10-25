@@ -2191,6 +2191,7 @@ vertical-align: -.125em;
   <li><a href="#global-automation-share-and-grade-restricted-results" id="toc-global-automation-share-and-grade-restricted-results" class="nav-link" data-scroll-target="#global-automation-share-and-grade-restricted-results"><span class="header-section-number">12</span> Global automation share and grade-restricted results</a></li>
   <li><a href="#aei-occupation-group-shares-published-mass-and-suppressed-cells" id="toc-aei-occupation-group-shares-published-mass-and-suppressed-cells" class="nav-link" data-scroll-target="#aei-occupation-group-shares-published-mass-and-suppressed-cells"><span class="header-section-number">13</span> AEI occupation-group shares: published mass and suppressed cells</a></li>
   <li><a href="#draft-list-of-owner-operator-units" id="toc-draft-list-of-owner-operator-units" class="nav-link" data-scroll-target="#draft-list-of-owner-operator-units"><span class="header-section-number">14</span> Draft list of owner-operator units</a></li>
+  <li><a href="#rebuilding-the-usage-based-score-from-task-data" id="toc-rebuilding-the-usage-based-score-from-task-data" class="nav-link" data-scroll-target="#rebuilding-the-usage-based-score-from-task-data"><span class="header-section-number">15</span> Rebuilding the usage-based score from task data</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="appendix.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
 </div>
@@ -5017,6 +5018,55 @@ vertical-align: -.125em;
 <tr class="odd">
 <td style="text-align: left;">7311</td>
 <td style="text-align: left;">Automobile Drivers</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="rebuilding-the-usage-based-score-from-task-data" class="level2" data-number="15">
+<h2 data-number="15" class="anchored" data-anchor-id="rebuilding-the-usage-based-score-from-task-data"><span class="header-section-number">15</span> Rebuilding the usage-based score from task data</h2>
+<p>The published occupation scores were rebuilt from the published task-level values, using O*NET task weights in place of the unpublished time shares Massenkoff and McCrory use. The rank correlation with the published scores falls short of the <code>0.9</code> target. The main analysis uses the published scores.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 21%">
+<col style="width: 10%">
+<col style="width: 28%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Task weights</th>
+<th style="text-align: right;">SOC codes compared</th>
+<th style="text-align: right;">Spearman</th>
+<th style="text-align: left;">Agreement on exact zeros</th>
+<th style="text-align: left;">Meets target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">equal</td>
+<td style="text-align: right;">756</td>
+<td style="text-align: right;">0.871</td>
+<td style="text-align: left;">93%</td>
+<td style="text-align: left;">no</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">importance</td>
+<td style="text-align: right;">748</td>
+<td style="text-align: right;">0.869</td>
+<td style="text-align: left;">93%</td>
+<td style="text-align: left;">no</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">importance_x_relevance</td>
+<td style="text-align: right;">748</td>
+<td style="text-align: right;">0.870</td>
+<td style="text-align: left;">93%</td>
+<td style="text-align: left;">no</td>
 </tr>
 </tbody>
 </table>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Usage-based AI exposure in Australia</title>
+<meta name="description" content="Working draft: usage-based AI exposure across Australia's earnings distribution, mapping US task-usage data onto ANZSCO occupations. Descriptive; not a job-loss or career-risk score; not advice.">
+<style>
+  :root { --surface: #fcfcfb; --plane: #f9f9f7; --ink: #0b0b0b; --ink-2: #52514e; --muted: #6b6a66; --line: #e1e0d9; --accent: #2a78d6; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --surface: #1a1a19; --plane: #0d0d0d; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #a3a29b; --line: #2c2c2a; --accent: #3987e5; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--plane); color: var(--ink); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 6px; }
+  .sub { color: var(--ink-2); margin: 0 0 4px; }
+  .author { color: var(--muted); margin: 0 0 20px; }
+  .status { display: inline-block; font-size: 0.85rem; color: var(--ink-2); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; margin-bottom: 16px; }
+  .disclaimer { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); padding: 10px 14px; border-radius: 6px; font-weight: 600; }
+  p { margin: 0 0 14px; }
+  ul.links { list-style: none; padding: 0; margin: 20px 0; }
+  ul.links li { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; }
+  ul.links a { font-weight: 600; color: var(--accent); }
+  ul.links span { display: block; color: var(--ink-2); font-size: 0.92rem; }
+  footer { margin-top: 28px; color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Usage-based AI exposure across Australia's earnings distribution</h1>
+  <p class="sub">Mapping US task-usage data onto ANZSCO occupations</p>
+  <p class="author">Luc Taya, Economics (Honours) graduate, University of Western Australia</p>
+  <span class="status">Working draft, not yet released</span>
+
+  <p class="disclaimer">Descriptive; not a job-loss or career-risk score; not advice.</p>
+
+  <p>The data behind this work are US task-level Claude.ai use by self-selected users, from one product. No Australian occupational AI use is measured. The usage-based scores describe tasks in US occupations and are applied to the occupations Australians work in, then compared with measures of AI potential that do not come from Anthropic.</p>
+
+  <ul class="links">
+    <li><a href="note/_rendered/note.html">Working draft</a> <span>The note: data, methods, results and limitations. Also as <a href="note/_rendered/note.pdf">PDF</a>.</span></li>
+    <li><a href="note/_rendered/appendix.html">Appendix</a> <span>Sensitivity tables, crosswalk checks, sources and licences. Also as <a href="note/_rendered/appendix.pdf">PDF</a>.</span></li>
+    <li><a href="explorer/">Occupation explorer</a> <span>Search every ANZSCO unit group for its usage-based and potential exposure, employment and earnings.</span></li>
+    <li><a href="docs/_rendered/summary.html">Summary</a> <span>A short plain-language summary. Also as <a href="docs/_rendered/summary.pdf">PDF</a>.</span></li>
+    <li><a href="docs/_rendered/methods_memo.pdf">Methods memo</a> <span>Three pages on the method, with questions for reviewers.</span></li>
+    <li><a href="https://github.com/129313531343-bit/ai-wage-distribution">Code and data sources</a> <span>Pipeline, tests, data manifest, decision log and how this was built, including AI use.</span></li>
+  </ul>
+
+  <footer>
+    <p>Luc Taya, Economics (Honours) graduate, University of Western Australia.</p>
+    <p>Not affiliated with or endorsed by Anthropic or any other data provider. Data credits and licences are listed in the appendix.</p>
+  </footer>
+</main>
+</body>
+</html>
