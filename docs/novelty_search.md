@@ -176,7 +176,7 @@ These could not be read in full because of bot verification, or because the pape
 3. **Sedai (2026)**, SSRN 7533251, and **Gong (2026)**, SSRN 7574859. Any non-US coverage?
 4. **Gross (2026)**. Which exposure measure does the working paper use? Is it usage-based?
 5. **Seetahul (2026)**, the HILDA conference paper. Which measure, and is earnings in scope?
-6. **JSA (2025)**, *Our Gen AI Transition*. Confirm the passage on replicating the AEI with ANZSCO (to be read in M1).
+6. ~~**JSA (2025)**, *Our Gen AI Transition*. Confirm the passage on replicating the AEI with ANZSCO.~~ **Done 25 Oct 2026.** Report pages 35-36 discuss Handa et al. (2025). They say that replicating it for Australia with ANZSCO would still cover only a small share of AI users, that the strength of its estimates would depend on mapping conversations to tasks, and that such analysis would be valuable for future monitoring.
 
 Scholar queries worth rerunning by hand after 25 Oct 2026: `"observed exposure" ANZSCO`, `"Anthropic Economic Index" Australia earnings`, `"usage-based" "AI exposure" Australia`.
 

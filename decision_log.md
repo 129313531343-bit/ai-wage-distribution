@@ -226,3 +226,18 @@ The published `pct` shares for SOC major groups sum to the following:
 | AU-WA | 97.5% | 98.7% | 18-19 |
 
 For AUS and GLOBAL, the shortfall therefore is not suppression of whole groups. The data documentation does not say what fills it, so it is reported as a limitation. The usage index uses the published shares as they stand.
+
+### N15. Checks closed before drafting the note (M4, 25 Oct 2026)
+
+- **JSA (2025), *Our Gen AI Transition*, pages 35-36.** JSA discusses Handa et al. (2025) and notes the study's Claude.ai focus (under 3% of Australian market share, as JSA reports it) and its global sample. JSA says an ANZSCO replication would cover only a small share of AI users and would depend on mapping conversations to tasks, but would be valuable for future monitoring. The note paraphrases this and cites the page.
+- **ABS, "Upcoming changes to Labour Force Survey outputs" (19 Mar 2026).** EQ08 is among the detailed tables not published from April 2026 onwards. ABS intends to resume occupation data coded to OSCA from the September 2026 reference period, and does not state the level of detail.
+- **ABS, Labour Force, Australia methodology, September 2026 (published 15 Oct 2026).** Its history of changes records that OSCA coding has been implemented. It does not say which occupation levels are published.
+- **Wording.** The note says only what these sources state. It says nothing on whether unit-group detail will return.
+
+### N16. Rendering and the prose checker (M4, 25 Oct 2026)
+
+**Rendering.** The project folder's name contains colons (`~:Projects:ai-wage-distribution`), which break Quarto's stylesheet compiler. `make note` (`R/render.sh`) therefore renders in a temporary copy at a colon-free path, using the project's renv library, and copies the outputs back to `note/_rendered/` and `docs/_rendered/`. Typst will not read files outside the document's folder, so the memo's figures and bibliography are copied into the temporary tree.
+
+**Prose checker (`R/check.R`).** It now ignores markup that is not prose: citation keys, Quarto attribute blocks, maths, numbered-list markers, and "scheme N" labels (treated like figure labels). Its rule on bare digits and causal words is unchanged.
+
+**Numbers in the documents.** Every number in the note, appendix and memo comes from `data/out/note_facts.csv` (`R/13_facts.R`) or is read directly from pipeline output.

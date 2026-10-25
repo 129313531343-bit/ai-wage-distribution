@@ -42,18 +42,25 @@ allow <- if (file.exists("docs/causal_allowlist.txt")) {
 } else character()
 
 strip_code <- function(lines) {
-  in_chunk <- FALSE; in_yaml <- FALSE
+  in_chunk <- FALSE; in_yaml <- FALSE; in_math <- FALSE
   out <- character(length(lines))
   for (i in seq_along(lines)) {
     l <- lines[i]
     if (i == 1 && l == "---") { in_yaml <- TRUE; next }
     if (in_yaml) { if (l == "---") in_yaml <- FALSE; next }
     if (str_detect(l, "^```")) { in_chunk <- !in_chunk; next }
+    if (str_detect(l, "^\\s*\\$\\$")) { in_math <- !in_math; next }   # display maths
+    if (in_math) next
     if (in_chunk) next
     l <- str_remove_all(l, "`r [^`]*`")          # inline R
     l <- str_remove_all(l, "`[^`]*`")            # code spans
     l <- str_remove_all(l, "\\{#[^}]*\\}")       # cross-reference labels
     l <- str_remove_all(l, "@(fig|tbl|sec)-[A-Za-z0-9-]+")
+    l <- str_remove_all(l, "-?@[A-Za-z][A-Za-z0-9_:-]*")   # citation keys
+    l <- str_remove_all(l, "\\{[^}]*\\}")                   # Quarto attributes: {.callout-note}, {width="80%"}
+    l <- str_remove_all(l, "^:::.*$")                      # fenced div markers
+    l <- str_remove_all(l, "\\$[^$]+\\$")                  # inline maths
+    l <- str_remove(l, "^\\s*[0-9]+\\.\\s")                # numbered-list markers
     l <- str_remove_all(l, "<!--.*?-->")
     l <- str_remove_all(l, "\\]\\([^)]*\\)")     # link targets
     out[i] <- l
@@ -68,7 +75,7 @@ for (f in prose_files) {
     l <- text[i]
     if (!nzchar(l)) next
     l2 <- str_remove_all(l, "\\b(1[89]\\d\\d|20\\d\\d)\\b")
-    l2 <- str_remove_all(l2, "(?i)\\b(figure|fig\\.|table|section|chart|appendix|walk-through|m)\\s*[0-9]+[a-z]?\\b")
+    l2 <- str_remove_all(l2, "(?i)\\b(figure|fig\\.|table|section|chart|appendix|walk-through|scheme|m)\\s*[0-9]+[a-z]?\\b")
     if (str_detect(l2, "[0-9]")) fail(f, ":", i, ": bare digits in prose: ", str_trunc(str_squish(raw_lines[i]), 90))
     hits <- causal[str_detect(str_to_lower(l), fixed(str_to_lower(causal)))]
     if (length(hits) > 0 && !str_trim(raw_lines[i]) %in% allow) {

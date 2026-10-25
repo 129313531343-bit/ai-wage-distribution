@@ -4,7 +4,7 @@
 
 Luc Taya, Economics (Honours) graduate, University of Western Australia
 
-> **Status: M3 (analysis drafted).** The crosswalk, the analyses A-D and the draft charts are built. Nothing here is final; the note is not yet written.
+> **Status: M4 (note drafted).** The data, methods, limitations and appendix sections and the methods memo are drafted. The research question, takeaways and theory box are still to come. Render with `make note`.
 
 ## Reproducing
 

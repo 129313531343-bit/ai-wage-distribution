@@ -1,0 +1,28 @@
+project:
+  render:
+    - note.qmd
+    - appendix.qmd
+
+author: "Luc Taya, Economics (Honours) graduate, University of Western Australia"
+bibliography: references.bib
+lang: en-AU
+number-sections: true
+
+execute:
+  echo: false
+  warning: false
+  message: false
+
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    embed-resources: true
+    fig-align: left
+    theme: cosmo
+  typst:
+    papersize: a4
+    margin:
+      x: 2.2cm
+      y: 2.2cm
+    fontsize: 10pt
