@@ -1,0 +1,24 @@
+# Raw data: scripts re-download these and check them against data/raw/MANIFEST.csv.
+# The AEI long file (~219 MB) is over GitHub's size limit.
+data/raw/*
+!data/raw/MANIFEST.csv
+# BLS files cannot be fetched by script, so they are kept in the repo (US public domain).
+!data/raw/manual/
+data/interim/*
+!data/interim/.gitkeep
+
+# R and Quarto
+.Rproj.user/
+.Rhistory
+.RData
+renv/library/
+renv/staging/
+note/_freeze/
+note/*_files/
+.quarto/
+
+# OS
+.DS_Store
+
+# Private drafts and planning (never published)
+private/

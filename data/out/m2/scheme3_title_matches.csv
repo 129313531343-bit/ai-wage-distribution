@@ -1,0 +1,163 @@
+anzsco6,soc,anz_title,soc_title,jaccard
+111311,11-1031,Legislators,Legislators,1
+111312,11-1031,Legislators,Legislators,1
+111399,11-1031,Legislators nec,Legislators,1
+131114,11-2032,Public Relations Manager,Public Relations Managers,1
+132311,11-3121,Human Resource Manager,Human Resources Managers,1
+133111,11-9021,Construction Managers,Construction Managers,1
+133112,11-9021,Construction Managers,Construction Managers,1
+139911,11-9199,Other Specialist Managers,"Managers, All Other",1
+139912,11-9199,Other Specialist Managers,"Managers, All Other",1
+139913,11-9199,Other Specialist Managers,"Managers, All Other",1
+139914,11-9199,Other Specialist Managers,"Managers, All Other",1
+139915,11-9199,Other Specialist Managers,"Managers, All Other",1
+139999,11-9199,Specialist Managers nec,"Managers, All Other",1
+149913,11-3013,Facilities Manager,Facilities Managers,1
+211111,27-2011,Actor,Actors,1
+211311,27-4021,Photographer,Photographers,1
+212314,27-4032,Film and Video Editor,Film and Video Editors,1
+212415,27-3042,Technical Writer,Technical Writers,1
+224111,15-2011,Actuary,Actuaries,1
+224112,15-2021,Mathematician,Mathematicians,1
+224113,15-2041,Statistician,Statisticians,1
+224211,25-4011,Archivist,Archivists,1
+224311,19-3011,Economist,Economists,1
+225112,13-1161,Market Research Analyst,Market Research Analysts and Marketing Specialists,0.75
+231112,53-2021,Air Traffic Controller,Air Traffic Controllers,1
+231212,53-5031,Ship's Engineer,Ship Engineers,1
+232112,17-1012,Landscape Architect,Landscape Architects,1
+232212,17-1022,Surveyor,Surveyors,1
+232311,27-1022,Fashion Designer,Fashion Designers,1
+232411,27-1024,Graphic Designer,Graphic Designers,1
+232511,27-1025,Interior Designer,Interior Designers,1
+232611,19-3051,Urban and Regional Planner,Urban and Regional Planners,1
+233111,17-2041,Chemical Engineer,Chemical Engineers,1
+233112,17-2131,Materials Engineer,Materials Engineers,1
+233211,17-2051,Civil Engineer,Civil Engineers,1
+233311,17-2071,Electrical Engineer,Electrical Engineers,1
+233511,17-2112,Industrial Engineer,Industrial Engineers,1
+233512,17-2141,Mechanical Engineer,Mechanical Engineers,1
+233612,17-2171,Petroleum Engineer,Petroleum Engineers,1
+233912,17-2021,Agricultural Engineer,Agricultural Engineers,1
+233915,17-2081,Environmental Engineer,Environmental Engineers,1
+234113,19-1032,Forester,Foresters,1
+234211,19-2031,Chemist,Chemists,1
+234511,19-1099,Life Scientists,"Life Scientists, All Other",1
+234513,19-1099,Life Scientists,"Life Scientists, All Other",1
+234514,19-1099,Life Scientists,"Life Scientists, All Other",1
+234515,19-1099,Life Scientists,"Life Scientists, All Other",1
+234516,19-1099,Life Scientists,"Life Scientists, All Other",1
+234517,19-1022,Microbiologist,Microbiologists,1
+234517,19-1099,Life Scientists,"Life Scientists, All Other",1
+234518,19-1099,Life Scientists,"Life Scientists, All Other",1
+234599,19-1099,Life Scientists nec,"Life Scientists, All Other",1
+234711,29-1131,Veterinarian,Veterinarians,1
+234914,19-2012,Physicist,Physicists,1
+241511,25-2051,Special Education Teachers,"Special Education Teachers, Preschool",0.75
+241511,25-2055,Special Education Teachers,"Special Education Teachers, Kindergarten",0.75
+241511,25-2059,Special Education Teachers,"Special Education Teachers, All Other",1
+241512,25-2051,Special Education Teachers,"Special Education Teachers, Preschool",0.75
+241512,25-2055,Special Education Teachers,"Special Education Teachers, Kindergarten",0.75
+241512,25-2059,Special Education Teachers,"Special Education Teachers, All Other",1
+241513,25-2051,Special Education Teachers,"Special Education Teachers, Preschool",0.75
+241513,25-2055,Special Education Teachers,"Special Education Teachers, Kindergarten",0.75
+241513,25-2059,Special Education Teachers,"Special Education Teachers, All Other",1
+241599,25-2051,Special Education Teachers nec,"Special Education Teachers, Preschool",0.75
+241599,25-2055,Special Education Teachers nec,"Special Education Teachers, Kindergarten",0.75
+241599,25-2059,Special Education Teachers nec,"Special Education Teachers, All Other",1
+251213,29-2033,Nuclear Medicine Technologist,Nuclear Medicine Technologists,1
+251312,19-5011,Occupational Health and Safety Adviser,Occupational Health and Safety Specialists,0.75
+251411,29-1041,Optometrist,Optometrists,1
+251511,29-1051,Pharmacists,Pharmacists,1
+251512,29-1051,Pharmacists,Pharmacists,1
+251513,29-1051,Pharmacists,Pharmacists,1
+251912,29-2091,Orthotist or Prosthetist,Orthotists and Prosthetists,1
+252111,29-1011,Chiropractor,Chiropractors,1
+252211,29-1291,Acupuncturist,Acupuncturists,1
+252312,29-1029,Dentist,"Dentists, All Other Specialists",1
+252411,29-1122,Occupational Therapist,Occupational Therapists,1
+252611,29-1081,Podiatrist,Podiatrists,1
+252711,29-1181,Audiologist,Audiologists,1
+253311,29-1229,Specialist Physicians,"Physicians, All Other",1
+253312,29-1212,Cardiologist,Cardiologists,1
+253312,29-1229,Specialist Physicians,"Physicians, All Other",1
+253313,29-1229,Specialist Physicians,"Physicians, All Other",1
+253314,29-1229,Specialist Physicians,"Physicians, All Other",1
+253315,29-1229,Specialist Physicians,"Physicians, All Other",1
+253316,29-1229,Specialist Physicians,"Physicians, All Other",1
+253317,29-1229,Specialist Physicians,"Physicians, All Other",1
+253318,29-1217,Neurologist,Neurologists,1
+253318,29-1229,Specialist Physicians,"Physicians, All Other",1
+253321,29-1229,Specialist Physicians,"Physicians, All Other",1
+253322,29-1229,Specialist Physicians,"Physicians, All Other",1
+253323,29-1229,Specialist Physicians,"Physicians, All Other",1
+253324,29-1229,Specialist Physicians,"Physicians, All Other",1
+253399,29-1229,Specialist Physicians nec,"Physicians, All Other",1
+253411,29-1223,Psychiatrist,Psychiatrists,1
+253511,29-1249,Surgeons,"Surgeons, All Other",1
+253512,29-1249,Surgeons,"Surgeons, All Other",1
+253513,29-1249,Surgeons,"Surgeons, All Other",1
+253514,29-1249,Surgeons,"Surgeons, All Other",1
+253515,29-1249,Surgeons,"Surgeons, All Other",1
+253516,29-1249,Surgeons,"Surgeons, All Other",1
+253517,29-1249,Surgeons,"Surgeons, All Other",1
+253518,29-1249,Surgeons,"Surgeons, All Other",1
+253521,29-1249,Surgeons,"Surgeons, All Other",1
+253911,29-1213,Dermatologist,Dermatologists,1
+254411,29-1141,Registered Nurses,Registered Nurses,1
+254411,29-1171,Nurse Practitioner,Nurse Practitioners,1
+254412,29-1141,Registered Nurses,Registered Nurses,1
+254413,29-1141,Registered Nurses,Registered Nurses,1
+254414,29-1141,Registered Nurses,Registered Nurses,1
+254415,29-1141,Registered Nurses,Registered Nurses,1
+254416,29-1141,Registered Nurses,Registered Nurses,1
+254417,29-1141,Registered Nurses,Registered Nurses,1
+254418,29-1141,Registered Nurses,Registered Nurses,1
+254421,29-1141,Registered Nurses,Registered Nurses,1
+254422,29-1141,Registered Nurses,Registered Nurses,1
+254423,29-1141,Registered Nurses,Registered Nurses,1
+254424,29-1141,Registered Nurses,Registered Nurses,1
+254425,29-1141,Registered Nurses,Registered Nurses,1
+254499,29-1141,Registered Nurses nec,Registered Nurses,1
+261212,15-1254,Web Developer,Web Developers,1
+262111,15-1242,Database Administrator,Database Administrators,1
+272311,19-3039,Psychologists,"Psychologists, All Other",1
+272312,19-3039,Psychologists,"Psychologists, All Other",1
+272313,19-3039,Psychologists,"Psychologists, All Other",1
+272314,19-3039,Psychologists,"Psychologists, All Other",1
+272399,19-3039,Psychologists nec,"Psychologists, All Other",1
+272411,19-3093,Historian,Historians,1
+272511,21-1029,Social Worker,"Social Workers, All Other",1
+311111,19-4012,Agricultural Technician,Agricultural Technicians,1
+311213,29-2012,Medical Laboratory Technician,Medical and Clinical Laboratory Technicians,0.75
+311215,29-2052,Pharmacy Technician,Pharmacy Technicians,1
+312212,17-3022,Civil Engineering Technician,Civil Engineering Technologists and Technicians,0.75
+312512,17-3027,Mechanical Engineering Technician,Mechanical Engineering Technologists and Technicians,0.75
+321213,49-3052,Motorcycle Mechanic,Motorcycle Mechanics,1
+323316,49-9064,Watch and Clock Maker and Repairer,Watch and Clock Repairers,0.75
+331112,47-2022,Stonemason,Stonemasons,1
+331212,47-2031,Carpenter,Carpenters,1
+333111,47-2121,Glazier,Glaziers,1
+341111,47-2111,Electricians,Electricians,1
+341112,47-2111,Electricians,Electricians,1
+351111,51-3011,Baker,Bakers,1
+351411,35-2019,Cook,"Cooks, All Other",1
+393311,51-6093,Upholsterer,Upholsterers,1
+394211,51-7021,Furniture Finisher,Furniture Finishers,1
+399211,51-8091,Chemical Plant Operator,Chemical Plant and System Operators,0.75
+399213,51-8013,Power Generation Plant Operator,Power Plant Operators,0.75
+399312,25-4031,Library Technician,Library Technicians,1
+399512,27-4031,"Camera Operator (Film, Television or Video)","Camera Operators, Television, Video, and Film",1
+411211,29-1292,Dental Hygienist,Dental Hygienists,1
+411611,31-9011,Massage Therapist,Massage Therapists,1
+423211,31-9091,Dental Assistant,Dental Assistants,1
+451711,53-2031,Flight Attendant,Flight Attendants,1
+612111,41-9022,Real Estate Sales Agents,Real Estate Sales Agents,1
+612112,41-9022,Real Estate Sales Agents,Real Estate Sales Agents,1
+612113,41-9022,Real Estate Sales Agents,Real Estate Sales Agents,1
+612114,41-9022,Real Estate Sales Agents,Real Estate Sales Agents,1
+612115,41-9022,Real Estate Sales Agents,Real Estate Sales Agents,1
+639111,41-9012,Model,Models,1
+639311,41-9041,Telemarketer,Telemarketers,1
+731112,53-3054,Taxi Driver,Taxi Drivers,1
+851111,35-2011,Fast Food Cook,"Cooks, Fast Food",1

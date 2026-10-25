@@ -1,0 +1,23 @@
+unit,title,eeh_imputed,eeh13_imputed,ato_imputed,eeh_sources,eeh_bridge
+1111,Chief Executives and Managing Directors,none,not imputed,none,1111,same code
+1112,General Managers,none,not imputed,none,1112,same code
+1113,Legislators,minor group (3-digit) mean,not imputed,none,1113,same code
+1211,Aquaculture Farmers,minor group (3-digit) mean,none,none,1211,same code
+1212,Crop Farmers,minor group (3-digit) mean,none,none,1215;1216;1217,many-to-many;merge (several 2022 units into one v1.2 unit)
+1214,Mixed Crop and Livestock Farmers,minor group (3-digit) mean,none,none,1217,split (one 2022 unit into several v1.2 units)
+1392,Senior Non-commissioned Defence Force Members,minor group (3-digit) mean,none,none,1392,same code
+2522,Complementary Health Therapists,minor group (3-digit) mean,none,none,2522,same code
+3221,"Metal Casting, Forging and Finishing Trades Workers",minor group (3-digit) mean,none,none,3221,same code
+3612,Shearers,minor group (3-digit) mean,none,none,3633,split (one 2022 unit into several v1.2 units)
+3931,Canvas and Leather Goods Makers,minor group (3-digit) mean,none,none,3931,same code
+3994,Jewellers,minor group (3-digit) mean,none,none,3994,same code
+3996,Signwriters,minor group (3-digit) mean,none,none,3996,same code
+4411,Defence Force Members - Other Ranks,minor group (3-digit) mean,none,none,4411,same code
+4513,Funeral Workers,minor group (3-digit) mean,none,none,4513,same code
+4515,Personal Care Consultants,minor group (3-digit) mean,none,none,4515,same code
+5614,Mail Sorters,minor group (3-digit) mean,none,none,5614,same code
+6111,"Auctioneers, and Stock and Station Agents",minor group (3-digit) mean,none,none,6111,same code
+6217,Street Vendors and Related Salespersons,minor group (3-digit) mean,none,none,6217,same code
+6399,Other Sales Support Workers,none,none,minor group (3-digit) mean,6399,same code
+8411,Aquaculture Workers,minor group (3-digit) mean,none,none,8421,recoded one-to-one
+8413,Forestry and Logging Workers,minor group (3-digit) mean,none,none,8431,recoded one-to-one

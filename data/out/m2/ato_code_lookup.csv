@@ -1,0 +1,430 @@
+code,title,individuals,avg_sw,med_sw,mapping,share_of_individuals
+0000,Occupation blank,3319076,58540.89,43639.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",0.20013377723142395
+1111,Chief executive officer or managing director,237168,126813.05,80000,"ANZSCO 2022 unit group, bridged to v1.2",0.014300765537885349
+1112,General manager,261218,124606.95,99726,"ANZSCO 2022 unit group, bridged to v1.2",0.01575093339858385
+1113,Legislator,4450,98415.73,80220,"ANZSCO 2022 unit group, bridged to v1.2",2.683262777591825e-4
+1211,Aquaculture farmer,3591,58334.81,53042,"ANZSCO 2022 unit group, bridged to v1.2",2.1653026144566843e-4
+1213,Livestock farmer,19234,61823.49,61983.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0011597725003191274
+1215,Broadacre Crop Growers,802,61043.67,56136,"ANZSCO 2022 unit group, bridged to v1.2",4.835902803659874e-5
+1216,Horticultural Crop Growers,3722,54482.43,50302.5,"ANZSCO 2022 unit group, bridged to v1.2",2.244293046785792e-4
+1217,Mixed Production Farmers,3043,60047.49,57966,"ANZSCO 2022 unit group, bridged to v1.2",1.8348693555532414e-4
+1311,Advertising and sales manager,188724,125481.23,105230,"ANZSCO 2022 unit group, bridged to v1.2",0.011379687290746959
+1321,Corporate services manager,13557,134903.69,118385,"ANZSCO 2022 unit group, bridged to v1.2",8.174605275463455e-4
+1322,Finance manager,68544,133547.79,107362,"ANZSCO 2022 unit group, bridged to v1.2",0.004133068850050653
+1323,Human resource manager,34283,142041.22,124918,"ANZSCO 2022 unit group, bridged to v1.2",0.0020671977034647316
+1324,Policy and planning manager,49691,131991.27,128177.5,"ANZSCO 2022 unit group, bridged to v1.2",0.002996269902950908
+1325,Research and development manager,11846,120864.16,111746.5,"ANZSCO 2022 unit group, bridged to v1.2",7.142905811989385e-4
+1331,Construction manager,86710,126196.1,116666,"ANZSCO 2022 unit group, bridged to v1.2",0.005228443043707577
+1332,Engineering manager,26852,173455,160399.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0016191229686268694
+1333,"Importer, exporter or wholesaler",3105,90179.48,74882.5,"ANZSCO 2022 unit group, bridged to v1.2",1.8722541403196893e-4
+1334,Manufacturer,23228,84604.8,79239,"ANZSCO 2022 unit group, bridged to v1.2",0.001400602871862987
+1335,Production manager,18463,144014.7,126008,"ANZSCO 2022 unit group, bridged to v1.2",0.001113282711520851
+1336,Supply and distribution manager,25404,123410.37,110698,"ANZSCO 2022 unit group, bridged to v1.2",0.00153181140678523
+1341,Child care centre director,9484,81190.18,82876,"ANZSCO 2022 unit group, bridged to v1.2",5.718666108467612e-4
+1342,Health and welfare services manager,54367,79282.95,70050,"ANZSCO 2022 unit group, bridged to v1.2",0.00327822353773786
+1343,School principal,14077,151210.16,151648.5,"ANZSCO 2022 unit group, bridged to v1.2",8.488155083182051e-4
+1344,Other education manager,20694,75487.47,67751,"ANZSCO 2022 unit group, bridged to v1.2",0.0012478076386401177
+1351,IT manager,83788,157157.12,147777,"ANZSCO 2022 unit group, bridged to v1.2",0.005052252170985705
+1391,Commissioned officer - management,14779,108934.46,103538,"ANZSCO 2022 unit group, bridged to v1.2",8.911447323602154e-4
+1392,Senior non-commissioned defence force member,5396,101876.17,110789,"ANZSCO 2022 unit group, bridged to v1.2",3.2536822354798853e-4
+1399,Other specialist manager,35259,97218.9,90000,"ANZSCO 2022 unit group, bridged to v1.2",0.002126048590451914
+1411,Café or restaurant manager,52407,55763.9,55063,"ANZSCO 2022 unit group, bridged to v1.2",0.003160039379443928
+1412,Caravan park manager,2508,56467.55,56533.5,"ANZSCO 2022 unit group, bridged to v1.2",1.5122748418427637e-4
+1413,Hotel or motel manager,13053,77354.84,72849.5,"ANZSCO 2022 unit group, bridged to v1.2",7.870703154136201e-4
+1414,Licensed club manager,3693,91832.79,82523,"ANZSCO 2022 unit group, bridged to v1.2",2.2268066152014856e-4
+1419,Other accommodation or hospitality manager,1713,74299.27,70545,"ANZSCO 2022 unit group, bridged to v1.2",1.032905424272988e-4
+1421,Retail manager,127698,65004.63,63120,"ANZSCO 2022 unit group, bridged to v1.2",0.007699939105009459
+1491,"Amusement, fitness or sports centre manager",6208,65101.88,63792,"ANZSCO 2022 unit group, bridged to v1.2",3.743302319840461e-4
+1492,Call or contact centre or customer service manager,129827,68566.44,65463,"ANZSCO 2022 unit group, bridged to v1.2",0.007828313632054246
+1493,Conference and event organiser,23437,68381.61,68528,"ANZSCO 2022 unit group, bridged to v1.2",0.0014132051622116767
+1494,Transport services manager,24110,99865.32,94346.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0014537857430952563
+1499,"Other hospitality, retail or service manager",37107,126508.04,109970,"ANZSCO 2022 unit group, bridged to v1.2",0.002237479368271907
+2111,"Actor, dancer or other entertainer",12839,35885.48,19659,"ANZSCO 2022 unit group, bridged to v1.2",7.74166534865201e-4
+2112,Music professional,6072,54570.27,43241,"ANZSCO 2022 unit group, bridged to v1.2",3.6612969855140593e-4
+2113,Photographer,6013,46524.87,41821,"ANZSCO 2022 unit group, bridged to v1.2",3.625721141945988e-4
+2114,Visual arts and crafts professional,3585,53984.72,47605,"ANZSCO 2022 unit group, bridged to v1.2",2.1616847320599312e-4
+2121,"Artistic director, media producer or presenter",12553,99527.95,88108,"ANZSCO 2022 unit group, bridged to v1.2",7.569212954406782e-4
+2122,"Author, or book or script editor",1873,64431.35,60927,"ANZSCO 2022 unit group, bridged to v1.2",1.1293822881864019e-4
+2123,"Film, television radio or stage director",11925,83245.52,76463,"ANZSCO 2022 unit group, bridged to v1.2",7.190541263546633e-4
+2124,Journalist or other writer,15649,88736.24,83294,"ANZSCO 2022 unit group, bridged to v1.2",9.436040271131342e-4
+2211,Accountant,191675,115468.87,98490,"ANZSCO 2022 unit group, bridged to v1.2",0.011557626806627261
+2212,"Auditor, company secretary or corporate treasurer",31552,120641.44,102488.5,"ANZSCO 2022 unit group, bridged to v1.2",0.001902523756372523
+2221,Financial broker,21719,117560.56,90252,"ANZSCO 2022 unit group, bridged to v1.2",0.0013096131295846484
+2222,Financial dealer,5148,297409.7,175431,"ANZSCO 2022 unit group, bridged to v1.2",3.1041430964140937e-4
+2223,Financial investment advisor or manager,20385,172017.2,120000,"ANZSCO 2022 unit group, bridged to v1.2",0.0012291755442968395
+2231,Human resource professional,70114,91087.52,81674,"ANZSCO 2022 unit group, bridged to v1.2",0.004227736772765691
+2233,Training and development officer,11795,91617.97,88741,"ANZSCO 2022 unit group, bridged to v1.2",7.112153811616984e-4
+2241,"Actuary, mathematician or statistician",24121,109329.66,98003,"ANZSCO 2022 unit group, bridged to v1.2",0.001454449021534661
+2242,"Archivist, curator or records manager",13300,73973.61,71941,"ANZSCO 2022 unit group, bridged to v1.2",8.019639312802534e-4
+2243,Economist,4109,152674.17,128928,"ANZSCO 2022 unit group, bridged to v1.2",2.4776464613763616e-4
+2244,Intelligence or policy analyst,20392,106494.58,103412,"ANZSCO 2022 unit group, bridged to v1.2",0.0012295976305764606
+2245,Land economist or valuer,5201,130460.57,112635.5,"ANZSCO 2022 unit group, bridged to v1.2",3.136101057585412e-4
+2246,Librarian,8495,73327.7,75291,"ANZSCO 2022 unit group, bridged to v1.2",5.122318493402822e-4
+2247,Management and organisation analyst,24235,111030.16,100157,"ANZSCO 2022 unit group, bridged to v1.2",0.0014613229980884918
+2249,Other information and organisation professional,22562,44868.3,9989.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0013604443772590284
+2251,Advertising and marketing professional,69804,91252.67,80486.5,"ANZSCO 2022 unit group, bridged to v1.2",0.004209044380382467
+2252,IT sales professional,23834,152154.48,126148,"ANZSCO 2022 unit group, bridged to v1.2",0.0014371434840701925
+2253,Public relations officer,20521,100671.08,93514,"ANZSCO 2022 unit group, bridged to v1.2",0.0012373760777294796
+2254,Technical sales representative,27017,108258.16,98173,"ANZSCO 2022 unit group, bridged to v1.2",0.0016290721452179404
+2311,Air transport professionals,16365,163767.1,142769,"ANZSCO 2022 unit group, bridged to v1.2",9.86777423714387e-4
+2312,Marine transport professional,12095,127748.67,116269.5,"ANZSCO 2022 unit group, bridged to v1.2",7.293047931454635e-4
+2321,Architect or landscape architect,22773,97253.62,89499.5,"ANZSCO 2022 unit group, bridged to v1.2",0.00137316726368761
+2322,Cartographer or surveyor,12385,114481.3,111341.5,"ANZSCO 2022 unit group, bridged to v1.2",7.467912247297699e-4
+2323,"Fashion, industrial or jewellery designer",9145,82826.46,75448.5,"ANZSCO 2022 unit group, bridged to v1.2",5.514255753051065e-4
+2324,"Graphic or web designer, or illustrator",38828,77603.69,73392,"ANZSCO 2022 unit group, bridged to v1.2",0.0023412522950187727
+2325,Interior designer,8678,69955.19,66435,"ANZSCO 2022 unit group, bridged to v1.2",5.232663906503789e-4
+2326,Urban and regional planner,12150,112285.73,106575,"ANZSCO 2022 unit group, bridged to v1.2",7.326211853424872e-4
+2330,Engineer - type not specified,2,91913.5,91913.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.2059607989176743e-7
+2331,Chemical or materials engineer,10096,138584.3,126323,"ANZSCO 2022 unit group, bridged to v1.2",6.08769011293642e-4
+2332,Civil engineering professional,71248,129994.37,119222,"ANZSCO 2022 unit group, bridged to v1.2",0.004296114750064323
+2333,Electrical engineer,34797,134110.49,130630,"ANZSCO 2022 unit group, bridged to v1.2",0.0020981908959969158
+2334,Electronics engineer,7595,118230.06,113202,"ANZSCO 2022 unit group, bridged to v1.2",4.579636133889868e-4
+2335,"Industrial, mechanical or production engineer",53693,121115.26,113199,"ANZSCO 2022 unit group, bridged to v1.2",0.0032375826588143344
+2336,Mining engineer,10619,191636.67,176375.5,"ANZSCO 2022 unit group, bridged to v1.2",6.403048861853392e-4
+2339,Other engineering professional,30927,129586.38,119111,"ANZSCO 2022 unit group, bridged to v1.2",0.0018648374814063456
+2341,Agricultural or forestry scientist,11473,89029.49,87192,"ANZSCO 2022 unit group, bridged to v1.2",6.917994122991239e-4
+2342,"Chemist, or food and wine scientist",14888,94039.63,90657,"ANZSCO 2022 unit group, bridged to v1.2",8.977172187143168e-4
+2343,Environmental scientist,33418,93532.73,89999,"ANZSCO 2022 unit group, bridged to v1.2",0.002015039898911542
+2344,Geologist or geophysicist,11381,148477.07,137248.5,"ANZSCO 2022 unit group, bridged to v1.2",6.862519926241025e-4
+2345,Life scientist,17782,94240.57,92987,"ANZSCO 2022 unit group, bridged to v1.2",0.0010722197463177042
+2346,Medical laboratory scientist,14533,91136.97,89291.5,"ANZSCO 2022 unit group, bridged to v1.2",8.76311414533528e-4
+2347,Veterinarian,12335,99380.84,96288,"ANZSCO 2022 unit group, bridged to v1.2",7.437763227324756e-4
+2349,Other natural or physical science professional,13430,98041.41,86387,"ANZSCO 2022 unit group, bridged to v1.2",8.098026764732182e-4
+2400,Teacher - type not specified,1,1187,1187,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",6.029803994588371e-8
+2410,School teacher - type not specified,34189,73081.8,73919,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",0.0020615296877098182
+2411,Pre-school or kindergarten teacher,25422,64341.61,63794,"ANZSCO 2022 unit group, bridged to v1.2",0.0015328967715042558
+2412,Infant or primary school teacher,192536,82805.14,87539,"ANZSCO 2022 unit group, bridged to v1.2",0.011609543419020667
+2413,Middle school teacher,10221,82236.38,88117,"ANZSCO 2022 unit group, bridged to v1.2",6.163062662868775e-4
+2414,Secondary school teacher,172516,91917.03,97755,"ANZSCO 2022 unit group, bridged to v1.2",0.010402376659304075
+2415,Special needs teacher,20545,69271.71,64414,"ANZSCO 2022 unit group, bridged to v1.2",0.001238823230688181
+2421,University lecturer or tutor,72571,91661.79,90370,"ANZSCO 2022 unit group, bridged to v1.2",0.004375889056912727
+2422,TAFE teacher or tutor,25069,73624.58,78924,"ANZSCO 2022 unit group, bridged to v1.2",0.0015116115634033588
+2491,Education advisor or reviewer,18734,75753.7,71643.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0011296234803461855
+2492,Private teacher or tutor,25624,36614.24,22830.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0015450769755733242
+2493,Teacher of English to speakers of other languages,3577,57171.4,56565,"ANZSCO 2022 unit group, bridged to v1.2",2.1568608888642606e-4
+2511,Dietician,7474,68468.78,67484,"ANZSCO 2022 unit group, bridged to v1.2",4.506675505555349e-4
+2512,Medical imaging professional,21217,102190.45,102989,"ANZSCO 2022 unit group, bridged to v1.2",0.0012793435135318148
+2513,Occupational and environmental health professional,17545,117257.15,111589.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0010579291108505297
+2514,Optometrist or orthoptist,6608,84345.17,87688,"ANZSCO 2022 unit group, bridged to v1.2",3.984494479623996e-4
+2515,Pharmacist,31487,78772.59,79058,"ANZSCO 2022 unit group, bridged to v1.2",0.0018986043837760406
+2519,Other health diagnostic and promotion professionals,4915,74494.84,72221,"ANZSCO 2022 unit group, bridged to v1.2",2.9636486633401844e-4
+2521,Chiropractor or osteopath,4303,67371.89,62256,"ANZSCO 2022 unit group, bridged to v1.2",2.5946246588713764e-4
+2522,Complementary health therapist,5186,48384.45,44593,"ANZSCO 2022 unit group, bridged to v1.2",3.1270563515935294e-4
+2523,Dental practitioner,9904,110386.44,94643,"ANZSCO 2022 unit group, bridged to v1.2",5.971917876240324e-4
+2524,Occupational therapist,25828,72306.28,72860.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0015573777757222846
+2525,Physiotherapist,32906,75302.4,76527,"ANZSCO 2022 unit group, bridged to v1.2",0.0019841673024592497
+2526,Podiatrist,3928,76858.47,77928,"ANZSCO 2022 unit group, bridged to v1.2",2.3685070090743123e-4
+2527,Speech professional or audiologist,16417,72919.23,73442,"ANZSCO 2022 unit group, bridged to v1.2",9.899129217915729e-4
+2531,General medical practitioner,49156,138539.37,122497,"ANZSCO 2022 unit group, bridged to v1.2",0.00296401045157986
+2532,Anaesthetist,3735,269923.38,235037,"ANZSCO 2022 unit group, bridged to v1.2",2.2521317919787568e-4
+2533,Internal medicine specialist,10896,238546.26,207579,"ANZSCO 2022 unit group, bridged to v1.2",6.57007443250349e-4
+2534,Psychiatrist,3335,222120.88,197138,"ANZSCO 2022 unit group, bridged to v1.2",2.010939632195222e-4
+2535,Surgeon,4280,238223.29,200000,"ANZSCO 2022 unit group, bridged to v1.2",2.580756109683823e-4
+2539,Other medical practitioners,32087,202842.96,151269.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0019347832077435709
+2541,Midwife,22628,76784.35,76614,"ANZSCO 2022 unit group, bridged to v1.2",0.0013644240478954566
+2542,Nurse educator or researcher,7964,85672.19,87602,"ANZSCO 2022 unit group, bridged to v1.2",4.802135901290179e-4
+2543,Nursing supervisor or manager,6873,97705.11,99917.5,"ANZSCO 2022 unit group, bridged to v1.2",4.144284285480588e-4
+2544,Registered nurse,360020,79241.75,78624,"ANZSCO 2022 unit group, bridged to v1.2",0.021708500341317057
+2611,IT business or systems analyst,61141,123410.59,118630,"ANZSCO 2022 unit group, bridged to v1.2",0.0036866824603312763
+2612,Multimedia specialist or web developer,8453,106387.8,100188,"ANZSCO 2022 unit group, bridged to v1.2",5.09699331662555e-4
+2613,Software and applications programmer,151272,129376.37,125617,"ANZSCO 2022 unit group, bridged to v1.2",0.00912140509869372
+2621,"Database or systems administrator, or IT security specialist",36669,112353.96,104961.5,"ANZSCO 2022 unit group, bridged to v1.2",0.00221106882677561
+2631,Computer network professional,35464,130955.76,124372,"ANZSCO 2022 unit group, bridged to v1.2",0.00213840968864082
+2632,IT support or test engineer,29756,100115.9,91578,"ANZSCO 2022 unit group, bridged to v1.2",0.0017942284766297159
+2633,Telecommunications engineering professional,8816,129217.53,125838,"ANZSCO 2022 unit group, bridged to v1.2",5.315875201629108e-4
+2711,Barrister,1545,78535.65,35829.5,"ANZSCO 2022 unit group, bridged to v1.2",9.316047171639034e-5
+2712,Judicial or other legal professionals,4338,186134.07,120626,"ANZSCO 2022 unit group, bridged to v1.2",2.6157289728524357e-4
+2713,Solicitor,73929,139687.67,119210,"ANZSCO 2022 unit group, bridged to v1.2",0.004457773795159237
+2721,Counsellor,18630,66511.68,66558.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0011233524841918136
+2722,Religious leader,17607,34656.83,30085,"ANZSCO 2022 unit group, bridged to v1.2",0.0010616675893271746
+2723,Psychologist,27038,79352.16,76640,"ANZSCO 2022 unit group, bridged to v1.2",0.001630338404056804
+2724,Social professionals,8266,54300.93,45591,"ANZSCO 2022 unit group, bridged to v1.2",4.984235981926748e-4
+2725,Social worker,54565,75251.02,76058,"ANZSCO 2022 unit group, bridged to v1.2",0.0032901625496471448
+2726,"Welfare, recreation or community arts worker",6466,65495.18,65672,"ANZSCO 2022 unit group, bridged to v1.2",3.898871262900841e-4
+3111,Agricultural technician,4055,72273.4,69977,"ANZSCO 2022 unit group, bridged to v1.2",2.445085519805585e-4
+3112,Medical technician,38191,57413.07,55009,"ANZSCO 2022 unit group, bridged to v1.2",0.002302842443573245
+3113,Primary products inspector,7938,79312.66,78834,"ANZSCO 2022 unit group, bridged to v1.2",4.7864584109042494e-4
+3114,Science technician,21025,68198.96,68592.5,"ANZSCO 2022 unit group, bridged to v1.2",0.001267766289862205
+3121,"Architectural, building or surveying technician",61114,100179.97,93640,"ANZSCO 2022 unit group, bridged to v1.2",0.0036850544132527373
+3122,Civil engineering draftsperson or technician,11798,94552.66,90702,"ANZSCO 2022 unit group, bridged to v1.2",7.113962752815361e-4
+3123,Electrical engineering draftsperson or technician,14890,113154.5,109130.5,"ANZSCO 2022 unit group, bridged to v1.2",8.978378147942085e-4
+3124,Electronic engineering draftsperson or technician,5370,96774.49,91985,"ANZSCO 2022 unit group, bridged to v1.2",3.2380047450939554e-4
+3125,Mechanical engineering draftsperson or technician,11962,103461.9,98275,"ANZSCO 2022 unit group, bridged to v1.2",7.21285153832661e-4
+3126,Safety inspector,8108,115485.28,111430,"ANZSCO 2022 unit group, bridged to v1.2",4.888965078812252e-4
+3129,Other building or engineering technician,29727,134547.68,131318,"ANZSCO 2022 unit group, bridged to v1.2",0.0017924798334712853
+3131,IT support technician,39250,72439.03,69649,"ANZSCO 2022 unit group, bridged to v1.2",0.0023666980678759358
+3132,Telecommunications technical specialist,5861,104115.96,101386,"ANZSCO 2022 unit group, bridged to v1.2",3.5340681212282446e-4
+3211,Automotive electrician,13604,107979.28,102807,"ANZSCO 2022 unit group, bridged to v1.2",8.20294535423802e-4
+3212,Motor mechanic,114450,91485.14,83962.5,"ANZSCO 2022 unit group, bridged to v1.2",0.006901110671806391
+3221,"Metal casting, forging or finishing trades worker",1298,62339.82,61912,"ANZSCO 2022 unit group, bridged to v1.2",7.826685584975706e-5
+3222,Sheetmetal trades worker,6592,79424.57,77807,"ANZSCO 2022 unit group, bridged to v1.2",3.974846793232654e-4
+3223,Structural steel or welding trades worker,76646,91992.55,86500,"ANZSCO 2022 unit group, bridged to v1.2",0.004621603569692203
+3231,Aircraft maintenance engineer,11580,117169.85,107674.5,"ANZSCO 2022 unit group, bridged to v1.2",6.982513025733335e-4
+3232,Metal fitter or machinist,64650,111582.97,108387,"ANZSCO 2022 unit group, bridged to v1.2",0.003898268282501382
+3233,Precision metal trades worker,3172,68847.27,68167,"ANZSCO 2022 unit group, bridged to v1.2",1.9126538270834313e-4
+3234,Toolmaker or engineering patternmaker,1999,84528.7,85035.5,"ANZSCO 2022 unit group, bridged to v1.2",1.2053578185182155e-4
+3241,Panel beater,9967,78268.7,78194,"ANZSCO 2022 unit group, bridged to v1.2",6.00990564140623e-4
+3242,Vehicle body builder or trimmer,2629,76034.56,74910,"ANZSCO 2022 unit group, bridged to v1.2",1.5852354701772827e-4
+3243,Vehicle painter,8033,75572.5,75398,"ANZSCO 2022 unit group, bridged to v1.2",4.843741548852839e-4
+3311,Bricklayer or stonemason,12397,66480.05,65159,"ANZSCO 2022 unit group, bridged to v1.2",7.475148012091204e-4
+3312,Carpenter and joiner,92832,78723.16,76678,"ANZSCO 2022 unit group, bridged to v1.2",0.005597587644256277
+3321,Floor finisher,4500,61539.06,60000,"ANZSCO 2022 unit group, bridged to v1.2",2.713411797564767e-4
+3322,Painting trades worker,19705,55970.47,56701,"ANZSCO 2022 unit group, bridged to v1.2",0.0011881728771336387
+3331,Glazier,8294,71400.98,70191.5,"ANZSCO 2022 unit group, bridged to v1.2",5.001119433111596e-4
+3332,Plasterer,14428,65820.63,64742.5,"ANZSCO 2022 unit group, bridged to v1.2",8.699801203392103e-4
+3333,Roof tiler,3777,60460.33,57510.5,"ANZSCO 2022 unit group, bridged to v1.2",2.2774569687560278e-4
+3334,Wall and floor tiler,7740,56308.76,54653,"ANZSCO 2022 unit group, bridged to v1.2",4.6670682918113993e-4
+3341,Plumber,62150,86501.79,87607,"ANZSCO 2022 unit group, bridged to v1.2",0.0037475231826366727
+3411,Electrician,91785,111934.12,108931,"ANZSCO 2022 unit group, bridged to v1.2",0.005534455596432937
+3421,Air conditioning and refrigeration mechanic,17317,94164.24,94817.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0010441811577428684
+3422,Electrical distribution trades worker,11335,134179.72,134811,"ANZSCO 2022 unit group, bridged to v1.2",6.834782827865919e-4
+3423,Electronic equipment trades worker,27990,92483.74,84367,"ANZSCO 2022 unit group, bridged to v1.2",0.0016877421380852853
+3424,Telecommunications trades worker,13568,86968.18,85615,"ANZSCO 2022 unit group, bridged to v1.2",8.181238059857503e-4
+3511,Baker or pastrycook,19431,55176.28,58241,"ANZSCO 2022 unit group, bridged to v1.2",0.0011716512141884666
+3512,Butcher or smallgoods maker,12778,59053.96,60062,"ANZSCO 2022 unit group, bridged to v1.2",7.704883544285021e-4
+3513,Chef,142550,57008.36,57771.5,"ANZSCO 2022 unit group, bridged to v1.2",0.008595485594285723
+3514,Cook,41976,38684.96,36948.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0025310705247684148
+3611,Animal attendant or trainer,16583,44394.25,42701,"ANZSCO 2022 unit group, bridged to v1.2",9.999223964225897e-4
+3613,Veterinary nurse,14788,52503.18,54263,"ANZSCO 2022 unit group, bridged to v1.2",8.916874147197283e-4
+3621,Florist,4065,37424.69,35928,"ANZSCO 2022 unit group, bridged to v1.2",2.451115323800173e-4
+3623,Greenkeeper,2826,67922.44,68802,"ANZSCO 2022 unit group, bridged to v1.2",1.7040226088706737e-4
+3624,Nurseryperson,9288,48485.97,48094,"ANZSCO 2022 unit group, bridged to v1.2",5.60048195017368e-4
+3625,Arboriculture Workers,8039,68116.79,69804,"ANZSCO 2022 unit group, bridged to v1.2",4.847359431249592e-4
+3626,Gardeners (General),18466,46633.84,49229,"ANZSCO 2022 unit group, bridged to v1.2",0.0011134636056406887
+3627,Landscape Gardeners and Irrigation Technicians,30185,54691.22,55380,"ANZSCO 2022 unit group, bridged to v1.2",0.0018200963357664999
+3631,"Senior Aquaculture, Crop and Forestry Workers",4741,73363.34,73073,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.858730073834347e-4
+3632,Senior Livestock Farm Workers,1842,62701.42,64386,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.1106898958031781e-4
+3633,Shearers and Wool Classers,5940,57682.15,53600.5,"ANZSCO 2022 unit group, bridged to v1.2",3.5817035727854924e-4
+3911,Hairdresser,32537,40619.38,39758,"ANZSCO 2022 unit group, bridged to v1.2",0.0019619173257192186
+3921,"Binder, finisher or screen printer",3067,59347.34,58905.5,"ANZSCO 2022 unit group, bridged to v1.2",1.8493408851402536e-4
+3922,Graphic pre-press trades worker,1391,75391.26,71478.5,"ANZSCO 2022 unit group, bridged to v1.2",8.387457356472424e-5
+3923,Printer,4417,74371.43,71686,"ANZSCO 2022 unit group, bridged to v1.2",2.6633644244096835e-4
+3931,Canvas or leather goods maker,831,53156.5,53924,"ANZSCO 2022 unit group, bridged to v1.2",5.0107671195029365e-5
+3932,Clothing trades worker,2783,48190.71,46745,"ANZSCO 2022 unit group, bridged to v1.2",1.6780944516939437e-4
+3933,Upholsterer,1730,57825.5,58981,"ANZSCO 2022 unit group, bridged to v1.2",1.0431560910637883e-4
+3941,Cabinet maker,18832,65200.89,65947,"ANZSCO 2022 unit group, bridged to v1.2",0.0011355326882608822
+3942,Wood machinist or other wood trades worker,2782,58055.85,59000.5,"ANZSCO 2022 unit group, bridged to v1.2",1.6774914712944849e-4
+3991,Boat builder or shipwright,2886,72019.74,69586,"ANZSCO 2022 unit group, bridged to v1.2",1.740201432838204e-4
+3992,"Chemical, gas, petroleum or power generation plant operator",10454,138706.96,127982.5,"ANZSCO 2022 unit group, bridged to v1.2",6.303557095942683e-4
+3993,"Gallery, library or museum technician",6766,56959.85,58342,"ANZSCO 2022 unit group, bridged to v1.2",4.079765382738492e-4
+3994,Jeweller,1751,60218.5,58697,"ANZSCO 2022 unit group, bridged to v1.2",1.0558186794524239e-4
+3995,Performing arts technician,12362,64271.79,63524.5,"ANZSCO 2022 unit group, bridged to v1.2",7.454043698110145e-4
+3996,Signwriter,3016,66986.82,67967.5,"ANZSCO 2022 unit group, bridged to v1.2",1.8185888847678527e-4
+3999,Other miscellaneous technician and trades worker,30648,72158.65,67228.5,"ANZSCO 2022 unit group, bridged to v1.2",0.001848014328261444
+4111,Ambulance officer or paramedic,23993,109751.48,111206,"ANZSCO 2022 unit group, bridged to v1.2",0.001446730872421588
+4112,"Dental hygienist, technician or therapist",7778,73243.62,71594,"ANZSCO 2022 unit group, bridged to v1.2",4.6899815469908355e-4
+4113,Diversional therapist,1361,49947.9,48848,"ANZSCO 2022 unit group, bridged to v1.2",8.206563236634773e-5
+4114,Enrolled or mothercraft nurse,29226,58267.39,58793,"ANZSCO 2022 unit group, bridged to v1.2",0.0017622705154583976
+4115,Aboriginal and Torres Strait Islander health worker,3815,60552.37,61527,"ANZSCO 2022 unit group, bridged to v1.2",2.3003702239354637e-4
+4116,Massage therapist,9584,28748.11,24076,"ANZSCO 2022 unit group, bridged to v1.2",5.778964148413495e-4
+4117,Welfare support worker,217589,55695.89,53835,"ANZSCO 2022 unit group, bridged to v1.2",0.013120190213784891
+4211,Child carer,209371,42643.39,43197,"ANZSCO 2022 unit group, bridged to v1.2",0.01262466092150962
+4221,Education aide,107804,42403.7,42830.5,"ANZSCO 2022 unit group, bridged to v1.2",0.006500369898326048
+4230,Personal carers and assistants,5,24353.4,22640,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",3.0149019972941857e-7
+4231,Aged or disabled carer,221428,49532.82,47498,"ANZSCO 2022 unit group, bridged to v1.2",0.01335167438913714
+4232,Dental nurse or assistant,35614,42472.11,43408,"ANZSCO 2022 unit group, bridged to v1.2",0.0021474543946327024
+4233,Nursing support or personal care worker,101049,50920.92,50917,"ANZSCO 2022 unit group, bridged to v1.2",0.006093056638491604
+4234,Special care worker,5562,60166.05,60278.5,"ANZSCO 2022 unit group, bridged to v1.2",3.353776981790052e-4
+4311,Bar attendant or barista,116758,34877.09,32652,"ANZSCO 2022 unit group, bridged to v1.2",0.007040278548001491
+4312,Café worker,61210,25359.1,21141,"ANZSCO 2022 unit group, bridged to v1.2",0.0036908430250875424
+4313,Gaming worker,5279,60781.23,63277,"ANZSCO 2022 unit group, bridged to v1.2",3.183133528743201e-4
+4314,Hotel service manager,5611,59730.01,60871,"ANZSCO 2022 unit group, bridged to v1.2",3.3833230213635353e-4
+4315,Waiter,150633,26952.39,22873,"ANZSCO 2022 unit group, bridged to v1.2",0.009082874651168301
+4319,Other hospitality worker,84607,34728.17,30391,"ANZSCO 2022 unit group, bridged to v1.2",0.005101636265701383
+4411,Defence force member - other ranks,25012,81442.45,82937,"ANZSCO 2022 unit group, bridged to v1.2",0.0015081745751264436
+4412,Fire or emergency service worker,21280,113593.13,114696,"ANZSCO 2022 unit group, bridged to v1.2",0.0012831422900484054
+4413,Police,66688,109186.86,109409,"ANZSCO 2022 unit group, bridged to v1.2",0.004021155687911093
+4421,Prison officer,24178,99188.72,99888,"ANZSCO 2022 unit group, bridged to v1.2",0.0014578860098115765
+4422,Security officer or guard,59788,67716.66,70006.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0036050992122844956
+4511,Beauty therapist,25399,34393.3,30756,"ANZSCO 2022 unit group, bridged to v1.2",0.0015315099165855005
+4512,Driving instructor,1502,61242.77,64712,"ANZSCO 2022 unit group, bridged to v1.2",9.056765599871734e-5
+4513,Funeral worker,3959,60340.86,62770.5,"ANZSCO 2022 unit group, bridged to v1.2",2.3871994014575362e-4
+4514,"Gallery, museum or tour guide",5634,38507.98,35720,"ANZSCO 2022 unit group, bridged to v1.2",3.3971915705510887e-4
+4515,Personal care consultant,807,29761.4,22000,"ANZSCO 2022 unit group, bridged to v1.2",4.866051823632816e-5
+4516,Tourism or travel adviser,11321,67036.94,65129,"ANZSCO 2022 unit group, bridged to v1.2",6.826341102273495e-4
+4517,Travel attendant,11946,65913.84,60832,"ANZSCO 2022 unit group, bridged to v1.2",7.203203851935269e-4
+4518,Other personal service worker,10829,32067.52,25585.5,"ANZSCO 2022 unit group, bridged to v1.2",6.529674745739748e-4
+4521,Fitness instructor,21084,38239.69,32717.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0012713238742190123
+4522,Outdoor adventure guide,4245,43019.79,39485,"ANZSCO 2022 unit group, bridged to v1.2",2.559651795702764e-4
+4523,"Sports coaches, instructors and officials",42223,35398.26,22815,"ANZSCO 2022 unit group, bridged to v1.2",0.0025459641406350483
+4524,Sportsperson,17192,69563.88,34396.5,"ANZSCO 2022 unit group, bridged to v1.2",0.001036643902749633
+5111,"Contract, program or project administrator",300519,78302.6,73800,"ANZSCO 2022 unit group, bridged to v1.2",0.018120706666497028
+5121,Office administrator or manager,207008,63986.28,61822,"ANZSCO 2022 unit group, bridged to v1.2",0.012482176653117497
+5122,Practice manager,48256,109040.75,90473,"ANZSCO 2022 unit group, bridged to v1.2",0.0029097422156285644
+5211,Personal assistant,44455,76805.22,78089,"ANZSCO 2022 unit group, bridged to v1.2",0.0026805493657942607
+5212,Secretary,27261,57577.71,57520,"ANZSCO 2022 unit group, bridged to v1.2",0.001643784866964736
+5300,Clerk - type not specified,2,62829,62829,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.2059607989176743e-7
+5310,Public servant - administrative service officer - levels 3-4,28541,78694.29,78147.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",0.0017209663580954671
+5311,Administration assistant or office worker,302903,51537.62,50481,"ANZSCO 2022 unit group, bridged to v1.2",0.018264457193728014
+5321,Keyboard operator,13799,54851.34,55162,"ANZSCO 2022 unit group, bridged to v1.2",8.320526532132493e-4
+5411,Call or contact centre worker,45632,57028.92,58628,"ANZSCO 2022 unit group, bridged to v1.2",0.0027515201588105657
+5412,Inquiry clerk,4826,79149.38,76288,"ANZSCO 2022 unit group, bridged to v1.2",2.9099834077883483e-4
+5421,Receptionist,114241,41481.23,40797,"ANZSCO 2022 unit group, bridged to v1.2",0.006888508381457701
+5511,Accounting clerk,90804,69876.75,67160,"ANZSCO 2022 unit group, bridged to v1.2",0.005475303219246025
+5512,Bookkeeper,33700,50728.68,47457,"ANZSCO 2022 unit group, bridged to v1.2",0.0020320439461762813
+5513,Payroll clerk,17429,77289.69,76591,"ANZSCO 2022 unit group, bridged to v1.2",0.0010509345382168072
+5521,"Bank teller, officer or employee",66766,99950.28,83482,"ANZSCO 2022 unit group, bridged to v1.2",0.004025858935026872
+5522,Credit or loans officer,11011,93957.12,84183,"ANZSCO 2022 unit group, bridged to v1.2",6.639417178441255e-4
+5523,"Insurance, money market or statistical clerk",31089,89930.23,80022,"ANZSCO 2022 unit group, bridged to v1.2",0.001874605763877579
+5610,Public servant - administrative service officer - levels 1-2,11450,73067.97,72622,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",6.904125573803686e-4
+5611,Betting clerk,1303,52102.42,48867,"ANZSCO 2022 unit group, bridged to v1.2",7.856834604948648e-5
+5612,Courier or postal deliverer,23997,58531.15,62655,"ANZSCO 2022 unit group, bridged to v1.2",0.0014469720645813714
+5613,Filing clerk,753,41747.14,38452,"ANZSCO 2022 unit group, bridged to v1.2",4.5404424079250436e-5
+5614,Mail sorter,8077,57105.42,62034.5,"ANZSCO 2022 unit group, bridged to v1.2",4.8702726864290275e-4
+5615,Market research interviewer,2094,34118.29,24632,"ANZSCO 2022 unit group, bridged to v1.2",1.262640956466805e-4
+5616,Switchboard operator,1465,55396.17,56479.5,"ANZSCO 2022 unit group, bridged to v1.2",8.833662852071964e-5
+5619,Other clerical or office support worker,6347,47112.46,45189,"ANZSCO 2022 unit group, bridged to v1.2",3.8271165953652396e-4
+5911,Purchasing or supply logistics clerk,95183,65901.08,65675.5,"ANZSCO 2022 unit group, bridged to v1.2",0.00573934833616905
+5912,Receiving and dispatching clerk,18805,78440.98,76346.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0011339046411823434
+5991,Conveyancer or legal executive,15315,70769.62,63144.5,"ANZSCO 2022 unit group, bridged to v1.2",9.234644817712091e-4
+5992,Court or legal clerk,17053,67805.43,66128.5,"ANZSCO 2022 unit group, bridged to v1.2",0.001028262475197155
+5993,Debt collector,3536,64725.9,66328,"ANZSCO 2022 unit group, bridged to v1.2",2.1321386924864482e-4
+5994,Human resource clerk,6170,69715.68,68377,"ANZSCO 2022 unit group, bridged to v1.2",3.7203890646610253e-4
+5995,Inspector or regulatory officer,19717,96721.31,94077,"ANZSCO 2022 unit group, bridged to v1.2",0.0011888964536129892
+5996,"Insurance investigator, loss adjuster or risk surveyor",2159,119095.14,101209,"ANZSCO 2022 unit group, bridged to v1.2",1.3018346824316294e-4
+5997,Library assistant,4243,43696.03,44458,"ANZSCO 2022 unit group, bridged to v1.2",2.558445834903846e-4
+5999,Other miscellaneous clerical or administrative worker,28475,52831.74,52377,"ANZSCO 2022 unit group, bridged to v1.2",0.0017169866874590387
+6111,"Auctioneer, or stock and station agent",2237,96618.85,83974.5,"ANZSCO 2022 unit group, bridged to v1.2",1.3488671535894186e-4
+6112,Insurance agent or salesperson,9353,88056.98,73134,"ANZSCO 2022 unit group, bridged to v1.2",5.639675676138504e-4
+6113,Sales representative,180254,71652.32,63840,"ANZSCO 2022 unit group, bridged to v1.2",0.010868962892405323
+6121,Real estate sales agent,76547,95505.37,72978,"ANZSCO 2022 unit group, bridged to v1.2",0.004615634063737561
+6200,Sales assistant - type not specified,384,27354.77,21129,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.3154447339219346e-5
+6211,Sales assistant - general,378516,34106.43,30817,"ANZSCO 2022 unit group, bridged to v1.2",0.02282377288815612
+6212,IT sales assistant,4434,71441.8,53959,"ANZSCO 2022 unit group, bridged to v1.2",2.673615091200484e-4
+6213,Motor vehicle and vehicle parts salesperson,12277,99053.01,90811,"ANZSCO 2022 unit group, bridged to v1.2",7.402790364156144e-4
+6214,Pharmacy sales assistant,39987,34375.35,32772,"ANZSCO 2022 unit group, bridged to v1.2",0.0024111377233160523
+6215,Retail supervisor,24682,56857.5,54764,"ANZSCO 2022 unit group, bridged to v1.2",0.0014882762219443019
+6216,Service station attendant,4138,39295.3,38764.5,"ANZSCO 2022 unit group, bridged to v1.2",2.495132892960668e-4
+6217,Street vendor or related salesperson,1378,44549.01,35786,"ANZSCO 2022 unit group, bridged to v1.2",8.309069904542776e-5
+6219,Other sales assistant or salesperson,85904,37787.45,33327,"ANZSCO 2022 unit group, bridged to v1.2",0.005179842823511195
+6311,Checkout operator or office cashier,201304,28735.52,25029,"ANZSCO 2022 unit group, bridged to v1.2",0.012138236633266176
+6391,Model or sales demonstrator,21007,44942.5,37714.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0012666809251431791
+6392,Retail or wool buyer,10150,71029.79,56823,"ANZSCO 2022 unit group, bridged to v1.2",6.120251054507198e-4
+6393,Telemarketer,3423,40745.17,38510,"ANZSCO 2022 unit group, bridged to v1.2",2.0640019073475997e-4
+6394,Ticket seller,9212,57787.45,55273,"ANZSCO 2022 unit group, bridged to v1.2",5.554655439814807e-4
+6395,Window dresser,218,57144.07,58195,"ANZSCO 2022 unit group, bridged to v1.2",1.314497270820265e-5
+7111,"Clay, concrete, glass or stone processing machine operator",6769,81163.52,77552,"ANZSCO 2022 unit group, bridged to v1.2",4.0815743239368686e-4
+7112,Industrial spray painter,5936,89179.41,84262,"ANZSCO 2022 unit group, bridged to v1.2",3.579291651187657e-4
+7113,Paper or wood processing machine operator,6874,72011.41,67767,"ANZSCO 2022 unit group, bridged to v1.2",4.144887265880047e-4
+7114,Photographic developer and printer,1100,55999.86,54038,"ANZSCO 2022 unit group, bridged to v1.2",6.632784394047209e-5
+7115,Plastics or rubber production machine operator,5016,71719.72,68682,"ANZSCO 2022 unit group, bridged to v1.2",3.0245496836855273e-4
+7116,Sewing machinist,5061,41478.13,45386.5,"ANZSCO 2022 unit group, bridged to v1.2",3.051683801661175e-4
+7117,Textile or footwear production machine operator,1315,54984,54958,"ANZSCO 2022 unit group, bridged to v1.2",7.929192252883709e-5
+7119,Other machine operator,50151,79676.7,74600,"ANZSCO 2022 unit group, bridged to v1.2",0.0030240070013260144
+7121,"Crane, hoist or lift operator",10601,122935.22,120763,"ANZSCO 2022 unit group, bridged to v1.2",6.392195214663133e-4
+7122,"Driller, miner or shot firer",59761,134305.88,135184,"ANZSCO 2022 unit group, bridged to v1.2",0.0036034711652059566
+7123,Metal press operator,2879,91881.85,89100,"ANZSCO 2022 unit group, bridged to v1.2",1.7359805700419923e-4
+7129,Other stationary plant operator,20276,101011.89,98673,"ANZSCO 2022 unit group, bridged to v1.2",0.0012226030579427381
+7211,"Agricultural, forestry or horticultural plant operator",50675,44761.51,41204.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0030556031742576574
+7212,Earthmoving plant operator,50859,98338.86,96000,"ANZSCO 2022 unit group, bridged to v1.2",0.0030666980136076997
+7213,Forklift driver,41510,64092.4,64549,"ANZSCO 2022 unit group, bridged to v1.2",0.002502971638153633
+7219,Other mobile plant operator,13113,85506.95,74923,"ANZSCO 2022 unit group, bridged to v1.2",7.906881978103731e-4
+7311,Automobile driver,3458,33500.36,24927,"ANZSCO 2022 unit group, bridged to v1.2",2.085106221328659e-4
+7312,Bus or coach driver,42818,61805.14,64372.5,"ANZSCO 2022 unit group, bridged to v1.2",0.002581841474402849
+7313,Train or tram driver,14439,129143.29,129270,"ANZSCO 2022 unit group, bridged to v1.2",8.70643398778615e-4
+7321,Delivery driver,58356,43254.4,41600,"ANZSCO 2022 unit group, bridged to v1.2",0.00351875241908199
+7331,Truck driver,172319,82516.23,82818,"ANZSCO 2022 unit group, bridged to v1.2",0.010390497945434736
+7411,Storeperson,184839,51199.68,52871,"ANZSCO 2022 unit group, bridged to v1.2",0.0111454294055572
+8111,Car detailer,13045,40190.06,42888,"ANZSCO 2022 unit group, bridged to v1.2",7.86587931094053e-4
+8112,Cleaner - commercial,136859,38080.65,35674,"ANZSCO 2022 unit group, bridged to v1.2",0.0082523294489537
+8113,Cleaner - domestic,19363,26495.92,22178,"ANZSCO 2022 unit group, bridged to v1.2",0.0011675509474721464
+8114,Housekeeper,44495,34027.67,32235,"ANZSCO 2022 unit group, bridged to v1.2",0.002682961287392096
+8115,Laundry worker,12412,41263.54,42196.5,"ANZSCO 2022 unit group, bridged to v1.2",7.484192718083087e-4
+8116,Other cleaner,44458,38553.86,35511,"ANZSCO 2022 unit group, bridged to v1.2",0.002680730259914098
+8211,Building or plumbing labourer,107472,62047.1,57165,"ANZSCO 2022 unit group, bridged to v1.2",0.006480350949064015
+8212,Concreter,24395,77245.28,75480,"ANZSCO 2022 unit group, bridged to v1.2",0.0014709706844798333
+8213,Fencer,4649,54227.5,53293.5,"ANZSCO 2022 unit group, bridged to v1.2",2.803255877084134e-4
+8214,Insulation or home improvement installer,7612,65347.79,63599,"ANZSCO 2022 unit group, bridged to v1.2",4.589886800680668e-4
+8215,Paving and surfacing labourer,13876,79456.2,77954,"ANZSCO 2022 unit group, bridged to v1.2",8.366956022890825e-4
+8216,Railway track worker,7150,113371.77,113551.5,"ANZSCO 2022 unit group, bridged to v1.2",4.3113098561306854e-4
+8217,Structural steel construction worker,39671,99589.83,96474.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0023920835426931527
+8219,Other construction or mining labourer,26302,102230.24,101282.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0015859590466566335
+8300,Factory or process worker - type not specified,22,29461.23,24312,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.3265568788094418e-6
+8311,Food or drink factory worker,49266,57778.77,56248,"ANZSCO 2022 unit group, bridged to v1.2",0.0029706432359739073
+8312,"Meat boners and slicer, or slaughterer",16451,58064.89,60201,"ANZSCO 2022 unit group, bridged to v1.2",9.91963055149733e-4
+8313,"Meat, poultry or seafood process worker",39358,52613.27,55619,"ANZSCO 2022 unit group, bridged to v1.2",0.0023732102561900914
+8321,Packer,68665,40024.68,39915,"ANZSCO 2022 unit group, bridged to v1.2",0.004140364912884106
+8322,Assembly line worker,35929,50365.11,52567,"ANZSCO 2022 unit group, bridged to v1.2",0.002166448277215656
+8391,Metal engineering process worker,10935,65021.78,62701.5,"ANZSCO 2022 unit group, bridged to v1.2",6.593590668082384e-4
+8392,Plastics or rubber factory worker,3024,57125,56275,"ANZSCO 2022 unit group, bridged to v1.2",1.8234127279635236e-4
+8393,Product quality controller,3448,55785.06,49908,"ANZSCO 2022 unit group, bridged to v1.2",2.0790764173340704e-4
+8394,Timber or wood process worker,10586,54903.31,55078,"ANZSCO 2022 unit group, bridged to v1.2",6.38315050867125e-4
+8399,Other factory process worker,67544,52845.24,51858,"ANZSCO 2022 unit group, bridged to v1.2",0.00407277081010477
+8421,Aquaculture Workers,1282,58018.06,57970,"ANZSCO 2022 unit group, bridged to v1.2",7.730208721062292e-5
+8422,Crop Farm Workers,34776,36115.32,31876,"ANZSCO 2022 unit group, bridged to v1.2",0.002096924637158052
+8423,Livestock Farm Workers,25759,44333.16,43324.5,"ANZSCO 2022 unit group, bridged to v1.2",0.0015532172109660187
+8424,Mixed Production Farm Workers,3611,50879.76,49770,"ANZSCO 2022 unit group, bridged to v1.2",2.177362222445861e-4
+8431,Forestry and Logging Workers,2966,64847.04,66463,"ANZSCO 2022 unit group, bridged to v1.2",1.788439864794911e-4
+8432,Garden Labourers,9317,41035.64,41776,"ANZSCO 2022 unit group, bridged to v1.2",5.617968381757986e-4
+8433,Horticultural Nursery Assistants,3279,37572.97,37846,"ANZSCO 2022 unit group, bridged to v1.2",1.977172729825527e-4
+8434,Pest Control Technicians,4686,64772.39,67070,"ANZSCO 2022 unit group, bridged to v1.2",2.825566151864111e-4
+8439,Other Forestry and Garden Workers,782,48671.35,49348,"ANZSCO 2022 unit group, bridged to v1.2",4.715306723768107e-5
+8511,Fast food cook,93208,21472.02,16329,"ANZSCO 2022 unit group, bridged to v1.2",0.0056202597072759295
+8512,Pastry cook's assistant,12755,33567.26,30857.5,"ANZSCO 2022 unit group, bridged to v1.2",7.691014995097468e-4
+8513,Kitchen hand,121185,28908.07,25435,"ANZSCO 2022 unit group, bridged to v1.2",0.007307217970841918
+8911,Freight or furniture handler,14182,79886.56,73825,"ANZSCO 2022 unit group, bridged to v1.2",8.551468025125229e-4
+8912,Shelf filler,23004,32168.34,30043,"ANZSCO 2022 unit group, bridged to v1.2",0.001387096110915109
+8991,Caretaker,3737,45389.09,45677,"ANZSCO 2022 unit group, bridged to v1.2",2.2533377527776745e-4
+8992,Deck or fishing hand,8189,87167.63,74056,"ANZSCO 2022 unit group, bridged to v1.2",4.937806491168417e-4
+8993,Handyperson,13751,46756.02,47342.5,"ANZSCO 2022 unit group, bridged to v1.2",8.29158347295847e-4
+8994,Motor vehicle parts and accessories fitter,13511,65974.49,63421.5,"ANZSCO 2022 unit group, bridged to v1.2",8.146868177088349e-4
+8995,Printing assistant or table worker,1792,55096.04,54712,"ANZSCO 2022 unit group, bridged to v1.2",1.0805408758302362e-4
+8996,Rubbish or recycling collector,3778,73135.23,77166,"ANZSCO 2022 unit group, bridged to v1.2",2.278059949155487e-4
+8997,Vending machine attendant,3802,44298,45193,"ANZSCO 2022 unit group, bridged to v1.2",2.2925314787424988e-4
+8999,Other miscellaneous labourers,168012,55206.19,51825,"ANZSCO 2022 unit group, bridged to v1.2",0.010130794287387815
+9133,Consultant - construction manager,1690,123868.81,109999,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.0190368750854348e-4
+9221,Consultant - tax accountant,7097,80064.35,71919.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",4.2793518949593674e-4
+9222,Consultant - financial investment,4478,152613.3,102963,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.7001462287766726e-4
+9223,Consultant - human resources,13047,99387.02,91615,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",7.867085271739448e-4
+9224,Consultant - management,29898,141502.59,120000,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",0.0018027907983020313
+9225,Consultant - marketing and public relations,10653,93681.96,80778,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",6.423550195434993e-4
+9232,Consultant - urban and regional planner,923,98167.48,87515,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",5.565509087005067e-5
+9233,Consultant - engineering,12653,122037.83,110753,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",7.629510994352667e-4
+9234,Consultant - environmental,3992,86635.57,79599,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.4070977546396778e-4
+9250,Consultant - medical,1344,105089.24,79999,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",8.104056568726771e-5
+9251,Consultant - occupational health and safety,3902,104736.18,99545,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.3528295186883827e-4
+9254,Consultant - clinical nurse,1833,97222.54,101264,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.1052630722080485e-4
+9261,Consultant - IT business analyst,22755,140549.42,133951,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",0.0013720818989685839
+9311,Apprentice or trainee - agricultural or medical technician,1059,46106.52,43080.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",6.385562430269086e-5
+9313,Apprentice or trainee - information technology technician or telecommunications technical specialist,2253,52791.7,49890,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.35851483998076e-4
+9321,Apprentice or trainee - automotive mechanic or electrician,24411,50307.47,46323.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",0.0014719354531189674
+9322,Apprentice or trainee - metal fabrication engineering trades worker,6635,53337.75,50026,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",4.0007749504093846e-4
+9323,Apprentice or trainee - mechanical trades engineering trades worker,6076,65150.01,60615.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",3.6637089071118946e-4
+9324,Apprentice or trainee - automotive - other,3391,50370.18,47047,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.044706534564917e-4
+9331,"Apprentice or trainee - bricklayer, or carpenter and joiner",36744,45199.31,44214,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",0.002215591179771551
+9332,Apprentice or trainee - floor finisher,3269,41611.61,41966,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.9711429258309387e-4
+9333,Apprentice or trainee - tiler or plasterer,2952,41452.87,41533,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.7799981392024872e-4
+9334,Apprentice or trainee - plumber,18703,48879.24,46653,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",0.0011277542411078632
+9341,Apprentice or trainee - electrician,40180,56438.99,51110,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",0.0024227752450256077
+9342,Apprentice or trainee - electronics or telecommunications trades worker,7559,54990.02,51794,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",4.55792883950935e-4
+9351,Apprentice or trainee - food trades worker,11402,40077.82,40149,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",6.875182514629661e-4
+9361,"Apprentice or trainee - animal attendant, trainer or shearer",1966,37730.58,38098.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.1854594653360738e-4
+9362,Apprentice or trainee - horticultural trades worker,4574,43049.38,43460,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.758032347124721e-4
+9391,Apprentice or trainee - hair dresser,6516,31445.75,32245.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",3.929020282873783e-4
+9392,Apprentice or trainee - printer or graphic artist,446,46388.54,48085,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.6892925815864137e-5
+9393,"Apprentice or trainee - textile, clothing or footwear trades worker",291,40905.9,40871,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.754672962425216e-5
+9394,Apprentice or trainee - wood trades worker,843,43806.38,43584,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",5.083124767437997e-5
+9399,Apprentice or trainee - miscellaneous technicians or trades worker,1449,44203.72,43576,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",8.73718598815855e-5
+9410,Apprentice or trainee - health and welfare support services,1744,40742.79,37363,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.051597816656212e-4
+9420,Apprentice or trainee - care and community services,1046,35280.17,31742,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",6.307174978339437e-5
+9431,Apprentice or trainee - hospitality,3673,25573.19,20827,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.214747007212309e-4
+9442,"Consultant, apprentice or trainee - security and correctional services",1607,105646.02,93153,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",9.689895019303513e-5
+9451,"Consultant, apprentice or trainee - personal service or travel",3133,51562.31,48527.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.8891375915045368e-4
+9452,Apprentice or trainee - sport and recreation,965,28882.98,23690,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",5.8187608547777786e-5
+9510,Apprentice or trainee - business services,1323,40637,37095,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",7.977430684840416e-5
+9530,Apprentice or trainee - clerical services,566,40163.71,33777,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",3.412869060937018e-5
+9550,Apprentice or trainee - financial services,836,53866.21,52330,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",5.040916139475879e-5
+9552,Consultant - insurance (clerical),1743,74436.54,69430.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.0509948362567532e-4
+9599,"Consultant, apprentice or trainee - justice and legal services, insurance claims investigation",1737,79900.22,77915,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.0473769538600001e-4
+9611,Consultant - sales representative (wholesale),3904,78312.38,71802,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.3540354794873003e-4
+9612,Consultant - real estate representative,3636,93776.15,66701,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.1924367324323318e-4
+9621,Consultant - sales assistant (retail),33807,37600.56,34018,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",0.002038495836450491
+9712,Apprentice or trainee - miner,726,75657.44,73679,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",4.3776377000711576e-5
+9730,Apprentice or trainee - transport and distribution driver,685,50383.58,48269,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",4.130415736293035e-5
+9741,Apprentice or trainee - storeperson,1101,35149.82,31181,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",6.638814198041797e-5
+9811,Apprentice or trainee - cleaning services,4389,27532.63,22131.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",2.646480973224836e-4
+9831,"Apprentice or trainee - food, drink or meat processor",923,33022.86,28437.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",5.565509087005067e-5
+9841,"Apprentice or trainee - farm, forestry or garden worker",2275,31065.54,27565.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.3717804087688546e-4
+9899,"Apprentice or trainee - deck or fishing hand, or autoglazier",728,46180.8,46764.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",4.3896973080603346e-5
+9990,Occupation not matched,70554,64806.87,48871.5,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",0.00425426791034188
+9997,Miscellaneous type not specified,3,66294,83801,"no ANZSCO unit group (blank, type not specified, or ATO-specific code)",1.8089411983765114e-7

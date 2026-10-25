@@ -1,0 +1,64 @@
+geo_id,soc_major,node_name,usage_share,months,emp_share,usage_index,employment_basis
+AU-WA,11,Management,0.0603,2,0.08833779819093596,0.6826070066820749,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,13,Business and Financial Operations,0.05945,2,0.08362479984009798,0.7109135102705957,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,15,Computer and Mathematical,0.22744999999999999,2,0.016312930001015826,13.942927480583586,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,17,Architecture and Engineering,0.0378,2,0.037284488986505444,1.0138264202489442,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,19,"Life, Physical, and Social Science",0.04545,2,0.01659268141055086,2.739159444783862,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,21,Community and Social Service,0.0269,2,0.017545159097242913,1.5331864391145436,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,23,Legal,0.00995,2,0.007675892375228803,1.2962662207341606,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,25,Educational Instruction and Library,0.13535,2,0.05948177465200827,2.275486916653893,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,27,"Arts, Design, Entertainment, Sports, and Media",0.12985,2,0.012523099011178002,10.368839205383354,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,29,Healthcare Practitioners and Technical,0.035149999999999994,2,0.06541320386523695,0.53735328531553594,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,31,Healthcare Support,0.0055000000000000005,2,0.030628302786659352,0.17957247054497624,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,33,Protective Service,0.00385,2,0.017675952070536613,0.2178100497577962,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,35,Food Preparation and Serving Related,0.0041,2,0.06006649303973739,0.06825768897957166,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,39,Personal Care and Service,0.011200000000000002,2,0.027462093516447947,0.4078348940619532,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,41,Sales and Related,0.08510000000000001,2,0.0524370071237627,1.6228996403083336,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,43,Office and Administrative Support,0.0827,2,0.09366143952898273,0.8829674241170422,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,49,"Installation, Maintenance, and Repair",0.0062,2,0.044390246076227984,0.139670322830678,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,51,Production,0.012349999999999998,2,0.04506770268214516,0.2740321619476024,EQ08 allocated to SOC with scheme 1 weights
+AU-WA,53,Transportation and Material Moving,0.004,1,0.09204010121130321,0.04345931770345305,EQ08 allocated to SOC with scheme 1 weights
+AUS,11,Management,0.06105000000000001,2,0.10151672004988688,0.6013787676552109,EQ08 allocated to SOC with scheme 1 weights
+AUS,13,Business and Financial Operations,0.059399999999999994,2,0.09519497298180439,0.6239825291126847,EQ08 allocated to SOC with scheme 1 weights
+AUS,15,Computer and Mathematical,0.2207,2,0.025818417318199924,8.548161464739518,EQ08 allocated to SOC with scheme 1 weights
+AUS,17,Architecture and Engineering,0.03435,2,0.02677394175706758,1.2829638725471773,EQ08 allocated to SOC with scheme 1 weights
+AUS,19,"Life, Physical, and Social Science",0.044199999999999996,2,0.01244662348637064,3.5511638998640946,EQ08 allocated to SOC with scheme 1 weights
+AUS,21,Community and Social Service,0.02665,2,0.01710726494167352,1.5578176927090346,EQ08 allocated to SOC with scheme 1 weights
+AUS,23,Legal,0.01,2,0.010708382639140632,0.9338478402376663,EQ08 allocated to SOC with scheme 1 weights
+AUS,25,Educational Instruction and Library,0.1295,2,0.06318953996016105,2.0493898211894805,EQ08 allocated to SOC with scheme 1 weights
+AUS,27,"Arts, Design, Entertainment, Sports, and Media",0.14145,2,0.017949996196391135,7.8802245110468965,EQ08 allocated to SOC with scheme 1 weights
+AUS,29,Healthcare Practitioners and Technical,0.03475,2,0.06856301997128686,0.5068329839402169,EQ08 allocated to SOC with scheme 1 weights
+AUS,31,Healthcare Support,0.00525,2,0.0356945889181727,0.14708111674952334,EQ08 allocated to SOC with scheme 1 weights
+AUS,33,Protective Service,0.0032999999999999995,2,0.015101127696700505,0.21852672636633802,EQ08 allocated to SOC with scheme 1 weights
+AUS,35,Food Preparation and Serving Related,0.0044,2,0.061980116300695456,0.0709905089344053,EQ08 allocated to SOC with scheme 1 weights
+AUS,37,Building and Grounds Cleaning and Maintenance,0.0014500000000000001,2,0.028018082730558693,0.05175229204454157,EQ08 allocated to SOC with scheme 1 weights
+AUS,39,Personal Care and Service,0.0116,2,0.031245571468560853,0.3712526113235555,EQ08 allocated to SOC with scheme 1 weights
+AUS,41,Sales and Related,0.09075,2,0.055505322715011754,1.63497833290601,EQ08 allocated to SOC with scheme 1 weights
+AUS,43,Office and Administrative Support,0.0821,2,0.09803769179401313,0.8374330168084761,EQ08 allocated to SOC with scheme 1 weights
+AUS,45,"Farming, Fishing, and Forestry",3e-4,2,0.014378071654682677,0.020865106754583144,EQ08 allocated to SOC with scheme 1 weights
+AUS,47,Construction and Extraction,0.00115,2,0.06738159021731101,0.017066976251097047,EQ08 allocated to SOC with scheme 1 weights
+AUS,49,"Installation, Maintenance, and Repair",0.006500000000000001,2,0.03565337946342101,0.18231090846994602,EQ08 allocated to SOC with scheme 1 weights
+AUS,51,Production,0.0102,2,0.03495815195828289,0.2917774375536817,EQ08 allocated to SOC with scheme 1 weights
+AUS,53,Transportation and Material Moving,0.0036,2,0.0827774257806067,0.0434901178195785,EQ08 allocated to SOC with scheme 1 weights
+GLOBAL,11,Management,0.05765000000000001,2,0.07154614122140081,0.8057737149177767,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,13,Business and Financial Operations,0.05619999999999999,2,0.06776874822454361,0.829290808409033,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,15,Computer and Mathematical,0.23875,2,0.03382970758100663,7.057406553937933,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,17,Architecture and Engineering,0.03555,2,0.01683169634941406,2.1120865812932488,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,19,"Life, Physical, and Social Science",0.045250000000000005,2,0.009475189080276772,4.775630292612403,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,21,Community and Social Service,0.02505,2,0.017163168469579587,1.4595207198716964,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,23,Legal,0.0097,2,0.008396907829462804,1.155187147102526,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,25,Educational Instruction and Library,0.1234,2,0.058529139737236634,2.108351507539621,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,27,"Arts, Design, Entertainment, Sports, and Media",0.13269999999999998,2,0.013160292109645111,10.083362807938347,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,29,Healthcare Practitioners and Technical,0.03125,2,0.06318106860720418,0.49461018448866084,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,31,Healthcare Support,0.005849999999999999,2,0.05081845765906723,0.11511565422246181,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,33,Protective Service,0.00335,2,0.02428866140894688,0.13792443904570248,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,35,Food Preparation and Serving Related,0.004449999999999999,2,0.08798584638486048,0.05057631633768883,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,37,Building and Grounds Cleaning and Maintenance,0.0013,2,0.029251482057897772,0.04444219261871573,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,39,Personal Care and Service,0.011949999999999999,2,0.0209391465679805,0.5707013875280653,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,41,Sales and Related,0.08715,2,0.08633633203910857,1.0094243980682764,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,43,Office and Administrative Support,0.07629999999999999,2,0.11417857523455639,0.6682514634926678,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,45,"Farming, Fishing, and Forestry",3.5000000000000005e-4,2,0.002801820511255549,0.12491877998393208,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,47,Construction and Extraction,9.5e-4,2,0.041322752551174464,0.022989756038722532,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,49,"Installation, Maintenance, and Repair",0.005900000000000001,2,0.039142586970753214,0.1507309673836427,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,51,Production,0.0103,2,0.05508952159003201,0.1869684052922271,US OEWS May 2025 (no global employment by SOC exists)
+GLOBAL,53,Transportation and Material Moving,0.0032500000000000003,2,0.08796275781459673,0.03694745459038676,US OEWS May 2025 (no global employment by SOC exists)

@@ -1,0 +1,2 @@
+# Lines in the note, summary or memo that may use a listed causal word.
+# Format: the exact line text, then " | ", then the reason it is allowed.
