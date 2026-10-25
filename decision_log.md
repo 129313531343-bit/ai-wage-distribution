@@ -241,3 +241,27 @@ For AUS and GLOBAL, the shortfall therefore is not suppression of whole groups. 
 **Prose checker (`R/check.R`).** It now ignores markup that is not prose: citation keys, Quarto attribute blocks, maths, numbered-list markers, and "scheme N" labels (treated like figure labels). Its rule on bare digits and causal words is unchanged.
 
 **Numbers in the documents.** Every number in the note, appendix and memo comes from `data/out/note_facts.csv` (`R/13_facts.R`) or is read directly from pipeline output.
+
+### N17. Occupation explorer (M5, 25 Oct 2026)
+
+`explorer/index.html` is a single static page in plain JavaScript; no chart library is needed. It loads `explorer/explorer_units.json`, which has one row per v1.2 unit (358) and the same fields as `data/out/explorer_units.csv`. It has no AIOE field.
+
+Each unit shows:
+
+- usage-based exposure to two decimal places, with a band (the employment-weighted fifth it falls in) and a "below usage threshold" flag on zeros;
+- the range across the four weighting schemes;
+- the extensive margin;
+- JSA automation and augmentation, and Eloundou beta;
+- the global Claude.ai automation share;
+- employment (Australia and WA) and EEH weekly earnings;
+- the crosswalk grade and the contributing US occupations with their scheme 1 weights.
+
+`tests/explorer_check.py` (Playwright) checks that:
+
+- the JSON has one row per unit;
+- every displayed field is a CSV column;
+- the disclaimer is visible;
+- the page does not scroll sideways at 375 px with every unit expanded;
+- search by code and by title works.
+
+It passed on 25 Oct 2026. The screenshot is `explorer/check_375px.png`.

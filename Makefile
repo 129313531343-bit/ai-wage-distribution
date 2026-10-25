@@ -5,7 +5,7 @@
 
 R := Rscript
 
-.PHONY: all fetch build test check note clean
+.PHONY: all fetch build test check note explorer-check clean
 
 all: fetch build test
 
@@ -25,6 +25,7 @@ build:
 	$(R) R/11_analysis.R
 	$(R) R/12_charts.R
 	$(R) R/13_facts.R
+	$(R) R/14_explorer.R
 
 test:
 	$(R) -e 'testthat::test_dir("tests/testthat", stop_on_failure = TRUE)'
@@ -35,6 +36,10 @@ check: test
 # Render the note, appendix and methods memo (see R/render.sh for why it uses a temporary copy).
 note:
 	sh R/render.sh
+
+# Explorer acceptance check at 375 px (needs Playwright for Python: pip install playwright && playwright install chromium).
+explorer-check:
+	python3 tests/explorer_check.py
 
 clean:
 	rm -rf data/interim/*.csv data/out/*

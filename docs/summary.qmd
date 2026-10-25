@@ -1,0 +1,56 @@
+---
+title: "Usage-based AI exposure across Australia's earnings distribution"
+subtitle: "Summary of a working draft"
+author: "Luc Taya, Economics (Honours) graduate, University of Western Australia"
+date: last-modified
+lang: en-AU
+execute:
+  echo: false
+  warning: false
+  message: false
+format:
+  html:
+    embed-resources: true
+  typst:
+    papersize: a4
+    margin:
+      x: 2.2cm
+      y: 2cm
+    fontsize: 10pt
+---
+
+```{r setup}
+source("../note/_setup.R")
+```
+
+<!-- Target: about 800 words. Claude Code drafted the framework sections; Luc writes the question and every finding. Fill each [Luc to write] gap. -->
+
+**Descriptive; not a job-loss or career-risk score; not advice.**
+
+The data behind this work are US task-level Claude.ai use by self-selected users, from one product. No Australian occupational AI use is measured. The scores describe tasks in US occupations; this work applies them to the occupations Australians work in, and compares them with measures of what AI could do that do not come from Anthropic.
+
+## The question
+
+*[Luc to write: two or three sentences, taken from the edited framing.]*
+
+## What was done
+
+Anthropic's usage-based "observed exposure" scores (Massenkoff and McCrory, `2026`) were linked from US occupations to the `r num("units")` ANZSCO unit groups used in ABS Labour Force data, through the US and international occupation classifications. Each unit's score is an employment-weighted average of the US occupations linked to it. Units were then ranked by ABS weekly earnings and grouped into ten employment-weighted deciles, and each unit's rank on usage was compared with its rank on Jobs and Skills Australia's automation and augmentation scores and on Eloundou et al.'s measure of what language models could do.
+
+The scores cover `r pc("coverage")` of Australian employment. Every result is repeated under four ways of linking the classifications and on the units with the cleanest links. Results are reported whether or not they hold.
+
+## What the figures show
+
+*[Luc to write: the main findings, in plain language, with numbers from the note. Suggested order: the usage-potential gap by earnings decile; the extensive margin; where usage and JSA disagree most; women and men; Western Australia.]*
+
+## What this does not show
+
+The usage data come from one product's users, and the source classifies the task in each conversation, not the job of the person having it. Over half of the scored US occupations score zero, which means their tasks fell below a usage threshold or failed the capability gate, not that no one uses AI for them. The comparison with Eloundou et al.'s measure is partly mechanical, because the usage-based score already requires a task to be feasible on that measure. Nothing here estimates whether AI changes employment, earnings or hours.
+
+## Read more
+
+- Working draft and appendix: *[link when live]*
+- Occupation explorer: *[link when live]*
+- Code, data sources and decision log: *[link to repository]*
+
+*Built with Claude Code, an AI coding assistant, under the author's direction; see the repository's "Contributions and AI use" section.*

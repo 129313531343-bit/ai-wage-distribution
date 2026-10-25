@@ -4,7 +4,7 @@
 
 Luc Taya, Economics (Honours) graduate, University of Western Australia
 
-> **Status: M4 (note drafted).** The data, methods, limitations and appendix sections and the methods memo are drafted. The research question, takeaways and theory box are still to come. Render with `make note`.
+> **Status: M5 in progress.** The note, appendix, methods memo, summary skeleton and occupation explorer are drafted. The research question, takeaways and theory box are still to come. Render with `make note`; check the explorer with `make explorer-check`.
 
 ## Reproducing
 
@@ -14,6 +14,7 @@ Luc Taya, Economics (Honours) graduate, University of Western Australia
    - https://www.bls.gov/soc/ISCO_SOC_Crosswalk.xls
    - https://www.bls.gov/oes/special-requests/oesm25nat.zip
 3. Run `make all` to fetch the other inputs, build every table and run the tests. Run `make check` before publishing anything.
+4. Run `make note` to render the note, appendix, methods memo and summary (Quarto 1.10). Run `make explorer-check` to test the explorer at 375 px (needs Playwright for Python).
 
 The data behind this project are US task-level Claude.ai use by self-selected users, from one product. No Australian occupational AI use is measured. The usage-based exposure scores describe tasks in US occupations and are applied to Australian occupation mixes. Where the source data have Australian rows, those rows classify the task in a conversation, not the user's job. Every result is shown next to at least one measure that does not come from Anthropic.
 

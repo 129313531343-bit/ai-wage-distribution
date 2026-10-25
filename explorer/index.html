@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Occupation explorer: usage-based AI exposure</title>
+<meta name="description" content="Usage-based AI exposure, potential-exposure measures, employment and earnings for each ANZSCO unit group. Descriptive; not a job-loss or career-risk score; not advice.">
+<style>
+  :root {
+    --surface: #fcfcfb; --plane: #f9f9f7; --ink: #0b0b0b; --ink-2: #52514e; --muted: #6b6a66;
+    --line: #e1e0d9; --accent: #2a78d6; --accent-soft: #cde2fb; --flag: #8a5a00; --flag-bg: #fdf0d5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --surface: #1a1a19; --plane: #0d0d0d; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #a3a29b;
+      --line: #2c2c2a; --accent: #3987e5; --accent-soft: #1c3557; --flag: #f3c46b; --flag-bg: #3a2c10;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--plane); color: var(--ink);
+         font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.45rem; line-height: 1.25; margin: 0 0 4px; }
+  .sub { color: var(--ink-2); margin: 0 0 16px; }
+  .disclaimer { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+                padding: 10px 14px; border-radius: 6px; font-weight: 600; margin: 0 0 12px; }
+  .about { color: var(--ink-2); font-size: 0.93rem; margin: 0 0 20px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .controls input, .controls select { font: inherit; padding: 9px 11px; border: 1px solid var(--line);
+                                      border-radius: 6px; background: var(--surface); color: var(--ink); }
+  .controls input { flex: 1 1 260px; min-width: 0; }
+  .controls select { flex: 1 1 200px; min-width: 0; }
+  .count { color: var(--muted); font-size: 0.88rem; margin: 6px 0 12px; }
+  ul.results { list-style: none; margin: 0; padding: 0; }
+  li.unit { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px; }
+  li.unit > button { all: unset; box-sizing: border-box; display: flex; width: 100%; gap: 12px; align-items: baseline;
+                     padding: 12px 14px; cursor: pointer; flex-wrap: wrap; }
+  li.unit > button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+  .code { color: var(--muted); font-variant-numeric: tabular-nums; flex: 0 0 auto; }
+  .name { font-weight: 600; flex: 1 1 200px; min-width: 0; overflow-wrap: anywhere; }
+  .value { flex: 0 0 auto; font-variant-numeric: tabular-nums; }
+  .band { display: inline-block; font-size: 0.78rem; color: var(--ink-2); background: var(--accent-soft);
+          border-radius: 999px; padding: 1px 8px; margin-left: 6px; }
+  .flag { display: inline-block; font-size: 0.78rem; color: var(--flag); background: var(--flag-bg);
+          border-radius: 999px; padding: 1px 8px; margin-left: 6px; }
+  .details { display: none; border-top: 1px solid var(--line); padding: 10px 14px 14px; }
+  li.unit.open .details { display: block; }
+  dl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px 16px; margin: 0; }
+  dt { color: var(--muted); font-size: 0.85rem; }
+  dd { margin: 0 0 6px; overflow-wrap: anywhere; }
+  .full { grid-column: 1 / -1; }
+  footer { margin-top: 32px; color: var(--muted); font-size: 0.85rem; }
+  footer p { margin: 0 0 8px; }
+  a { color: var(--accent); }
+  @media (max-width: 480px) { dl { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Usage-based AI exposure by Australian occupation</h1>
+  <p class="sub">Explorer for the working draft "Usage-based AI exposure across Australia's earnings distribution"</p>
+
+  <p class="disclaimer" id="disclaimer">Descriptive; not a job-loss or career-risk score; not advice.</p>
+
+  <p class="about">The usage-based scores come from US task-level Claude.ai use by self-selected users, from one product, mapped from US occupations to ANZSCO unit groups. No Australian occupational AI use is measured. Each unit also shows potential-exposure measures that do not come from Anthropic (Jobs and Skills Australia; Eloundou et al.). A score of 0.00 marked "below usage threshold" means the occupation's tasks fell below the source's usage gate; it does not mean no use. See the note for methods and limitations.</p>
+
+  <div class="controls">
+    <input id="q" type="search" placeholder="Search by occupation or ANZSCO code" aria-label="Search by occupation title or ANZSCO code" autocomplete="off">
+    <select id="group" aria-label="Filter by major group"><option value="">All major groups</option></select>
+  </div>
+  <p class="count" id="count" aria-live="polite"></p>
+  <ul class="results" id="results"></ul>
+
+  <footer>
+    <p>Luc Taya, Economics (Honours) graduate, University of Western Australia.</p>
+    <p>Usage-based exposure: Massenkoff and McCrory (2026), Anthropic Economic Index. Potential exposure: Jobs and Skills Australia, <em>Our Gen AI Transition</em> (2025), © Commonwealth of Australia, CC BY 4.0; Eloundou et al. (2024). Employment: ABS Labour Force, Australia, Detailed, EQ08. Earnings: ABS Employee Earnings and Hours, May 2025. ABS data used under CC BY 4.0.</p>
+    <p>This page includes information from the O*NET 31.0 Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the CC BY 4.0 license. O*NET® is a trademark of USDOL/ETA. Luc Taya has modified all or some of this information. USDOL/ETA has not approved, endorsed, or tested these modifications.</p>
+    <p>Not affiliated with or endorsed by Anthropic or any other data provider. How this was built, including AI use: see the project README.</p>
+  </footer>
+</main>
+
+<script>
+// Field labels. Each key is a column in data/out/explorer_units.csv.
+const FIELDS = [
+  ["usage_display", "Usage-based exposure"],
+  ["usage_band", "Rank band (employment-weighted fifth, 1 = lowest)"],
+  ["usage_range_display", "Range across the four weighting schemes"],
+  ["extensive_display", "Extensive margin (share of linked US occupations with any measured use)"],
+  ["jsa_automation", "JSA automation exposure"],
+  ["jsa_augmentation", "JSA augmentation exposure"],
+  ["eloundou_display", "Eloundou et al. beta (GPT-4 rating)"],
+  ["global_automation_display", "Global Claude.ai automation share"],
+  ["employment_000", "Employed, Australia ('000, May 2025 to Feb 2026)"],
+  ["employment_wa_000", "Employed, Western Australia ('000)"],
+  ["eeh_weekly_earnings", "Average weekly total cash earnings, employees (EEH May 2025)"],
+  ["earnings_note", "Earnings note"],
+  ["crosswalk_grade", "Crosswalk grade"],
+  ["n_scored_socs", "US occupations with a score"],
+  ["linked_socs_without_score", "Linked US occupations without a score"],
+  ["contributing_socs", "Contributing US occupations (scheme 1 weights)"]
+];
+const fmt = (k, v) => {
+  if (v === null || v === undefined || v === "") return "not available";
+  if (k === "eeh_weekly_earnings") return "$" + Number(v).toLocaleString("en-AU") + " a week";
+  if (k === "employment_000" || k === "employment_wa_000") return Number(v).toLocaleString("en-AU", { maximumFractionDigits: 1 });
+  if (k === "jsa_automation" || k === "jsa_augmentation") return Number(v).toFixed(2);
+  return String(v);
+};
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+let DATA = [];
+const results = document.getElementById("results");
+const count = document.getElementById("count");
+const q = document.getElementById("q");
+const group = document.getElementById("group");
+
+function badge(u) {
+  if (u.below_usage_threshold) return '<span class="flag">below usage threshold</span>';
+  if (u.usage_band) return '<span class="band">band ' + u.usage_band + ' of 5</span>';
+  return "";
+}
+
+function row(u) {
+  const dl = FIELDS.map(([k, label]) =>
+    '<div class="' + (k === "contributing_socs" ? "full" : "") + '"><dt>' + esc(label) + '</dt><dd>' + esc(fmt(k, u[k])) + '</dd></div>'
+  ).join("");
+  const val = u.usage_display === "" ? "no score" : esc(u.usage_display);
+  return '<li class="unit" data-unit="' + esc(u.unit) + '">' +
+    '<button aria-expanded="false"><span class="code">' + esc(u.unit) + '</span>' +
+    '<span class="name">' + esc(u.title) + '</span>' +
+    '<span class="value">' + val + badge(u) + '</span></button>' +
+    '<div class="details"><dl>' + dl + '</dl></div></li>';
+}
+
+function render() {
+  const term = q.value.trim().toLowerCase();
+  const g = group.value;
+  const shown = DATA.filter(u =>
+    (!g || u.major_group === g) &&
+    (!term || u.title.toLowerCase().includes(term) || u.unit.startsWith(term)));
+  results.innerHTML = shown.map(row).join("");
+  count.textContent = shown.length + " of " + DATA.length + " unit groups";
+}
+
+results.addEventListener("click", e => {
+  const btn = e.target.closest("li.unit > button");
+  if (!btn) return;
+  const li = btn.parentElement;
+  li.classList.toggle("open");
+  btn.setAttribute("aria-expanded", li.classList.contains("open"));
+});
+q.addEventListener("input", render);
+group.addEventListener("change", render);
+
+fetch("explorer_units.json")
+  .then(r => r.json())
+  .then(d => {
+    DATA = d;
+    [...new Set(d.map(u => u.major_group))].forEach(m => {
+      const o = document.createElement("option"); o.value = m; o.textContent = m; group.appendChild(o);
+    });
+    render();
+  })
+  .catch(() => { count.textContent = "Could not load the data file (explorer_units.json)."; });
+</script>
+</body>
+</html>
