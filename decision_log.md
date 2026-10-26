@@ -390,6 +390,7 @@ The grid of specifications grows from 48 to 60.
   - The provenance paragraph does not cite a commit, because the repository's first commit holds both the decision log and the first results. The session transcript shows the rules were written at 16:48 and the analysis first run at 17:38 on 25 Oct 2026 (AWST), but that transcript is not public.
   - The disclosure states the AI role in full.
 - **Scope:** the review's extensions E1 (other platforms), E3 (uncertainty) and, if time allows, E4 (conditional gradient) are planned for v1.0. E2 and E5–E8 are future work.
+- **Approval:** Luc read the revised note and appendix and approved them for release on 26 Oct 2026 ("I've read the revised note and appendix and approve them").
 
 ### N21. Analyses added after review of the first draft (26 Oct 2026)
 
