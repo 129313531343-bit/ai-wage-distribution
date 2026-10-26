@@ -354,3 +354,9 @@ renv's "out-of-sync" warning came from `dbplyr`, which renv detects as used. It 
 - this share as a column in the explorer.
 
 The grid of specifications grows from 48 to 60.
+
+### D12. No contributions section in the note (26 Oct 2026)
+
+- **Decided by:** Luc Taya, in chat
+- **Decision:** remove the "Contributions and AI use" section from the note: "it is not relevant and not used in actual working papers".
+- **What stays:** the README keeps its "Contributions and AI use" section (house rule 3 of the brief), and the theory box still says its extension was drafted for this note and that the thesis is unchanged.

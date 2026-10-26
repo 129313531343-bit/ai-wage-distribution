@@ -321,10 +321,6 @@ All of these are reported in the appendix, and the main results are rerun withou
 - **Rebuilding the usage-based score** from task data fell short of its target (rank correlation `r num("g_spearman_equal", 2)` against `0.9`).
 - **Added after the first results:** the influence check, the measure of unscored US counterparts, and the sensitivity run built on it. All three are labelled where they appear.
 
-## Contributions and AI use
-
-Luc Taya chose the topic and data sources, set the project's direction and decisions, and reviewed and approved this note. Claude Code, an AI coding assistant, wrote the analysis code and drafted the framing, takeaways and theory box, as well as the data, methods, limitations and appendix sections. The data analysed are published by Anthropic, and the pipeline was written with Claude Code, an Anthropic product. Anthropic had no role in this project and has not reviewed or endorsed it.
-
 ## Credits
 
 This note includes information from the O*NET `31.0` Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the CC BY `4.0` license. O*NET® is a trademark of USDOL/ETA. Luc Taya has modified all or some of this information. USDOL/ETA has not approved, endorsed, or tested these modifications.
