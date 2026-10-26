@@ -66,6 +66,7 @@ strip_code <- function(lines) {
     l <- str_remove(l, "^\\s*[0-9]+\\.\\s")                # numbered-list markers
     l <- str_remove_all(l, "<!--.*?-->")
     l <- str_remove_all(l, "\\]\\([^)]*\\)")     # link targets
+    l <- str_remove_all(l, "<https?://[^>]+>")   # autolinks
     out[i] <- l
   }
   out

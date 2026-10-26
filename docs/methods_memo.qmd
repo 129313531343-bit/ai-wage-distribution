@@ -5,6 +5,9 @@ author: "Luc Taya, Economics (Honours) graduate, University of Western Australia
 date: last-modified
 bibliography: ../note/references.bib
 lang: en-AU
+tbl-colwidths: false
+filters:
+  - ../note/format.lua
 execute:
   echo: false
   warning: false
@@ -17,6 +20,7 @@ format:
       y: 1.8cm
     fontsize: 9.5pt
     columns: 1
+    include-in-header: ../note/typst-header.typ
 ---
 
 ```{r setup}
@@ -35,7 +39,7 @@ source("../note/_setup.R")
 | Potential exposure | JSA automation and augmentation [@jsa2025]; Eloundou et al. beta [@eloundou2024]; AIOE, aggregate only [@felten2021] |
 | Employment | ABS `EQ08`, ANZSCO `v1.2` unit groups, average of May `2025` to February `2026` (`r num("emp_total_m", 2)` million employed) |
 | Earnings | EEH May `2025`, weekly total cash earnings, all employees; alternatives: EEH hourly (three-digit) and ATO salary or wages |
-| Crosswalks | BLS SOC `2018`-`2010`, BLS `ISCO-08`-SOC `2010`, ABS ANZSCO-`ISCO-08`; JSA's direct ANZSCO-O*NET correspondence |
+| Crosswalks | BLS SOC `2018`-`2010`, BLS `ISCO-08`-SOC `2010`, ABS ANZSCO-`ISCO-08`; JSA's direct ANZSCO-O\*NET correspondence |
 | US weights | BLS OEWS May `2025` employment |
 
 ## Method

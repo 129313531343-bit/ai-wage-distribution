@@ -91,16 +91,18 @@ m3("correlations.csv") |>
 
 ## Largest rank disagreements with JSA automation
 
-The fifteen units with the largest gap under scheme `1` whose sign is the same under all four schemes. A negative gap means usage-based exposure ranks the unit lower than JSA automation does.
+The fifteen units with the largest gap under scheme `1` whose sign is the same under all four schemes. The last four columns give the gap, in percentile points, under each weighting scheme. A negative gap means usage-based exposure ranks the unit lower than JSA automation does.
 
 ```{r disagreements}
 m3("largest_disagreements_jsa.csv") |>
   transmute(Unit = unit, Title = title, `Employment ('000)` = round(emp, 1),
-            `Usage-based exposure` = if_else(usage == 0, "0.00 (below usage threshold)", sprintf("%.2f", usage)),
-            `JSA automation` = jsa_automation, `Gap, scheme 1` = round(gap_s1, 1), `Gap, scheme 2` = round(gap_s2, 1),
-            `Gap, scheme 3` = round(gap_s3, 1), `Gap, scheme 4` = round(gap_s4, 1)) |>
+            `Usage-based exposure` = if_else(usage == 0, "0.00†", sprintf("%.2f", usage)),
+            `JSA automation` = jsa_automation, `Scheme 1` = round(gap_s1, 1), `Scheme 2` = round(gap_s2, 1),
+            `Scheme 3` = round(gap_s3, 1), `Scheme 4` = round(gap_s4, 1)) |>
   tab()
 ```
+
+† Below the usage threshold: a score of exactly zero.
 
 ## Review of the forty largest units
 
@@ -125,11 +127,11 @@ read_codes_csv(out_path("m2", "top40_units_review.csv")) |>
 
 ## Rebuilding the usage-based score from task data
 
-The published occupation scores were rebuilt from the published task-level values, using O*NET task weights in place of the unpublished time shares Massenkoff and McCrory use. The rank correlation with the published scores falls short of the `0.9` target. The main analysis uses the published scores.
+The published occupation scores were rebuilt from the published task-level values, using O\*NET task weights in place of the unpublished time shares Massenkoff and McCrory use. The rank correlation with the published scores falls short of the `0.9` target. The main analysis uses the published scores.
 
 ```{r replication}
 read_csv(out_path("g_replication.csv"), show_col_types = FALSE) |>
-  transmute(`Task weights` = weights, `SOC codes compared` = socs_compared,
+  transmute(`Task weights` = sub("_x_", " × ", weights), `SOC codes compared` = socs_compared,
             Spearman = round(spearman, 3), `Agreement on exact zeros` = scales::percent(zero_agreement, 1),
             `Meets target` = if_else(meets_target, "yes", "no")) |>
   tab()
@@ -137,10 +139,14 @@ read_csv(out_path("g_replication.csv"), show_col_types = FALSE) |>
 
 ## Data sources and licences
 
+Commit hashes are shortened to twelve characters; `data/raw/MANIFEST.csv` gives them in full, with each file's URL and checksum.
+
 ```{r sources}
 man <- read_csv(raw_path("MANIFEST.csv"), col_types = cols(.default = "c"))
 man |>
-  transmute(Source = id, Version = version_or_commit, Licence = licence, Accessed = access_date) |>
+  transmute(Source = id,
+            Version = if_else(grepl("^[0-9a-f]{40}$", version_or_commit), substr(version_or_commit, 1, 12), version_or_commit),
+            Licence = licence, Accessed = access_date) |>
   tab()
 ```
 
@@ -184,8 +190,8 @@ read_codes_csv(out_path("m2", "chain_validation_primary_vs_2022path.csv")) |>
   filter(is.na(jaccard) | jaccard < 1) |>
   left_join(v12, by = "unit") |>
   transmute(Unit = unit, Title = title, `Primary links` = n_primary, `2022-path links` = n_alt,
-            `Jaccard` = round(jaccard, 2), `Only in primary` = coalesce(only_primary, ""),
-            `Only in 2022 path` = coalesce(only_alt, "")) |>
+            `Jaccard` = round(jaccard, 2), `Only in primary` = gsub(";", "; ", coalesce(only_primary, "")),
+            `Only in 2022 path` = gsub(";", "; ", coalesce(only_alt, ""))) |>
   tab()
 ```
 

@@ -17,20 +17,22 @@ fact <- function(k) {
   F[[k]]
 }
 
+# Fixed decimals, with a typographic minus sign for negative values.
+fmt <- function(x, ...) sub("^-", "−", formatC(x, format = "f", ...))
 # Whole numbers or fixed decimals, with thousands separators.
-num <- function(k, d = 0) formatC(fact(k), format = "f", digits = d, big.mark = ",")
+num <- function(k, d = 0) fmt(fact(k), digits = d, big.mark = ",")
 # Shares as percentages.
-pc <- function(k, d = 1) paste0(formatC(100 * fact(k), format = "f", digits = d), "%")
+pc <- function(k, d = 1) paste0(fmt(100 * fact(k), digits = d), "%")
 # A value already on the percentage-point scale.
-pp <- function(k, d = 1) paste0(formatC(fact(k), format = "f", digits = d, flag = "+"), " pp")
+pp <- function(k, d = 1) paste0(fmt(fact(k), digits = d, flag = "+"), " pp")
 # Signed value, and values on the x100 scale.
-sg <- function(k, d = 1) formatC(fact(k), format = "f", digits = d, flag = "+")
-h <- function(k, d = 1) formatC(100 * fact(k), format = "f", digits = d)
-sh <- function(k, d = 1) formatC(100 * fact(k), format = "f", digits = d, flag = "+")
+sg <- function(k, d = 1) fmt(fact(k), digits = d, flag = "+")
+h <- function(k, d = 1) fmt(100 * fact(k), digits = d)
+sh <- function(k, d = 1) fmt(100 * fact(k), digits = d, flag = "+")
 # Absolute value, for sentences that already say "lower" or "below".
-ab <- function(k, d = 1) formatC(abs(fact(k)), format = "f", digits = d)
+ab <- function(k, d = 1) fmt(abs(fact(k)), digits = d)
 # A plain number not stored as a fact (counts in code, e.g. number of schemes).
-n <- function(x, d = 0) formatC(x, format = "f", digits = d, big.mark = ",")
+n <- function(x, d = 0) fmt(x, digits = d, big.mark = ",")
 
 m3 <- function(f) read_codes_csv(out_path("m3", f))
 fig <- function(f) file.path(project_root(), "note", "figures", f)

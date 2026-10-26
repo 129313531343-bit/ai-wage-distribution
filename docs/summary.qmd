@@ -4,6 +4,9 @@ subtitle: "Summary of a working draft"
 author: "Luc Taya, Economics (Honours) graduate, University of Western Australia"
 date: last-modified
 lang: en-AU
+tbl-colwidths: false
+filters:
+  - ../note/format.lua
 execute:
   echo: false
   warning: false
@@ -17,6 +20,7 @@ format:
       x: 2.2cm
       y: 2cm
     fontsize: 10pt
+    include-in-header: ../note/typst-header.typ
 ---
 
 ```{r setup}
@@ -54,8 +58,7 @@ The usage data come from one product's users, and the source classifies the task
 
 ## Read more
 
-- Working draft and appendix: *[link when live]*
-- Occupation explorer: *[link when live]*
-- Code, data sources and decision log: *[link to repository]*
+- Working draft, appendix and occupation explorer: <https://129313531343-bit.github.io/ai-wage-distribution/>
+- Code, data sources and decision log: <https://github.com/129313531343-bit/ai-wage-distribution>
 
 *Written with Claude Code, an AI coding assistant, which wrote the analysis and drafted this summary under the author's direction; the author reviewed and approved it. See the repository's "Contributions and AI use" section.*

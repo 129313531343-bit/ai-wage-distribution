@@ -166,7 +166,7 @@ p5b <- ggplot(wa, aes(contribution * 100, group_name)) +
   geom_vline(xintercept = 0, colour = ink$axis, linewidth = 0.4) +
   geom_col(fill = pal["blue"], width = 0.6) +
   labs(title = "WA minus national usage-based exposure, by occupation major group",
-       subtitle = sprintf("Contribution = (WA employment share - national share) x unit exposure, summed within group.\nMean exposure: WA %.1f, Australia %.1f, difference %.1f (all x 100). The difference is occupation mix only, by construction.",
+       subtitle = sprintf("Contribution = (WA employment share - national share) x unit exposure, summed within group.\nMean exposure: WA %.1f, Australia %.1f, difference %.1f (all x 100).\nThe difference is occupation mix only, by construction.",
                           100 * wa_tot$mean_wa, 100 * wa_tot$mean_aus, 100 * wa_tot$wa_gap),
        x = "Contribution to WA minus national (exposure x 100)", y = NULL,
        caption = "Usage-based exposure: US task-level Claude.ai use (Massenkoff and McCrory 2026) mapped to ANZSCO v1.2 units.\nEmployment shares: EQ08, average of May 2025 to Feb 2026.") +
@@ -213,7 +213,7 @@ pa4 <- ggplot(gs, aes(decile, usage)) +
 save_fig(pa4, "figA4_samples", w = 9, h = 3.6)
 
 # Appendix A5. Usage-based exposure by decile under each earnings ranking (scheme 1, all units).
-rank_labels <- c(eeh = "EEH weekly, all employees (main)", eeh13 = "EEH hourly, full-time non-managerial (3-digit)", ato = "ATO average salary or wages")
+rank_labels <- c(eeh = "EEH weekly, all employees (main)", eeh13 = "EEH hourly, full-time non-managerial\n(3-digit)", ato = "ATO average salary or wages")
 gr <- m3("decile_profiles.csv") |> filter(scheme == "s1", sample == "all") |>
   mutate(ranking = factor(rank_labels[ranking], levels = rank_labels))
 pa5 <- ggplot(gr, aes(decile, usage)) +

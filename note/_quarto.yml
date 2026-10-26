@@ -7,6 +7,9 @@ author: "Luc Taya, Economics (Honours) graduate, University of Western Australia
 bibliography: references.bib
 lang: en-AU
 number-sections: true
+tbl-colwidths: false
+filters:
+  - format.lua
 
 execute:
   echo: false
@@ -26,3 +29,4 @@ format:
       x: 2.2cm
       y: 2.2cm
     fontsize: 10pt
+    include-in-header: typst-header.typ

@@ -67,7 +67,7 @@ Partly. Anthropic's score only counts tasks Eloundou rates feasible. Levkoff (20
 
 - 32 of 60 specifications reproduce the main decile profile under a rule fixed in advance.
 - The non-diffuse units give a steeper gradient (+9.6 pp, against +4.3 pp in the main result).
-- The JSA-based weighting scheme mostly fails, because of one unit. Sales Assistants (General), 3.9% of employment, links under that scheme only to US Retail Salespersons, a known artefact. Leaving it out turns −2.4 pp into +7.8 pp.
+- The JSA-based weighting scheme mostly fails, because of one unit. Sales Assistants (General), 3.9% of employment, links under that scheme only to US Retail Salespersons, a known artefact. Leaving it out turns −2.4 pp into +7.7 pp.
 
 All of this is in the appendix.
 

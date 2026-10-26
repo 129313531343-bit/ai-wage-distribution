@@ -213,7 +213,7 @@ This check was not part of the method fixed before results. It was added after s
 One unit moves the result: 6211 Sales Assistants (General), with 3.9% of employment, most of it in decile 1.
 
 - Under scheme 4 it links only to US Retail Salespersons (41-2031, usage-based exposure 0.32). That is one of the artefacts flagged in the brief.
-- Leaving it out moves scheme 4's top-minus-bottom gap from -2.4 to +7.8 pp.
+- Leaving it out moves scheme 4's top-minus-bottom gap from -2.4 to +7.7 pp.
 - Under schemes 1 to 3 it links to several SOCs. Leaving it out moves the gap from 4.3 to 6.9 pp (scheme 1).
 
 ### N10. Concentration index for AIOE

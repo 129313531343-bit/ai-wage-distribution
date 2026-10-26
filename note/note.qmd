@@ -41,19 +41,19 @@ This note adds four things:
 
 The score is built in steps, which matter for reading it:
 
-- Each O*NET task is first gated on use. A task counts only if its work-related Claude.ai conversations plus all first-party API calls reach a fixed count in Anthropic's samples.
+- Each O\*NET task is first gated on use. A task counts only if its work-related Claude.ai conversations plus all first-party API calls reach a fixed count in Anthropic's samples.
 - It is then gated on capability: the task must have an Eloundou et al. beta above zero [@eloundou2024].
 - Tasks that pass both gates are weighted between one half (augmentation only) and one (automation only).
 - The job score is the time-share-weighted sum over the job's tasks.
 
-So a zero means the job's tasks fell below the usage gate, or that none of its used tasks passed the capability gate. It does not mean no use at all. Zeros are flagged as "below usage threshold" wherever unit values are shown. The conversations are global Claude.ai and API traffic, classified into US O*NET tasks. Levkoff [-@levkoff2026] describes the usage as drawn from the Anthropic Economic Index releases up to November `2025`.
+So a zero means the job's tasks fell below the usage gate, or that none of its used tasks passed the capability gate. It does not mean no use at all. Zeros are flagged as "below usage threshold" wherever unit values are shown. The conversations are global Claude.ai and API traffic, classified into US O\*NET tasks. Levkoff [-@levkoff2026] describes the usage as drawn from the Anthropic Economic Index releases up to November `2025`.
 
 **Australian usage composition.** For the comparison of usage with employment by occupation group (@sec-major-group), the note uses the `2026-06-26` release of the AEI geography file. It covers Claude.ai conversations in `r num("aei_months")` months, with `r num("aei_rows_aus")` rows for Australia and `r num("aei_rows_wa")` for Western Australia. For countries and subregions, detailed SOC rows are published only as shares of conversations. Collaboration measures, such as the automation share, exist for countries only at the SOC major-group level. Missing rows mean the cell was not published, not that it was zero.
 
 **Potential exposure.** Three comparison measures do not depend on Claude.ai use:
 
 - Jobs and Skills Australia's automation and augmentation exposure scores for ANZSCO unit groups [@jsa2025], available for `r num("jsa_units")` unit groups;
-- Eloundou et al.'s beta, rated by `GPT-4`, averaged from O*NET occupations to SOC codes [@eloundou2024];
+- Eloundou et al.'s beta, rated by `GPT-4`, averaged from O\*NET occupations to SOC codes [@eloundou2024];
 - Felten, Raj and Seamans's AIOE [@felten2021]. The AIOE repository states no licence, so AIOE appears only in aggregate statistics and never for a single occupation.
 
 **Employment.** Employment weights come from ABS Labour Force table `EQ08` [@abseq08]. It gives employed persons by ANZSCO `v1.2` unit group, sex and state each quarter. The weights average the `r num("eq08_quarters")` quarters from May `2025` to February `2026`: `r num("emp_total_m", 2)` million people employed, `r num("emp_wa_m", 2)` million of them in Western Australia. `EQ08` was the final release under that title. ABS has said the table is not published from April `2026` [@abs2026lfschanges], and Labour Force occupation data are coded to OSCA from the September `2026` reference period [@abs2026lfmethod]. Neither source states whether unit-group detail will be published.
@@ -65,7 +65,7 @@ So a zero means the job's tasks fell below the usage gate, or that none of its u
 
 EEH excludes owner-managers; `EQ08` counts everyone employed.
 
-**Crosswalks.** US occupations are linked to ANZSCO through BLS and ABS concordances: SOC `2018` to SOC `2010`, SOC `2010` to `ISCO-08`, and `ISCO-08` to ANZSCO `v1.2`. A fourth weighting scheme uses Jobs and Skills Australia's direct correspondence from ANZSCO `v1.2` to O*NET-SOC `2019`, an archived copy [@jsalmi2024]. Within each unit, US occupations are weighted by employment in the BLS Occupational Employment and Wage Statistics for May `2025` [@blsoews2025].
+**Crosswalks.** US occupations are linked to ANZSCO through BLS and ABS concordances: SOC `2018` to SOC `2010`, SOC `2010` to `ISCO-08`, and `ISCO-08` to ANZSCO `v1.2`. A fourth weighting scheme uses Jobs and Skills Australia's direct correspondence from ANZSCO `v1.2` to O\*NET-SOC `2019`, an archived copy [@jsalmi2024]. Within each unit, US occupations are weighted by employment in the BLS Occupational Employment and Wage Statistics for May `2025` [@blsoews2025].
 
 Every file's source, access date, checksum and licence are recorded in `data/raw/MANIFEST.csv`.
 
@@ -208,13 +208,13 @@ Relative to employment, Australian Claude.ai conversations are most concentrated
 
 This influence check, and the exclusion of mostly unscored units, were added after the first results were seen. They are reported as such.
 
-::: {.callout-note}
-## A framework for reading the results: AI in a two-capital model of the skill premium
+## A framework for reading the results: AI in a two-capital model of the skill premium {#sec-theory}
 
-This box extends the model in Section 3 of the author's honours thesis [@taya2026thesis]. That model builds on the capital-skill complementarity framework of Krusell et al. [-@korv2000]. The extension below, its derivations and their checks were drafted for this note; the thesis is unchanged. Every result is verified symbolically and numerically in `theory/check_theory.py` (output in `theory/check_theory_output.txt`).
+This section extends the model in Section 3 of the author's honours thesis [@taya2026thesis]. That model builds on the capital-skill complementarity framework of Krusell et al. [-@korv2000]. The extension below, its derivations and their checks were drafted for this note; the thesis is unchanged. Every result is verified symbolically and numerically in `theory/check_theory.py` (output in `theory/check_theory_output.txt`).
 
 **Model (thesis notation).** Output is a two-branch nested CES. Machinery $K^M$ is paired with unskilled labour and ICT $K^I$ with skilled labour:
-$$Y=\left[\omega V^{\rho}+(1-\omega)X^{\rho}\right]^{1/\rho},\quad V=\left[\lambda U^{\eta_V}+(1-\lambda)(K^M)^{\eta_V}\right]^{1/\eta_V},\quad X=\left[\mu S^{\eta_X}+(1-\mu)(K^I)^{\eta_X}\right]^{1/\eta_X},$$
+$$Y=\left[\omega V^{\rho}+(1-\omega)X^{\rho}\right]^{1/\rho},$$
+$$V=\left[\lambda U^{\eta_V}+(1-\lambda)(K^M)^{\eta_V}\right]^{1/\eta_V},\qquad X=\left[\mu S^{\eta_X}+(1-\mu)(K^I)^{\eta_X}\right]^{1/\eta_X},$$
 with $U=A^UN^U$, $S=A^SN^S$ and elasticities $\sigma_{VX}=1/(1-\rho)$, $\sigma_{VU}=1/(1-\eta_V)$ and $\sigma_{XS}=1/(1-\eta_X)$. With competitive wages, the skill premium is
 $$\pi=c_\pi\left(\tfrac{V}{X}\right)^{1/\sigma_{VX}}\left(\tfrac{X}{S}\right)^{1/\sigma_{XS}}\left(\tfrac{U}{V}\right)^{1/\sigma_{VU}}\tfrac{A^S}{A^U}.$$
 Let $s_I=(1-\mu)(K^I)^{\eta_X}/X^{\eta_X}$ be ICT's cost share in the skilled branch and $s_S=1-s_I$; define $s_M$ and $s_U=1-s_M$ likewise in the unskilled branch.
@@ -253,7 +253,6 @@ for all admissible parameters. The bracket is a weighted average of $1/\sigma_{V
   - Nothing here observes AI capital, its price, wages or elasticities, so the sign of Proposition 3 is not determined by these data.
 
 The evidence restricts where AI is used. It does not tell us what AI does to the skill premium.
-:::
 
 ## Limitations {#sec-limitations}
 
@@ -266,7 +265,7 @@ The evidence restricts where AI is used. It does not tell us what AI does to the
 - Over half of the scored US occupations have a score of exactly zero. A zero can mean the tasks fell below the usage gate in Anthropic's sample, or that the used tasks failed the capability gate.
 - The gate also makes the comparison with Eloundou beta partly mechanical. Levkoff [-@levkoff2026] finds that most of the agreement between the two comes from the gate.
 - Levkoff also finds that detailed occupation rankings change between Anthropic data vintages, while broad group structure is stable. Unit-level values in the explorer should be read with that in mind.
-- Rebuilding the published scores from the published task data, with O*NET task weights in place of unpublished time shares, gives a rank correlation of `r num("g_spearman_equal", 2)` (appendix).
+- Rebuilding the published scores from the published task data, with O\*NET task weights in place of unpublished time shares, gives a rank correlation of `r num("g_spearman_equal", 2)` (appendix).
 
 **Known artefacts.** Some scores sit oddly beside related occupations:
 
@@ -306,7 +305,7 @@ All of these are reported in the appendix, and the main results are rerun withou
 
 **Occupation-group shares.** The published SOC major-group shares do not sum to one hundred per cent for any geography, even where all groups are published. The data documentation does not say what fills the gap.
 
-**Theory box.** It is a framework for reading the results, not a test. It holds technology fixed except where stated, and maps skill to earnings only loosely.
+**Theoretical framework.** It is a way of reading the results, not a test. It holds technology fixed except where stated, and maps skill to earnings only loosely.
 
 **What the note does not do.** It describes; it does not estimate effects. It says nothing about employment, wages or hours responding to AI. It measures variation between occupations, not within them. It is not a forecast and not a job-loss or career-risk score.
 
@@ -323,7 +322,7 @@ All of these are reported in the appendix, and the main results are rerun withou
 
 ## Credits
 
-This note includes information from the O*NET `31.0` Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the CC BY `4.0` license. O*NET® is a trademark of USDOL/ETA. Luc Taya has modified all or some of this information. USDOL/ETA has not approved, endorsed, or tested these modifications.
+This note includes information from the O\*NET `31.0` Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the CC BY `4.0` license. O\*NET® is a trademark of USDOL/ETA. Luc Taya has modified all or some of this information. USDOL/ETA has not approved, endorsed, or tested these modifications.
 
 Australian Bureau of Statistics data are used under CC BY `4.0`. ATO data are used under CC BY `2.5` AU. Jobs and Skills Australia material is © Commonwealth of Australia, used under CC BY `4.0`. Full credits and licences are in `docs/credits.md`.
 
