@@ -36,6 +36,12 @@ for (g in c("AUS", "AU-WA", "GLOBAL")) {
   add(paste0("mg_groups_min_", k), min(mm$groups_published[mm$geo_id == g]))
   add(paste0("mg_groups_max_", k), max(mm$groups_published[mm$geo_id == g]))
 }
+# US employment-weighted mean and the US employment share at exactly zero, with this project's
+# OEWS weights (scored SOCs only).
+wus <- read_codes_csv(interim_path("soc_weights_oews.csv"))
+jw <- inner_join(je, wus, by = c("occ_code" = "soc"))
+add("je_mean_us_weighted", sum(jw$w * jw$observed_exposure) / sum(jw$w))
+add("je_zero_us_emp_share", sum(jw$w[jw$observed_exposure == 0]) / sum(jw$w))
 socm <- read_codes_csv(interim_path("soc_measures.csv"))
 add("soc_with_beta", sum(!is.na(socm$beta_gpt4)))
 add("soc_with_automation", sum(!is.na(socm$global_automation_pct)))
@@ -96,6 +102,8 @@ l4 <- read_codes_csv(interim_path("links_scheme4_lmi.csv"))
 add("links4", nrow(l4))
 add("s4_units", n_distinct(l4$unit))
 add("s4_poor", sum(l4$strength == "POOR"))
+add("s4_units_scored", read_codes_csv(interim_path("unit_measures_long.csv")) |>
+      filter(scheme == "s4", measure == "usage_exposure", !is.na(score)) |> nrow())
 
 # Coverage and grades ------------------------------------------------------------------
 cov <- read_codes_csv(out_path("coverage.csv"))
@@ -118,14 +126,36 @@ add("tmb_pp", 100 * (dp$usage[10] - dp$usage[1]))
 sens <- m3("sensitivity_table.csv")
 add("specs", nrow(sens)); add("specs_hold", sum(sens$holds))
 add("specs_hold_s4", sum(sens$holds[sens$scheme == "s4"])); add("specs_s4", sum(sens$scheme == "s4"))
+add("specs_alt", nrow(sens) - 1); add("specs_alt_hold", sum(sens$holds) - 1)
+for (rk in c("eeh", "eeh13", "ato")) {
+  add(paste0("specs_hold_", rk), sum(sens$holds[sens$ranking == rk])); add(paste0("specs_", rk), sum(sens$ranking == rk))
+}
+add("specs_ci_pos", sum(sens$ci_usage > 0)); add("ci_spec_min", min(sens$ci_usage)); add("ci_spec_max", max(sens$ci_usage))
+add("specs_rank_ci_pos", sum(sens$rank_ci_usage > 0))
+add("rank_ci_spec_min", min(sens$rank_ci_usage)); add("rank_ci_spec_max", max(sens$rank_ci_usage))
+add("specs_tmb_neg", sum(sens$top_minus_bottom_pp < 0)); add("specs_tmb_neg_s4", sum(sens$top_minus_bottom_pp < 0 & sens$scheme == "s4"))
+add("slope_main_pp", sens$slope_pp[sens$scheme == "s1" & sens$sample == "all" & sens$ranking == "eeh"])
 ci <- m3("concentration_indices.csv")
-for (m in ci$measure) add(paste0("ci_", m), ci$ci[ci$measure == m])
+for (m in ci$measure) {
+  add(paste0("ci_", m), ci$ci[ci$measure == m]); add(paste0("rank_ci_", m), ci$rank_ci[ci$measure == m])
+  add(paste0("erreygers_", m), ci$erreygers[ci$measure == m]); add(paste0("mean_", m), ci$mean[ci$measure == m])
+}
+mg <- m3("margin_decomposition.csv") |> filter(decile == 10)
+add("margin_total", mg$total); add("margin_ext", mg$extensive); add("margin_int", mg$intensity)
+add("margin_ext_share", mg$extensive_share); add("margin_int_share", mg$intensity_share)
 cor <- m3("correlations.csv") |> filter(scheme == "s1")
 for (p in cor$potential) add(paste0("rho_", p), cor$spearman_weighted[cor$potential == p])
 inf <- m3("influence_largest_units.csv")
 add("s4_tmb", inf$top_minus_bottom_pp[inf$scheme == "s4" & inf$left_out == "none"])
 add("s4_tmb_no6211", inf$top_minus_bottom_pp[inf$scheme == "s4" & inf$left_out == "6211"])
 add("emp_share_6211", emp$emp_share[emp$unit == "6211"])
+add("s4_holds_no6211", as.numeric(inf$holds[inf$scheme == "s4" & inf$left_out == "6211"]))
+i1 <- inf |> filter(scheme == "s1", left_out != "none")
+add("inf_s1_tmb_min", min(i1$top_minus_bottom_pp)); add("inf_s1_tmb_max", max(i1$top_minus_bottom_pp))
+add("inf_s1_ci_min", min(i1$ci_usage)); add("inf_s1_ci_max", max(i1$ci_usage))
+add("inf_s1_holds_all", as.numeric(all(i1$holds)))
+add("inf_ci_pos_all", as.numeric(all(inf$ci_usage > 0)))
+add("inf_s1_tmb_finance", i1$top_minus_bottom_pp[i1$left_out == "1322"])
 
 # Figures for the takeaways (main specification unless the key says otherwise) ---------------
 add("usage_max", max(dp$usage)); add("usage_max_decile", dp$decile[which.max(dp$usage)])
@@ -139,15 +169,40 @@ for (p in c("jsa_automation", "jsa_augmentation", "beta_gpt4")) {
   sc <- m3("gap_sign_check.csv") |> filter(sample == "all", ranking == "eeh", potential == p)
   add(paste0("gap_holds_", p), as.numeric(sc$holds))
 }
+gqn <- m3("gap_quintiles_nonzero.csv")
+for (p in c("jsa_automation", "jsa_augmentation", "beta_gpt4", "aioe")) {
+  r <- gqn |> filter(scheme == "s1", potential == p)
+  add(paste0("gapq1_nz_", p), r$gap_rank_q1); add(paste0("gapq5_nz_", p), r$gap_rank_q5)
+  base <- gq |> filter(sample == "all", ranking == "eeh", potential == p) |> select(scheme, b1 = gap_rank_q1, b5 = gap_rank_q5)
+  chk <- gqn |> filter(potential == p) |> inner_join(base, by = "scheme")
+  add(paste0("gap_nz_signs_same_", p), as.numeric(all(sign(chk$gap_rank_q1) == sign(chk$b1) & sign(chk$gap_rank_q5) == sign(chk$b5))))
+}
+add("gapq1_aioe", gq$gap_rank_q1[gq$scheme == "s1" & gq$sample == "all" & gq$ranking == "eeh" & gq$potential == "aioe"])
+add("gapq5_aioe", gq$gap_rank_q5[gq$scheme == "s1" & gq$sample == "all" & gq$ranking == "eeh" & gq$potential == "aioe"])
+gp <- m3("gap_by_decile.csv") |> filter(sample == "all", ranking == "eeh", potential == "jsa_automation", decile == 1)
+add("gap_d1_jsa_range", max(gp$gap_rank) - min(gp$gap_rank))
 dis <- m3("largest_disagreements_jsa.csv")
-add("dis_n", nrow(dis)); add("dis_negative", sum(dis$gap_s1 < 0))
+add("dis_n", nrow(dis)); add("dis_negative", sum(dis$gap_s1 < 0)); add("dis_negative_zero", sum(dis$gap_s1 < 0 & dis$usage == 0))
+add("dis_3422_s1", dis$gap_s1[dis$unit == "3422"]); add("dis_3422_s4", dis$gap_s4[dis$unit == "3422"])
+add("dis_5513_s1", dis$gap_s1[dis$unit == "5513"])
+emp_sc <- read_codes_csv(interim_path("unit_measures_long.csv")) |> filter(scheme == "s1", measure == "usage_exposure") |>
+  inner_join(emp |> select(unit, emp), by = "unit")
+add("zero_units", sum(emp_sc$score == 0, na.rm = TRUE))
+add("zero_emp_share", sum(emp_sc$emp[emp_sc$score %in% 0]) / sum(emp_sc$emp[!is.na(emp_sc$score)]))
 so <- m3("sex_overall.csv"); sd <- m3("sex_deciles.csv")
 add("usage_women", so$women); add("usage_men", so$men); add("jsa_women", so$women_jsa); add("jsa_men", so$men_jsa)
 add("deciles_women_higher", sum(sd$women > sd$men))
+sdc <- m3("sex_decomposition.csv")
+add("sex_gap_total", sdc$total); add("sex_gap_within", sdc$within); add("sex_gap_between", sdc$between); add("sex_within_share", sdc$within_share)
 wa <- m3("wa_vs_national.csv")
-for (m in wa$measure) { add(paste0("wa_mean_", m), wa$mean_wa[wa$measure == m]); add(paste0("aus_mean_", m), wa$mean_aus[wa$measure == m]); add(paste0("wa_gap_", m), wa$wa_gap[wa$measure == m]) }
+for (m in wa$measure) {
+  add(paste0("wa_mean_", m), wa$mean_wa[wa$measure == m]); add(paste0("aus_mean_", m), wa$mean_aus[wa$measure == m])
+  add(paste0("wa_gap_", m), wa$wa_gap[wa$measure == m]); add(paste0("wa_rel_", m), wa$wa_gap_relative[wa$measure == m])
+}
 wd <- m3("wa_decomposition.csv") |> filter(level == "major", measure == "usage")
 add("wa_contrib_prof", wd$contribution[wd$group == "2"]); add("wa_contrib_trades", wd$contribution[wd$group == "3"])
+add("wa_norm_prof", wd$contribution_norm[wd$group == "2"]); add("wa_norm_trades", wd$contribution_norm[wd$group == "3"])
+add("wa_norm_mach", wd$contribution_norm[wd$group == "7"]); add("wa_norm_comm", wd$contribution_norm[wd$group == "4"])
 add("wa_share_prof", wd$share_wa[wd$group == "2"]); add("aus_share_prof", wd$share_aus[wd$group == "2"])
 ui <- m3("soc_major_usage_index.csv")
 ui_aus <- ui |> filter(geo_id == "AUS", !is.na(usage_index)) |> arrange(desc(usage_index))
@@ -157,6 +212,9 @@ add("ui_wa_cm", ui$usage_index[ui$geo_id == "AU-WA" & ui$soc_major == "15"])
 add("ui_global_cm", ui$usage_index[ui$geo_id == "GLOBAL" & ui$soc_major == "15"])
 add("ui_aus_constr", ui$usage_index[ui$geo_id == "AUS" & ui$soc_major == "47"])
 add("ui_aus_above1", sum(ui_aus$usage_index > 1)); add("ui_groups", nrow(ui_aus))
+add("ui_aus_cm_rescaled", ui$usage_index_rescaled[ui$geo_id == "AUS" & ui$soc_major == "15"])
+add("ui_rescale_max_change", max(abs(ui$usage_index_rescaled / ui$usage_index - 1), na.rm = TRUE))
+add("ui_aus_above1_rescaled", sum(ui_aus$usage_index_rescaled > 1))
 add("specs_s4_hold_all", sum(sens$holds[sens$scheme == "s4"]))
 gs <- function(s, smp, rk) sens$top_minus_bottom_pp[sens$scheme == s & sens$sample == smp & sens$ranking == rk]
 add("tmb_nondiffuse", gs("s1", "non_diffuse", "eeh")); add("tmb_unscored", gs("s1", "excl_unscored_majority", "eeh"))
@@ -169,12 +227,23 @@ add("unscored_units", sum(g$unscored_weight_share > 0.5, na.rm = TRUE))
 add("unscored_emp", sum(g$emp_share[g$unscored_weight_share > 0.5], na.rm = TRUE))
 gr <- read_codes_csv(out_path("g_replication.csv"))
 add("g_spearman_equal", gr$spearman[gr$weights == "equal"])
+add("g_spearman_nonzero", gr$spearman_nonzero[gr$weights == "equal"]); add("g_socs_nonzero", gr$socs_nonzero[gr$weights == "equal"])
+# Lower bound for unscored links and the beta > 0 analogue of the extensive margin (main specification).
+add("lb_d1", dp$usage_lb[1]); add("lb_d10", dp$usage_lb[10]); add("lb_tmb_pp", 100 * (dp$usage_lb[10] - dp$usage_lb[1]))
+add("lb_max_decile", dp$decile[which.max(dp$usage_lb)])
+add("beta_ext_d1", dp$beta_ext[1]); add("beta_ext_d10", dp$beta_ext[10])
+add("global_auto_min", min(dp$global_automation)); add("global_auto_max", max(dp$global_automation))
+add("usage_d7", dp$usage[7]); add("usage_d9", dp$usage[9])
+add("usage_second_decile", dp$decile[order(-dp$usage)][2]); add("usage_second", sort(dp$usage, decreasing = TRUE)[2])
+add("int_d1", dp$intensity[1]); add("int_d10", dp$intensity[10])
+add("ext_nd_d1", m3("decile_profiles.csv") |> filter(scheme == "s1", sample == "non_diffuse", ranking == "eeh", decile == 1) |> pull(usage))
 # Theory box: thesis production elasticities as reported by the author (inputs, not estimates here).
 sVX <- 2.21; sXS <- 0.94; sVU <- 1.56
 add("th_sVX", sVX); add("th_sXS", sXS); add("th_sVU", sVU)
 add("th_ict_term", 1 / sXS - 1 / sVX); add("th_mach_term", 1 / sVX - 1 / sVU)
 add("th_inv_sVX", 1 / sVX); add("th_inv_sXS", 1 / sXS)
 add("th_ict_effect", 12.5); add("th_mach_effect", -2.8)   # thesis results as reported by the author
+add("th_panel_countries", 24)                               # calibration panel, as reported by the author
 
 out <- bind_rows(facts)
 write_csv(out, out_path("note_facts.csv"))

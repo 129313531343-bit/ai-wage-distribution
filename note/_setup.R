@@ -33,6 +33,16 @@ sh <- function(k, d = 1) fmt(100 * fact(k), digits = d, flag = "+")
 ab <- function(k, d = 1) fmt(abs(fact(k)), digits = d)
 # A plain number not stored as a fact (counts in code, e.g. number of schemes).
 n <- function(x, d = 0) fmt(x, digits = d, big.mark = ",")
+# A count under 100 in words, for counts that start a sentence; Words() capitalises it.
+words <- function(x) {
+  ones <- c("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+            "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen")
+  tens <- c("", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety")
+  x <- as.integer(round(x))
+  stopifnot(x >= 0, x < 100)
+  if (x < 20) ones[x + 1] else paste0(tens[x %/% 10 + 1], if (x %% 10 > 0) paste0("-", ones[x %% 10 + 1]) else "")
+}
+Words <- function(x) { w <- words(x); paste0(toupper(substr(w, 1, 1)), substring(w, 2)) }
 
 m3 <- function(f) read_codes_csv(out_path("m3", f))
 fig <- function(f) file.path(project_root(), "note", "figures", f)

@@ -10,6 +10,8 @@ suppressPackageStartupMessages({
 source("R/utils.R")
 
 con <- dbConnect(duckdb(shared_home = FALSE))
+# One thread, so sums are taken in the same order on every run (outputs are compared byte for byte).
+invisible(dbExecute(con, "SET threads TO 1"))
 on.exit(dbDisconnect(con, shutdown = TRUE))
 aei_file <- raw_path("aei", "aei_claude_ai_2026-06-26.csv")
 dbExecute(con, sprintf(

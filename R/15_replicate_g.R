@@ -48,7 +48,11 @@ res <- bind_rows(lapply(names(variants), function(v) {
   tibble(weights = v, socs_compared = nrow(d),
          spearman = cor(d$rebuilt, d$observed, method = "spearman"),
          pearson = cor(d$rebuilt, d$observed),
-         zero_agreement = mean((d$rebuilt == 0) == (d$observed == 0)))
+         zero_agreement = mean((d$rebuilt == 0) == (d$observed == 0)),
+         # Among occupations with a positive published score (added after the first results):
+         # how much of the agreement comes from matching zeros.
+         socs_nonzero = sum(d$observed > 0),
+         spearman_nonzero = cor(d$rebuilt[d$observed > 0], d$observed[d$observed > 0], method = "spearman"))
 })) |>
   mutate(task_text_join_rate = join_rate, target = 0.9, meets_target = spearman >= target)
 

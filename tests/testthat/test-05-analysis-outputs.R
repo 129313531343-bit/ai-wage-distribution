@@ -32,3 +32,30 @@ test_that("no published file carries a unit-level AIOE value", {
     if ("unit" %in% h) expect_false(any(grepl("aioe", h, ignore.case = TRUE)), info = f)
   }
 })
+
+test_that("the women-men split adds up to the overall gap", {
+  skip_if_not(have_m3, "M3 not run yet")
+  sd <- read_codes_csv(out_path("m3", "sex_decomposition.csv"))
+  so <- read_codes_csv(out_path("m3", "sex_overall.csv"))
+  expect_equal(sd$within + sd$between, sd$total)
+  expect_equal(sd$total, so$women - so$men, tolerance = 1e-9)
+})
+
+test_that("WA group contributions sum to the WA gap, raw and normalised", {
+  skip_if_not(have_m3, "M3 not run yet")
+  wd <- read_codes_csv(out_path("m3", "wa_decomposition.csv"))
+  wa <- read_codes_csv(out_path("m3", "wa_vs_national.csv"))
+  for (m in wa$measure) for (lv in c("major", "submajor")) {
+    x <- wd[wd$measure == m & wd$level == lv, ]
+    expect_equal(sum(x$contribution), wa$wa_gap[wa$measure == m], tolerance = 1e-9)
+    expect_equal(sum(x$contribution_norm), wa$wa_gap[wa$measure == m], tolerance = 1e-9)
+  }
+})
+
+test_that("comparable concentration indices exist for every measure", {
+  skip_if_not(have_m3, "M3 not run yet")
+  ci <- read_codes_csv(out_path("m3", "concentration_indices.csv"))
+  expect_false(anyNA(ci$rank_ci))
+  expect_true(all(is.na(ci$ci[ci$measure == "aioe"])))
+  expect_true(all(abs(ci$rank_ci) <= 1 / 3 + 1e-9))
+})

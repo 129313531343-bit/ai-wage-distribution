@@ -57,3 +57,42 @@ test_that("unit scores renormalise weights over SOCs with a value", {
   uw <- unit_weights(links, vals, "v", w)
   expect_true(all(abs(tapply(uw$w_norm, uw$unit, sum) - 1) < 1e-12))
 })
+
+test_that("the lower bound counts linked SOCs without a value as zero", {
+  links <- tibble::tibble(unit = c("u1", "u1", "u1", "u2"), soc = c("a", "b", "c", "a"))
+  vals <- tibble::tibble(soc = c("a", "b", "c"), v = c(0, 0.4, NA))
+  w <- tibble::tibble(soc = c("a", "b", "c"), w = c(1, 3, 10))
+  s <- unit_scores(links, vals, "v", w)
+  expect_equal(s$score_lb[s$unit == "u1"], 1.2 / 14)
+  expect_true(all(s$score_lb <= s$score))
+})
+
+test_that("the rank concentration index is a third of the rank correlation and ignores scale", {
+  n <- 10
+  r <- weighted_rank(1:n, rep(1, n))
+  expect_equal(rank_concentration_index(1:n, r, rep(1, n)), (n^2 - 1) / (3 * n^2))
+  expect_equal(rank_concentration_index(exp(1:n), r, rep(1, n)), rank_concentration_index(1:n, r, rep(1, n)))
+  expect_equal(rank_concentration_index(n:1, r, rep(1, n)), -(n^2 - 1) / (3 * n^2))
+})
+
+test_that("the Erreygers index equals 8 cov(e, r) for a measure on [0, 1]", {
+  set.seed(2)
+  e <- runif(20); w <- rexp(20); r <- weighted_rank(rnorm(20), w)
+  wn <- w / sum(w)
+  expect_equal(erreygers_index(e, r, w), 8 * sum(wn * (e - sum(wn * e)) * (r - sum(wn * r))))
+})
+
+test_that("the margin decomposition adds up", {
+  m <- margin_decomposition(0.069, 0.39, 0.111, 0.81)
+  expect_equal(m$extensive + m$intensity, m$total)
+  expect_equal(m$extensive_share + m$intensity_share, 1)
+})
+
+test_that("normalised contributions sum to the total and do not depend on the level", {
+  set.seed(3)
+  x <- runif(12); a <- rexp(12); b <- rexp(12); a <- a / sum(a); b <- b / sum(b); g <- rep(1:3, 4)
+  c1 <- normalised_contributions(a, b, x, g); c2 <- normalised_contributions(a, b, x + 5, g)
+  expect_equal(sum(c1$normalised), sum((a - b) * x))
+  expect_equal(sum(c1$raw), sum(c1$normalised))
+  expect_equal(c1$normalised, c2$normalised)
+})

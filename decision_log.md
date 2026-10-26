@@ -360,3 +360,52 @@ The grid of specifications grows from 48 to 60.
 - **Decided by:** Luc Taya, in chat
 - **Decision:** remove the "Contributions and AI use" section from the note: "it is not relevant and not used in actual working papers".
 - **What stays:** the README keeps its "Contributions and AI use" section (house rule 3 of the brief), and the theory box still says its extension was drafted for this note and that the thesis is unchanged.
+
+### D13. Review of v0.9 and the revised draft (26 Oct 2026)
+
+- **Decided by:** Luc Taya. Luc wrote a review of the v0.9 draft (items B1–B58, extensions E1–E8) and a revised draft of the note, and approved the plan in `private/review_response.md` ("start the v0.9 revision now with the plan").
+- **Luc's answers (26 Oct 2026):**
+  - Luc wrote the review and the revised draft.
+  - The release stays v0.9.
+  - The thesis elasticities "are calibrated using cost shares, from a cross-country panel of 24 countries, and Australia did not enter the panel".
+  - No funding.
+  - Levkoff's full title, which contains "Predicted", is fine in the references.
+  - Luc did not answer whether the thesis's one-standard-deviation figures (12.5% and −2.8%) stay; they are left out, as in Luc's revised draft.
+- **What Claude Code checked first.** Every pipeline number the review relies on was recomputed. About thirty outside claims were checked against their sources by two verification agents on 26 Oct 2026. Results are in `private/review_response.md`, sections 2 and 3.
+- **Changes from Luc's revised draft, with reasons:**
+  - The author line keeps the house wording ("Luc Taya, Economics (Honours) graduate, University of Western Australia").
+  - The opening keeps "self-selected users" and "one provider", as the house rule requires.
+  - "Worldwide" is dropped: Massenkoff and McCrory do not say it.
+  - Task weights are described as running from one half to one, not as a flat 1 or 0.5, and time fractions are attributed to earlier Anthropic work, not to O*NET, as the source's appendix says.
+  - "Pre-specified" is replaced by "fixed before results" (house rule on describing the work).
+  - "Reproduces Handa et al.'s hump" becomes "is consistent with", because the note's own robustness section finds the shape fragile.
+  - The WA "about a third of the shortfall" ratio is dropped: it divides a coverage gap by a per-capita volume gap.
+  - The Australia report's "IP-based location" caveat is dropped: that report does not say it.
+  - "JSA's automation scores understate how concentrated use is" becomes a comparison of usage with JSA automation potential, because JSA measures potential, not use.
+  - Tomlinson et al.'s wage correlation is 0.13 (version 7), not 0.07 (version 1).
+  - JSA's language-model scoring is cited to DEWR (2026, Appendix A), where it is stated.
+  - Gross (2026) is cited to the Substack post, because the working paper could not be read.
+  - Women's 12% share in Anthropic's survey is not used: it refers to the linked sample.
+  - Random tie-breaking is not reported, because its expected value equals the mid-rank result; gaps without zero units are reported instead.
+  - The provenance paragraph does not cite a commit, because the repository's first commit holds both the decision log and the first results. The session transcript shows the rules were written at 16:48 and the analysis first run at 17:38 on 25 Oct 2026 (AWST), but that transcript is not public.
+  - The disclosure states the AI role in full.
+- **Scope:** the review's extensions E1 (other platforms), E3 (uncertainty) and, if time allows, E4 (conditional gradient) are planned for v1.0. E2 and E5–E8 are future work.
+
+### N21. Analyses added after review of the first draft (26 Oct 2026)
+
+None of these was part of the method fixed before results. All are labelled where they appear.
+
+- **Rank, Erreygers and generalised concentration indices.** These were added because the level index depends on each measure's mean. On ranks, usage (0.073) is less concentrated among high earners than JSA augmentation (0.147), beta (0.137) and AIOE (0.141), and more than JSA automation (0.035). v0.9 said usage was "more [concentrated] than JSA augmentation"; that sentence compared level indices and is withdrawn. The rank index is positive in all 60 specifications.
+- **Slope column in the sensitivity table.** This shows the statistic the C6 rule tests.
+- **Margin decomposition by decile, from unrounded means.** At decile 10 it is 153% extensive and −53% intensity.
+- **Lower bound for unscored links.** `score_lb` counts unscored US counterparts as zero. Top-minus-bottom is 3.9 points instead of 4.3, with the peak still in decile 7.
+- **Capability analogue of the extensive margin.** This is the share of linked US occupations with beta above zero: 0.87 in the bottom decile and 0.97 in the top.
+- **Gaps without zero-exposure units.** Every quintile sign is unchanged under every scheme.
+- **Influence check extended.** It now includes the five largest units in decile 7, the concentration indices and the C6 rule for each run. Deciles were already re-formed after each exclusion; the note now says so. Without Sales Assistants (General), the scheme-4 profile holds.
+- **Size-weighted disagreements.** Gap × employment share.
+- **Women and men.** The gap is split into a within-decile part (128% of the gap) and a between-decile part.
+- **Normalised WA contributions** (Oaxaca and Ransom 1999; Yun 2005). Professionals −0.64 points; trades −0.32; machinery operators −0.24.
+- **Usage index rescaled** to published totals. No index moves by more than 4%.
+- **Rebuild correlation among positive scores.** 0.82, against 0.87 overall.
+- **Smoothed profile over earnings percentiles,** with a unit-resampling band (seed 20261026).
+- **Figures.** The usage-potential gap figure now shows the range across schemes and adds AIOE in aggregate; the former appendix figure A3 is removed. Two new figures show every specification and the influence of single units. Figure titles now state findings, and the source line describes the data as in the note.

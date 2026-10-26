@@ -2,7 +2,7 @@
 # Static images for the PDF/HTML note (the explorer is the interactive view).
 # Colours: the reference palette in the dataviz guidance (light mode). Slots 1-3 are the
 # subset validated for all-pairs use; single-series charts use slot 1 only.
-# Titles describe what is plotted; they carry no takeaway (takeaways are Luc's).
+# Titles state the finding each chart supports (review item B56); subtitles say what is plotted.
 
 suppressPackageStartupMessages({
   library(dplyr)
@@ -43,42 +43,31 @@ theme_note <- function() {
 save_fig <- function(p, name, w = 7, h = 4.2) {
   ggsave(file.path(fig_dir, paste0(name, ".png")), p, width = w, height = h, dpi = 200, bg = ink$surface)
 }
-caption_src <- "Usage-based exposure: US task-level Claude.ai use (Massenkoff and McCrory 2026) mapped to ANZSCO v1.2 units.\nEarnings deciles: EEH May 2025, employment-weighted with EQ08 (May 2025 to Feb 2026)."
+src_usage <- "Usage-based exposure: Massenkoff and McCrory (2026), from work-related Claude.ai and first-party API use classified\nto US O*NET tasks, mapped to ANZSCO v1.2 unit groups."
+caption_src <- paste0(src_usage, "\nEarnings deciles: EEH May 2025, employment-weighted with EQ08 (May 2025 to Feb 2026).")
 decile_axis <- scale_x_continuous(breaks = 1:10, name = "Earnings decile (1 = lowest, EEH weekly earnings)")
-pot_labels <- c(jsa_automation = "JSA automation exposure", jsa_augmentation = "JSA augmentation exposure",
-                beta_gpt4 = "Eloundou et al. beta (GPT-4 rating)")
+pot_labels <- c(jsa_automation = "JSA automation (primary)", jsa_augmentation = "JSA augmentation",
+                beta_gpt4 = "Eloundou et al. beta", aioe = "AIOE")
 
-# 1. Usage-potential rank gap by decile: main specification only (scheme 1, all units, EEH weekly).
-#    The range across weighting schemes is in appendix figure A3.
+# 1. Usage-potential rank gap by decile: scheme 1 with the range across the four weighting schemes
+#    (moved from the appendix into the main text after the review). AIOE appears as decile
+#    aggregates only.
 gaps <- m3("gap_by_decile.csv") |> filter(sample == "all", ranking == "eeh", potential %in% names(pot_labels))
-g1 <- gaps |> filter(scheme == "s1") |>
-  mutate(potential = factor(pot_labels[potential], levels = pot_labels))
-p1 <- ggplot(g1, aes(decile, gap_rank)) +
-  geom_hline(yintercept = 0, colour = ink$axis, linewidth = 0.4) +
-  geom_col(fill = pal["blue"], width = 0.7) +
-  facet_wrap(~potential, nrow = 1) +
-  decile_axis +
-  labs(title = "Usage-potential rank gap by earnings decile",
-       subtitle = "Employment-weighted percentile rank of usage-based exposure minus that of each potential measure.\nAbove zero: measured use ranks the decile's occupations higher than the potential measure does.",
-       y = "Rank gap (percentile points)", caption = caption_src) +
-  theme_note()
-save_fig(p1, "fig1_gap_by_decile", w = 8, h = 4)
-
-# A3. The same gap with the range across the four weighting schemes (appendix).
 g1r <- gaps |>
   group_by(potential, decile) |>
   summarise(lo = min(gap_rank), hi = max(gap_rank), primary = gap_rank[scheme == "s1"], .groups = "drop") |>
   mutate(potential = factor(pot_labels[potential], levels = pot_labels))
-pa3 <- ggplot(g1r, aes(decile)) +
+p1 <- ggplot(g1r, aes(decile)) +
   geom_hline(yintercept = 0, colour = ink$axis, linewidth = 0.4) +
   geom_linerange(aes(ymin = lo, ymax = hi), colour = "#9ec5f4", linewidth = 2.2) +
   geom_point(aes(y = primary), colour = pal["blue"], size = 1.8) +
   facet_wrap(~potential, nrow = 1) +
-  decile_axis +
-  labs(title = "Usage-potential rank gap: range across weighting schemes",
-       subtitle = "Point: scheme 1 (main). Bar: range across schemes 1-4.", y = "Rank gap (percentile points)", caption = caption_src) +
-  theme_note()
-save_fig(pa3, "figA3_gap_scheme_range", w = 8, h = 4)
+  scale_x_continuous(breaks = c(1, 5, 10), name = "Earnings decile (1 = lowest, EEH weekly earnings)") +
+  labs(title = "Measured use ranks low earners' occupations higher, and high earners' lower, than capability measures do",
+       subtitle = "Employment-weighted percentile rank of usage-based exposure minus that of each potential measure, by decile.\nPoint: scheme 1 (main). Bar: range across schemes 1-4. Gaps average zero across employment by construction.",
+       y = "Rank gap (percentile points)", caption = caption_src) +
+  theme_note() + theme(plot.title = element_text(size = 10))
+save_fig(p1, "fig1_gap_by_decile", w = 8.5, h = 4)
 
 # 2. Exposure, extensive margin and intensity by decile (three panels, no dual axis) -------------
 dp <- m3("decile_profiles.csv") |> filter(scheme == "s1", sample == "all", ranking == "eeh") |>
@@ -90,8 +79,8 @@ p2 <- ggplot(dp, aes(decile, value)) +
   geom_col(fill = pal["blue"], width = 0.7) +
   facet_wrap(~name, nrow = 1, scales = "free_y") +
   decile_axis +
-  labs(title = "Usage-based exposure, extensive margin and intensity by earnings decile",
-       subtitle = "Scheme 1 (OEWS employment weights). Employment-weighted decile means. Extensive margin: weighted share of\nlinked US occupations with any measured use. Intensity: exposure divided by the extensive margin.", y = NULL, caption = caption_src) +
+  labs(title = "Measured use rises across the earnings distribution through the extensive margin",
+       subtitle = "Usage-based exposure, extensive margin and intensity by decile, main specification. Extensive margin: weighted share of\nlinked US occupations with any measured use. Intensity: exposure divided by the extensive margin.", y = NULL, caption = caption_src) +
   theme_note()
 save_fig(p2, "fig2_margins_by_decile", w = 8, h = 3.8)
 
@@ -108,12 +97,13 @@ p3 <- ggplot(cc, aes(cum_emp, cum_exposure, colour = measure)) +
   scale_x_continuous(labels = scales::percent, name = "Cumulative share of employment, lowest to highest earnings") +
   scale_y_continuous(labels = scales::percent, name = "Cumulative share of exposure") +
   coord_equal() +
-  labs(title = "Concentration curves by earnings",
-       subtitle = sprintf("Concentration index: usage-based %.2f, JSA automation %.2f, Eloundou beta %.2f.\nCurves below the diagonal mean exposure is concentrated among higher earners.",
-                          ci$ci[ci$measure == "usage"], ci$ci[ci$measure == "jsa_automation"], ci$ci[ci$measure == "beta_gpt4"]),
+  guides(colour = guide_legend(nrow = 2)) +
+  labs(title = "Usage-based exposure is concentrated among higher earners",
+       subtitle = sprintf("Units ordered from lowest to highest earnings. Curves below the\ndiagonal: exposure is concentrated among higher earners.\nRank concentration index: usage-based %.3f, JSA automation %.3f,\nEloundou beta %.3f. Level indices do not compare measures.",
+                          ci$rank_ci[ci$measure == "usage"], ci$rank_ci[ci$measure == "jsa_automation"], ci$rank_ci[ci$measure == "beta_gpt4"]),
        caption = caption_src) +
   theme_note()
-save_fig(p3, "fig3_concentration_curves", w = 6, h = 6.2)
+save_fig(p3, "fig3_concentration_curves", w = 7, h = 7.4)
 
 # 4. Rank scatter of usage against JSA automation, largest disagreements labelled ------------
 units <- read_codes_csv(interim_path("unit_measures_long.csv")) |> filter(scheme == "s1", measure == "usage_exposure") |>
@@ -124,19 +114,21 @@ source("R/fn_analysis.R")
 sc <- emp |> inner_join(units, by = "unit") |> inner_join(jsa, by = "unit") |> filter(!is.na(usage), !is.na(jsa_automation))
 sc <- sc |> mutate(pr_usage = 100 * weighted_rank(usage, emp), pr_jsa = 100 * weighted_rank(jsa_automation, emp))
 dis <- m3("largest_disagreements_jsa.csv")
-sc <- sc |> mutate(label = if_else(unit %in% dis$unit, title, NA_character_))
+sc <- sc |> mutate(label = if_else(unit %in% dis$unit, if_else(usage == 0, paste0(title, " (zero)"), title), NA_character_))
 p4 <- ggplot(sc, aes(pr_jsa, pr_usage)) +
   geom_abline(slope = 1, intercept = 0, colour = ink$axis, linewidth = 0.4) +
   geom_point(aes(size = emp), colour = pal["blue"], alpha = 0.45, stroke = 0) +
   geom_point(data = filter(sc, !is.na(label)), aes(size = emp), shape = 21, fill = pal["blue"], colour = ink$surface, stroke = 0.6) +
+  annotate("text", x = 0, y = min(sc$pr_usage) - 4, label = "Units with zero usage-based exposure share one tied rank",
+           hjust = 0, size = 2.5, colour = ink$muted) +
   geom_text_repel(aes(label = label), size = 2.5, colour = ink$secondary, min.segment.length = 0, segment.colour = ink$axis,
                   max.overlaps = Inf, seed = 1, na.rm = TRUE) +
   scale_size_area(max_size = 7, guide = "none") +
   scale_x_continuous(limits = c(0, 100), name = "Percentile rank, JSA automation exposure") +
   scale_y_continuous(limits = c(0, 100), name = "Percentile rank, usage-based exposure") +
   coord_equal() +
-  labs(title = "Usage-based exposure against JSA automation exposure, by unit group",
-       subtitle = "Employment-weighted percentile ranks; point area shows employment. Units with zero usage-based\nexposure share one tied rank. Labelled: the 15 largest rank disagreements whose sign is the same\nunder all four weighting schemes.",
+  labs(title = "Usage and JSA automation agree on broad structure and disagree most on clerical,\ndriving and hospitality-management units",
+       subtitle = "Employment-weighted percentile ranks of each unit group; point area shows employment. Labelled: the 15\nlargest rank disagreements whose sign is the same under all four weighting schemes; \"(zero)\" marks units\nwith zero usage-based exposure, whose rank is the tied rank of all zero units.",
        caption = caption_src) +
   theme_note()
 save_fig(p4, "fig4_rank_scatter_jsa", w = 7, h = 7.4)
@@ -148,7 +140,7 @@ p5a <- ggplot(sx, aes(decile, value, colour = name)) +
   scale_colour_manual(values = c(Women = unname(pal["blue"]), Men = unname(pal["orange"]))) +
   geom_text(data = filter(sx, decile == 10), aes(label = name), hjust = -0.25, size = 3, colour = "#52514e", show.legend = FALSE) +
   decile_axis + expand_limits(x = 10.8) +
-  labs(title = "Usage-based exposure of women and men by earnings decile",
+  labs(title = "Women's occupations show more measured use than men's in every earnings decile",
        subtitle = "Deciles from the persons earnings ranking; means weighted by each sex's employment.",
        y = "Usage-based exposure", caption = caption_src) +
   theme_note()
@@ -162,14 +154,15 @@ major_names <- c(`1` = "Managers", `2` = "Professionals", `3` = "Technicians and
 wa <- m3("wa_decomposition.csv") |> filter(level == "major", measure == "usage") |>
   mutate(group_name = factor(major_names[group], levels = rev(major_names)))
 wa_tot <- m3("wa_vs_national.csv") |> filter(measure == "usage")
-p5b <- ggplot(wa, aes(contribution * 100, group_name)) +
+fmt_minus <- function(x) sub("^-", "−", sprintf("%.1f", x))
+p5b <- ggplot(wa, aes(contribution_norm * 100, group_name)) +
   geom_vline(xintercept = 0, colour = ink$axis, linewidth = 0.4) +
   geom_col(fill = pal["blue"], width = 0.6) +
-  labs(title = "WA minus national usage-based exposure, by occupation major group",
-       subtitle = sprintf("Contribution = (WA employment share - national share) x unit exposure, summed within group.\nMean exposure: WA %.1f, Australia %.1f, difference %.1f (all x 100).\nThe difference is occupation mix only, by construction.",
-                          100 * wa_tot$mean_wa, 100 * wa_tot$mean_aus, 100 * wa_tot$wa_gap),
-       x = "Contribution to WA minus national (exposure x 100)", y = NULL,
-       caption = "Usage-based exposure: US task-level Claude.ai use (Massenkoff and McCrory 2026) mapped to ANZSCO v1.2 units.\nEmployment shares: EQ08, average of May 2025 to Feb 2026.") +
+  labs(title = "WA's occupation mix lowers mean measured use, mainly through a smaller\nprofessional workforce",
+       subtitle = sprintf("Contribution of each major group to WA minus national mean exposure, measured relative to the national\nmean: (WA share − national share) × (unit exposure − national mean), summed within group.\nMean exposure × 100: WA %s, Australia %s, difference %s. Occupation mix only, by construction.",
+                          fmt_minus(100 * wa_tot$mean_wa), fmt_minus(100 * wa_tot$mean_aus), fmt_minus(100 * wa_tot$wa_gap)),
+       x = "Contribution to WA minus national (exposure × 100)", y = NULL,
+       caption = paste0(src_usage, "\nEmployment shares: EQ08, average of May 2025 to Feb 2026.")) +
   theme_note()
 save_fig(p5b, "fig5b_wa_decomposition", w = 7, h = 4)
 
@@ -183,7 +176,7 @@ p6 <- ggplot(ui, aes(usage_index, node_name, colour = geo)) +
   geom_point(size = 2.2, position = position_dodge(width = 0.6)) +
   scale_colour_manual(values = unname(pal)) +
   scale_x_log10(name = "Usage share / employment share (log scale; 1 = proportional)") +
-  labs(title = "Claude.ai usage relative to employment, by SOC major group",
+  labs(title = "Australian Claude.ai conversations concentrate in computer and mathematical tasks",
        subtitle = "Usage shares are conversation-task shares (AEI, Apr-May 2026), not users' jobs. Australian employment is EQ08\nallocated to SOC with scheme 1 weights; the global row uses US OEWS employment.",
        y = NULL, caption = "Source: Anthropic Economic Index 2026-06-26 release; ABS EQ08; BLS OEWS May 2025.\nSuppressed cells are omitted.") +
   theme_note()
@@ -193,7 +186,7 @@ save_fig(p6, "fig6_major_group_usage_index", w = 7.5, h = 6.5)
 ga <- m3("decile_profiles.csv") |> filter(scheme == "s1", sample == "all", ranking == "eeh")
 pa1 <- ggplot(ga, aes(decile, global_automation)) +
   geom_col(fill = pal["blue"], width = 0.7) + decile_axis +
-  labs(title = "Global Claude.ai automation share by earnings decile",
+  labs(title = "The share of conversations classed as automation does not vary with earnings",
        subtitle = "Share of conversations classed as automation (global Claude.ai, not Australian), scheme 1.",
        y = "Automation share (%)", caption = caption_src) +
   theme_note()
@@ -235,5 +228,62 @@ pa6 <- ggplot(gsc, aes(decile, usage)) +
        subtitle = "All units, EEH weekly ranking.", y = "Usage-based exposure", caption = caption_src) +
   theme_note()
 save_fig(pa6, "figA6_schemes", w = 9, h = 3.6)
+
+# 8. Every specification: concentration index and top-minus-bottom difference (two panels, one
+#    axis each). Added after the review; the concentration summary is a post-results addition.
+rank_short <- c(eeh = "EEH weekly", eeh13 = "EEH hourly", ato = "ATO salary")
+scheme_short <- c(s1 = "Scheme 1", s2 = "Scheme 2", s3 = "Scheme 3", s4 = "Scheme 4")
+sens <- m3("sensitivity_table.csv") |>
+  mutate(row = factor(paste(scheme_short[scheme], rank_short[ranking], sep = ", "),
+                      levels = rev(as.vector(outer(scheme_short, rank_short, paste, sep = ", ")))),
+         holds = if_else(holds, "Holds under the rule", "Does not hold"))
+spec_long <- sens |>
+  transmute(row, holds, `Concentration index` = ci_usage, `Top minus bottom (exposure points)` = top_minus_bottom_pp) |>
+  pivot_longer(-c(row, holds))
+p8 <- ggplot(spec_long, aes(value, row)) +
+  geom_vline(xintercept = 0, colour = ink$axis, linewidth = 0.4) +
+  geom_point(aes(shape = holds), colour = pal["blue"], size = 1.9, stroke = 0.7,
+             position = position_jitter(height = 0.15, width = 0, seed = 1)) +
+  scale_shape_manual(values = c(`Holds under the rule` = 16, `Does not hold` = 1)) +
+  facet_wrap(~name, nrow = 1, scales = "free_x") +
+  labs(title = "The concentration index is positive in all 60 specifications; the top-minus-bottom difference\nis negative only under scheme 4",
+       subtitle = "Each point is one specification (five samples per row). Filled: the decile profile holds under the rule fixed\nbefore results. The concentration-index summary was added after the first results.",
+       x = NULL, y = NULL, caption = src_usage) +
+  theme_note() + theme(plot.title = element_text(size = 10))
+save_fig(p8, "fig8_specifications", w = 8, h = 4.6)
+
+# 9. Influence of single large units on the top-minus-bottom difference (added after the first results).
+inf <- m3("influence_largest_units.csv")
+base_inf <- inf |> filter(left_out == "none") |> select(scheme, base = top_minus_bottom_pp)
+inf_u <- inf |> filter(left_out != "none") |> left_join(base_inf, by = "scheme") |>
+  mutate(scheme = factor(scheme_short[scheme], levels = scheme_short),
+         label = factor(paste(left_out, title), levels = rev(unique(paste(left_out, title)[order(from_decile, -emp)]))),
+         holds = if_else(holds, "Holds under the rule", "Does not hold"))
+p9 <- ggplot(inf_u, aes(top_minus_bottom_pp, label)) +
+  geom_vline(xintercept = 0, colour = ink$axis, linewidth = 0.4) +
+  geom_vline(data = mutate(base_inf, scheme = factor(scheme_short[scheme], levels = scheme_short)), aes(xintercept = base),
+             colour = pal["orange"], linewidth = 0.5, linetype = "22") +
+  geom_point(aes(shape = holds), colour = pal["blue"], size = 1.8, stroke = 0.7) +
+  scale_shape_manual(values = c(`Holds under the rule` = 16, `Does not hold` = 1)) +
+  facet_wrap(~scheme, nrow = 1) +
+  labs(title = "Single large units move the top-minus-bottom difference, and under scheme 4 decide its sign",
+       subtitle = "Difference with each of the five largest units in deciles 1, 7 and 10 left out in turn; deciles re-formed each time.\nDashed line: all units. Filled: the profile still holds under the rule. Added after the first results.",
+       x = "Top minus bottom (exposure points)", y = NULL, caption = caption_src) +
+  theme_note() + theme(plot.title = element_text(size = 10), axis.text.y = element_text(size = 7))
+save_fig(p9, "fig9_influence", w = 9, h = 5.6)
+
+# A7. Smoothed profile over earnings percentiles with a unit-resampling band (added after the review).
+sm <- m3("smoothed_profile.csv") |>
+  mutate(measure = factor(measure, levels = c("usage", "extensive"), labels = c("Usage-based exposure", "Extensive margin")))
+pa7 <- ggplot(sm, aes(percentile)) +
+  geom_ribbon(aes(ymin = lo, ymax = hi), fill = "#9ec5f4", alpha = 0.6) +
+  geom_line(aes(y = fit), colour = pal["blue"], linewidth = 0.8) +
+  facet_wrap(~measure, nrow = 1, scales = "free_y") +
+  scale_x_continuous(breaks = seq(0, 100, 20), name = "Employment-weighted earnings percentile (EEH weekly)") +
+  labs(title = "Without decile boundaries, measured use still peaks in the upper-middle of the distribution",
+       subtitle = "Local-linear fit of unit values on earnings percentile, employment-weighted, main specification. Band: 5th to 95th\npercentile over 200 resamples of units (sensitivity to which units are present, not sampling error).",
+       y = NULL, caption = caption_src) +
+  theme_note() + theme(plot.title = element_text(size = 10))
+save_fig(pa7, "figA7_smoothed_profile", w = 8, h = 3.8)
 
 message("Charts written to note/figures/")

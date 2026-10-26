@@ -37,6 +37,8 @@ el <- read_csv(raw_path("eloundou", "occ_level.csv"), show_col_types = FALSE) |>
 
 # Global Claude.ai automation share by detailed SOC ------------------------------------
 con <- dbConnect(duckdb(shared_home = FALSE))
+# One thread, so sums are taken in the same order on every run (outputs are compared byte for byte).
+invisible(dbExecute(con, "SET threads TO 1"))
 dbExecute(con, sprintf("CREATE VIEW aei AS SELECT * FROM read_csv_auto(%s, header = true)",
                        dbQuoteString(con, raw_path("aei", "aei_claude_ai_2026-06-26.csv"))))
 auto <- dbGetQuery(con, "

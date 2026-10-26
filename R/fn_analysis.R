@@ -58,6 +58,42 @@ concentration_index <- function(e, r, w) {
   2 * sum(w * (e - me) * (r - mr)) / me
 }
 
+# Indices that can be compared across measures (added after the first results, from the review).
+# The level index above depends on each measure's mean, so measures with different scales are
+# compared on ranks: CI_R = 4 cov_w(R_e, r), with R_e the measure's own employment-weighted rank.
+# Without ties it equals one third of the weighted Spearman correlation with earnings.
+rank_concentration_index <- function(e, r, w) {
+  ok <- !is.na(e) & !is.na(r) & !is.na(w)
+  e <- e[ok]; r <- r[ok]; w <- w[ok] / sum(w[ok])
+  re <- weighted_rank(e, w)
+  4 * sum(w * (re - sum(w * re)) * (r - sum(w * r)))
+}
+
+# Erreygers (2009) corrected index for a measure bounded on [lo, hi]: 4 mean CI / (hi - lo).
+erreygers_index <- function(e, r, w, lo = 0, hi = 1) {
+  ok <- !is.na(e) & !is.na(r) & !is.na(w)
+  me <- sum(w[ok] * e[ok]) / sum(w[ok])
+  4 * me * concentration_index(e, r, w) / (hi - lo)
+}
+
+# Log decomposition of the top-to-bottom ratio into the extensive margin and intensity:
+# ln(e_hi / e_lo) = ln(m_hi / m_lo) + ln(i_hi / i_lo), with i = e / m.
+margin_decomposition <- function(e_lo, m_lo, e_hi, m_hi) {
+  total <- log(e_hi / e_lo); extensive <- log(m_hi / m_lo)
+  tibble(total = total, extensive = extensive, intensity = total - extensive,
+         extensive_share = extensive / total, intensity_share = (total - extensive) / total)
+}
+
+# Group contributions to a difference in employment-weighted means between two share vectors,
+# measured relative to the reference mean so they do not depend on the level of the measure
+# (Oaxaca and Ransom 1999; Yun 2005). The contributions still sum to the total difference.
+normalised_contributions <- function(s_a, s_b, x, group) {
+  xbar <- sum(s_b * x)
+  tibble(group, raw = (s_a - s_b) * x, normalised = (s_a - s_b) * (x - xbar)) |>
+    group_by(group) |>
+    summarise(raw = sum(raw), normalised = sum(normalised), .groups = "drop")
+}
+
 # Concentration curve: cumulative employment share (x) against cumulative exposure share (y),
 # with units ordered by earnings.
 concentration_curve <- function(e, earnings, w, unit) {

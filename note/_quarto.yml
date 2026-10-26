@@ -29,4 +29,5 @@ format:
       x: 2.2cm
       y: 2.2cm
     fontsize: 10pt
+    bibliographystyle: chicago-author-date
     include-in-header: typst-header.typ

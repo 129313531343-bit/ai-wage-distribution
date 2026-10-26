@@ -13,6 +13,8 @@ grade_from_n <- function(n) {
 # links: unit, soc; values: soc plus the value column; weights: soc, w (NULL = equal weights).
 # Returns one row per unit with the score, the extensive margin (the same weights applied
 # to 1[v > 0]), intensity (score / extensive margin), counts and the crosswalk grade.
+# score_lb is a lower bound for non-negative measures: linked SOCs without a value count as zero
+# instead of being renormalised away (added after the first results, from the review).
 unit_scores <- function(links, values, value_col, weights = NULL) {
   d <- links |>
     distinct(unit, soc) |>
@@ -26,6 +28,7 @@ unit_scores <- function(links, values, value_col, weights = NULL) {
       w_total = sum(w[!is.na(v) & !is.na(w)]),
       score = if (n_valid > 0) sum((w * v)[!is.na(v) & !is.na(w)]) / w_total else NA_real_,
       extensive = if (n_valid > 0) sum((w * (v > 0))[!is.na(v) & !is.na(w)]) / w_total else NA_real_,
+      score_lb = if (n_valid > 0) sum((w * v)[!is.na(v) & !is.na(w)]) / sum(w[!is.na(w)]) else NA_real_,
       linked_socs = paste(sort(soc[!is.na(v) & !is.na(w)]), collapse = ";"),
       .groups = "drop"
     ) |>

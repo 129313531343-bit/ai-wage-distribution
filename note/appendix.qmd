@@ -12,13 +12,11 @@ emp <- read_codes_csv(interim_path("emp_units.csv"))
 tab <- function(d, ...) kable(d, ..., format = "pipe")
 ```
 
-Every table here is read from pipeline output. File paths refer to the project repository.
+Every table here is read from pipeline output. File paths refer to the project repository. Differences in exposure are in exposure points (exposure × `100`); rank gaps are in percentile points. Items added after the first results, including those added after review of the first draft, are labelled.
 
 ## Alternative specifications
 
-The main text uses one specification: weighting scheme `1`, all units, EEH weekly earnings. This section reports every alternative, including those that do not hold under the rule in the Methods section. Two items were added after the first results were seen: the exclusion of units whose US counterparts are mostly unscored, and the influence table.
-
-![Usage-potential rank gap by decile: range across the four weighting schemes.](figures/figA3_gap_scheme_range.png)
+The main text uses one specification: weighting scheme `1`, all units, EEH weekly earnings. This section reports every alternative, including those that do not hold under the rule in the Methods section.
 
 ![Usage-based exposure by decile under each weighting scheme.](figures/figA6_schemes.png)
 
@@ -28,7 +26,7 @@ The main text uses one specification: weighting scheme `1`, all units, EEH weekl
 
 ## Sensitivity table
 
-Decile profiles of usage-based exposure under every weighting scheme, sample and earnings ranking. "Holds" applies the rule in the Methods section against the primary specification (scheme `1`, all units, EEH weekly earnings).
+Decile profiles of usage-based exposure under every weighting scheme, sample and earnings ranking. "Holds" applies the rule in the Methods section against the primary specification (scheme `1`, all units, EEH weekly earnings): the OLS slope of the decile means (shown, in exposure points per decile) has the main profile's sign, and the Spearman correlation with the main profile is at least `0.7`. The concentration index (CI) and the rank index (rank CI, added after the first results) summarise the whole distribution.
 
 ```{r sensitivity}
 lab_s <- c(s1 = "1 OEWS", s2 = "2 Equal", s3 = "3 Title", s4 = "4 JSA links")
@@ -38,9 +36,46 @@ m3("sensitivity_table.csv") |>
   arrange(scheme, factor(sample, names(lab_m)), factor(ranking, names(lab_r))) |>
   transmute(Scheme = lab_s[scheme], Sample = lab_m[sample], Ranking = lab_r[ranking],
             `Decile 1` = round(usage_d1, 3), `Decile 10` = round(usage_d10, 3),
-            `Top minus bottom (pp)` = round(top_minus_bottom_pp, 1),
+            `Top minus bottom` = round(top_minus_bottom_pp, 1), Slope = round(slope_pp, 2),
             `Spearman with primary` = round(spearman_with_primary, 2),
-            CI = round(ci_usage, 3), Holds = if_else(holds, "yes", "no")) |>
+            CI = round(ci_usage, 3), `Rank CI` = round(rank_ci_usage, 3), Holds = if_else(holds, "yes", "no")) |>
+  tab()
+```
+
+## The profile without decile boundaries
+
+Added after review of the first draft. Decile means can exaggerate single-unit spikes, so the profile is also shown as a smoothed curve over earnings percentiles.
+
+![Smoothed profile over earnings percentiles, main specification.](figures/figA7_smoothed_profile.png)
+
+## Margins, lower bound and capability analogue by decile
+
+Main specification. The log decomposition compares each decile with decile `1`: $\ln(e_d/e_1)=\ln(m_d/m_1)+\ln(i_d/i_1)$. The lower bound counts linked US occupations without a score as zero instead of renormalising over scored ones. The capability analogue applies the same weights to an indicator of a positive Eloundou et al. beta. All three were added after review of the first draft.
+
+```{r margins}
+dp <- m3("decile_profiles.csv") |> filter(scheme == "s1", sample == "all", ranking == "eeh") |> arrange(decile)
+mg <- m3("margin_decomposition.csv") |> select(decile, extensive_share)
+dp |> left_join(mg, by = "decile") |>
+  transmute(Decile = decile, Exposure = round(usage, 3), `Lower bound` = round(usage_lb, 3),
+            `Extensive margin` = round(extensive, 3), Intensity = round(intensity, 3),
+            `Share of linked occupations with beta > 0` = round(beta_ext, 3),
+            `Extensive share of log difference from decile 1` = if_else(is.na(extensive_share), "", scales::percent(extensive_share, 1))) |>
+  tab()
+```
+
+## Concentration indices for every measure
+
+Main specification. The level index $2\,\mathrm{cov}(e,r)/\bar e$ depends on each measure's mean and is not comparable across measures. The rank index $4\,\mathrm{cov}(R_e,r)$ is; without ties it equals one third of the weighted Spearman correlation with earnings. The Erreygers index applies to measures bounded on $[0,1]$. The generalised index $2\,\mathrm{cov}(e,r)$ is in the measure's own units. AIOE takes negative values, so its level and Erreygers indices are not defined. Rank, Erreygers and generalised indices were added after review of the first draft.
+
+```{r concentration}
+lab_c <- c(usage = "Usage-based exposure", usage_lb = "Usage-based exposure, lower bound", extensive = "Extensive margin",
+           beta_ext = "Share of linked occupations with beta > 0", jsa_automation = "JSA automation", jsa_augmentation = "JSA augmentation",
+           beta_gpt4 = "Eloundou beta", aioe = "AIOE")
+m3("concentration_indices.csv") |>
+  mutate(measure = factor(lab_c[measure], levels = lab_c)) |> arrange(measure) |>
+  transmute(Measure = measure, Level = if_else(is.na(ci), "", sprintf("%.3f", ci)), Rank = sprintf("%.3f", rank_ci),
+            Erreygers = if_else(is.na(erreygers), "", sprintf("%.3f", erreygers)), Generalised = sprintf("%.4f", generalised),
+            `Employment covered` = scales::percent(emp_covered, 0.1)) |>
   tab()
 ```
 
@@ -67,20 +102,32 @@ m3("gap_sign_check.csv") |>
   tab()
 ```
 
+**Without zero-exposure units.** Added after review of the first draft. All units with zero usage-based exposure share one tied rank, so their gaps are set by the potential measure alone. Here the gaps are recomputed among units with positive exposure, within the same deciles (EEH weekly ranking). Averaging over random tie-breaks would give exactly the mid-rank results above, because the expected rank under random tie-breaking is the mid-rank.
+
+```{r quintiles_nonzero}
+m3("gap_quintiles_nonzero.csv") |>
+  arrange(factor(potential, names(lab_p)), scheme) |>
+  transmute(Potential = lab_p[potential], Scheme = lab_s[scheme],
+            `Bottom quintile` = round(gap_rank_q1, 1), `Top quintile` = round(gap_rank_q5, 1)) |>
+  tab()
+```
+
 ## Influence of single large units
 
-The top-minus-bottom difference with each of the five largest units in deciles one and ten left out in turn. This check was added after the first results.
+The top-minus-bottom difference, decile `7` (the peak), and the concentration indices with each of the five largest units in deciles `1`, `7` and `10` left out in turn. Deciles are re-formed each time. "Holds" applies the rule against the main profile. This check was added after the first results and extended to decile `7`, the indices and the rule after review of the first draft.
 
 ```{r influence}
 m3("influence_largest_units.csv") |>
   transmute(Scheme = lab_s[scheme], `Left out` = if_else(left_out == "none", "(none)", paste(left_out, title)),
-            `Top minus bottom (pp)` = round(top_minus_bottom_pp, 1)) |>
+            `From decile` = if_else(is.na(from_decile), "", as.character(from_decile)),
+            `Top minus bottom` = round(top_minus_bottom_pp, 1), `Decile 7` = round(d7, 3),
+            CI = round(ci_usage, 3), `Rank CI` = round(rank_ci_usage, 3), Holds = if_else(holds, "yes", "no")) |>
   tab()
 ```
 
 ## Rank correlations
 
-Employment-weighted Spearman correlations between usage-based exposure and each potential measure, by weighting scheme.
+Employment-weighted Spearman correlations between usage-based exposure and each potential measure, by weighting scheme. Under scheme `4`, `r num("s4_units")` units have links and `r num("s4_units_scored")` have a scored link.
 
 ```{r correlations}
 m3("correlations.csv") |>
@@ -91,22 +138,70 @@ m3("correlations.csv") |>
 
 ## Largest rank disagreements with JSA automation
 
-The fifteen units with the largest gap under scheme `1` whose sign is the same under all four schemes. The last four columns give the gap, in percentile points, under each weighting scheme. A negative gap means usage-based exposure ranks the unit lower than JSA automation does.
+The fifteen units with the largest gap under scheme `1` whose sign is the same under all four schemes. The scheme columns give the gap, in percentile points, under each weighting scheme. A negative gap means usage-based exposure ranks the unit lower than JSA automation does. "Contribution" is the scheme-`1` gap times the unit's share of employment, in percentile points (added after the first results).
 
 ```{r disagreements}
-m3("largest_disagreements_jsa.csv") |>
+dis_tab <- function(d) d |>
   transmute(Unit = unit, Title = title, `Employment ('000)` = round(emp, 1),
-            `Usage-based exposure` = if_else(usage == 0, "0.00†", sprintf("%.2f", usage)),
+            `Usage-based exposure` = if_else(usage == 0, "0.000†", sprintf("%.3f", usage)),
             `JSA automation` = jsa_automation, `Scheme 1` = round(gap_s1, 1), `Scheme 2` = round(gap_s2, 1),
-            `Scheme 3` = round(gap_s3, 1), `Scheme 4` = round(gap_s4, 1)) |>
+            `Scheme 3` = round(gap_s3, 1), `Scheme 4` = round(gap_s4, 1), Contribution = round(contribution_s1, 2)) |>
   tab()
+dis_tab(m3("largest_disagreements_jsa.csv"))
 ```
 
 † Below the usage threshold: a score of exactly zero.
 
+**Ranked by contribution.** The fifteen sign-stable disagreements with the largest employment-weighted contribution. Added after review of the first draft, because ranking by the gap alone puts small units first.
+
+```{r disagreements_weighted}
+dis_tab(m3("largest_disagreements_jsa_weighted.csv"))
+```
+
+## Women and men: within and between deciles
+
+Added after review of the first draft. The difference between women's and men's mean usage-based exposure is split into a within-decile part, which weights the decile differences by the average of women's and men's employment shares, and a between-decile part, which weights the difference in shares by the average of the two means. The parts add to the total.
+
+```{r sex_decomposition}
+m3("sex_decomposition.csv") |>
+  transmute(`Women minus men` = round(total, 4), `Within deciles` = round(within, 4), `Between deciles` = round(between, 4),
+            `Within share` = scales::percent(within_share, 1)) |>
+  tab()
+```
+
+## Western Australia: contributions by major group
+
+WA minus national mean usage-based exposure (× `100`), by major group. "Raw" is $\sum_{a\in g}(s^{WA}_a - s^{AUS}_a)e_a$, as in the first draft; "relative to the national mean" subtracts the national mean from $e_a$ and does not depend on the level of the measure. Both sum to the same total. The normalised version was added after review of the first draft.
+
+```{r wa_contrib}
+major_names <- c(`1` = "Managers", `2` = "Professionals", `3` = "Technicians and Trades Workers",
+                 `4` = "Community and Personal Service Workers", `5` = "Clerical and Administrative Workers",
+                 `6` = "Sales Workers", `7` = "Machinery Operators and Drivers", `8` = "Labourers")
+m3("wa_decomposition.csv") |> filter(level == "major", measure == "usage") |>
+  transmute(`Major group` = major_names[group], `WA share` = scales::percent(share_wa, 0.1), `National share` = scales::percent(share_aus, 0.1),
+            Raw = round(100 * contribution, 2), `Relative to the national mean` = round(100 * contribution_norm, 2)) |>
+  tab()
+m3("wa_vs_national.csv") |>
+  transmute(Measure = c(usage = "Usage-based exposure", extensive = "Extensive margin", jsa_automation = "JSA automation", beta_gpt4 = "Eloundou beta")[measure],
+            WA = round(mean_wa, 3), Australia = round(mean_aus, 3), Difference = round(wa_gap, 4),
+            `Relative difference` = scales::percent(wa_gap_relative, 0.1)) |>
+  tab()
+```
+
+## Usage relative to employment: published and rescaled shares
+
+The published SOC major-group shares do not sum to one hundred per cent (see the last tables of this appendix). "Rescaled" divides each geography and month by its published total before taking the ratio to employment. Added after review of the first draft.
+
+```{r usage_index}
+m3("soc_major_usage_index.csv") |> filter(!is.na(usage_index)) |>
+  arrange(geo_id, desc(usage_index)) |>
+  transmute(Geography = geo_id, `SOC major group` = node_name, Published = round(usage_index, 2), Rescaled = round(usage_index_rescaled, 2)) |>
+  tab()
+```
+
 ## Review of the forty largest units
 
-Automated checks on the forty largest units (decision `D10` in the decision log, carried out by Claude Code). The full table, with a resolution and reason for each flag, is `data/out/m2/top40_units_review.csv`.
+Automated checks on the forty largest units (decision `D10` in the decision log, carried out by Claude Code and reviewed by the author). The full table, with a resolution and reason for each flag, is `data/out/m2/top40_units_review.csv`.
 
 ```{r top40}
 read_csv(out_path("m2", "top40_check_summary.csv"), show_col_types = FALSE) |>
@@ -127,15 +222,24 @@ read_codes_csv(out_path("m2", "top40_units_review.csv")) |>
 
 ## Rebuilding the usage-based score from task data
 
-The published occupation scores were rebuilt from the published task-level values, using O\*NET task weights in place of the unpublished time shares Massenkoff and McCrory use. The rank correlation with the published scores falls short of the `0.9` target. The main analysis uses the published scores.
+The published occupation scores were rebuilt from the published task-level values, using O\*NET task weights in place of the time fractions Massenkoff and McCrory use, which are not published. The rank correlation with the published scores falls short of the `0.9` target. The correlation among occupations with a positive published score (added after the first results) shows how much of the agreement comes from matching zeros. The main analysis uses the published scores.
 
 ```{r replication}
 read_csv(out_path("g_replication.csv"), show_col_types = FALSE) |>
   transmute(`Task weights` = sub("_x_", " × ", weights), `SOC codes compared` = socs_compared,
             Spearman = round(spearman, 3), `Agreement on exact zeros` = scales::percent(zero_agreement, 1),
+            `Positive scores` = socs_nonzero, `Spearman, positive scores` = round(spearman_nonzero, 3),
             `Meets target` = if_else(meets_target, "yes", "no")) |>
   tab()
 ```
+
+## The two-capital model: premium and benchmark responses
+
+The main text states the responses of the skill premium to ICT, machinery and AI capital. With competitive wages, the skill premium in the thesis's model is
+$$\pi=c_\pi\left(\frac{V}{X}\right)^{1/\sigma_{VX}}\left(\frac{X}{S}\right)^{1/\sigma_{XS}}\left(\frac{U}{V}\right)^{1/\sigma_{VU}}\frac{A^S}{A^U},$$
+with $s_I=(1-\mu)(K^I)^{\eta_X}/X^{\eta_X}$ ICT's cost share in the skilled branch, $s_S=1-s_I$, and $s_M$ and $s_U=1-s_M$ defined likewise in the unskilled branch. Differentiating $\ln\pi$ with respect to $\ln K^I$ and $\ln K^M$ gives the benchmark responses in the main text; substituting $K^I+\zeta K^A$ for $K^I$ (scenario C) or $A^SN^S+\psi K^A$ for $S$ (scenario D) and applying the chain rule gives the two AI responses. If AI instead performs unskilled tasks, $U\to A^UN^U+\psi K^A$, then
+$$\frac{\partial\ln\pi}{\partial\ln K^A}=\frac{\psi K^A}{U}\left[\frac{s_U}{\sigma_{VX}}+\frac{1-s_U}{\sigma_{VU}}\right]>0.$$
+Every expression is checked symbolically and numerically in `theory/check_theory.py`, with output in `theory/check_theory_output.txt`. The responses hold technology fixed; how directed technical change would respond to AI is not derived.
 
 ## Data sources and licences
 
@@ -165,7 +269,7 @@ read_codes_csv(interim_path("bridge_2022units_v12units.csv")) |>
 
 ## Earnings imputations
 
-Units without a published EEH value after bridging, and the parent level used.
+Units without a published EEH value after bridging, and the parent level used. "none" means the unit has a published value in that source; "not imputed" means it has none and none was imputed (EEH cube `13` covers non-managerial employees only, so the chief executive, general manager and legislator units drop out of the hourly ranking).
 
 ```{r imputations}
 read_codes_csv(out_path("m2", "earnings_imputation_log.csv")) |>

@@ -2209,31 +2209,32 @@ vertical-align: -.125em;
 
 
 <p><strong>Descriptive; not a job-loss or career-risk score; not advice.</strong></p>
-<p>The data behind this work are US task-level Claude.ai use by self-selected users, from one product. No Australian occupational AI use is measured. The scores describe tasks in US occupations; this work applies them to the occupations Australians work in, and compares them with measures of what AI could do that do not come from Anthropic.</p>
+<p>The data behind this work are task-level Claude.ai and first-party API use by self-selected users of one provider, classified to US occupational tasks. No Australian occupational AI use is measured. The scores describe tasks in US occupations; this work applies them to the occupations Australians work in, and compares them with measures of what AI could do that do not come from Anthropic.</p>
 <section id="the-question" class="level2">
 <h2 class="anchored" data-anchor-id="the-question">The question</h2>
-<p>How is measured AI use distributed across Australia’s earnings distribution? And where does measured use run ahead of, or behind, what AI could do? Australian monitoring of generative AI has so far relied on measures of potential, such as Jobs and Skills Australia’s exposure scores. Knowing which earners’ occupations AI is actually used in comes before any question about wages or jobs.</p>
+<p>How is measured AI use distributed across Australia’s earnings distribution? And where does measured use rank occupations higher or lower than measures of what AI could do? Australian monitoring of generative AI has so far relied on measures of potential, such as Jobs and Skills Australia’s exposure scores. Knowing which earners’ occupations AI is actually used in comes before questions about wages, jobs or the tax base.</p>
 </section>
 <section id="what-was-done" class="level2">
 <h2 class="anchored" data-anchor-id="what-was-done">What was done</h2>
-<p>Anthropic’s usage-based “observed exposure” scores (Massenkoff and McCrory, 2026) were linked from US occupations to the 358 ANZSCO unit groups used in ABS Labour Force data, through the US and international occupation classifications. Each unit’s score is an employment-weighted average of the US occupations linked to it. Units were then ranked by ABS weekly earnings and grouped into ten employment-weighted deciles, and each unit’s rank on usage was compared with its rank on Jobs and Skills Australia’s automation and augmentation scores and on Eloundou et al.’s measure of what language models could do.</p>
-<p>The scores cover 99.1% of Australian employment. Every result is repeated under four ways of linking the classifications and on the units with the cleanest links. Results are reported whether or not they hold.</p>
+<p>Anthropic’s usage-based “observed exposure” scores (Massenkoff and McCrory, 2026) were linked from US occupations to the 358 ANZSCO unit groups used in ABS Labour Force data, through the US and international occupation classifications. Each unit’s score is an employment-weighted average of the US occupations linked to it. Units were then ranked by ABS weekly earnings and grouped into ten employment-weighted deciles. Each unit’s rank on usage was compared with its rank on Jobs and Skills Australia’s automation and augmentation scores, Eloundou et al.’s measure of what language models could do, and Felten et al.’s AIOE.</p>
+<p>The scores cover 99.1% of Australian employment. Every result is repeated under four ways of linking the classifications, three earnings rankings and five samples (60 specifications in all), and reported whether or not it holds.</p>
 </section>
 <section id="what-the-figures-show" class="level2">
 <h2 class="anchored" data-anchor-id="what-the-figures-show">What the figures show</h2>
 <p>All figures are for the main specification. The alternatives are in the note’s appendix.</p>
 <ul>
-<li><strong>Usage against potential.</strong> Measured use ranks the lowest-earning fifth of employment higher than two of the three potential measures do (JSA augmentation and Eloundou et al.) and the highest-earning fifth lower. Against JSA’s automation scores the pattern runs the other way, and it is not robust at the bottom end across ways of linking the classifications.</li>
-<li><strong>Higher earners.</strong> Usage-based exposure averages 0.07 in the bottom earnings decile and 0.11 in the top, though not in a straight line. Most of the difference is whether an occupation’s tasks show any measured use at all: that share rises from 0.39 to 0.81. How heavily use shows up, once it does, has no clear pattern.</li>
-<li><strong>Concentration.</strong> Usage-based exposure is concentrated among higher earners (concentration index 0.09): less than Eloundou et al.’s measure, more than either JSA measure.</li>
+<li><strong>Concentration is robust.</strong> Usage-based exposure is concentrated among higher earners (concentration index 0.09), and the index is positive in all 60 specifications.</li>
+<li><strong>The shape is not.</strong> Exposure averages 0.07 in the bottom earnings decile, peaks at 0.19 in decile 7 and is 0.11 in the top. The bottom-to-top difference moves a lot when single large occupations are left out, and turns negative under one of the four ways of linking the classifications.</li>
+<li><strong>Any use, not heavier use.</strong> Most of the difference is whether an occupation’s tasks show any measured use at all: that share rises from 0.39 to 0.81. How heavily use shows up, once it does, is lower at the top than at the bottom.</li>
+<li><strong>Between two kinds of potential measure.</strong> Compared on ranks, measured use is less concentrated among high earners than measures of what AI could assist with (JSA augmentation, Eloundou et al., AIOE) and more concentrated than JSA’s automation scores.</li>
 <li><strong>Disagreements.</strong> The largest disagreements with JSA’s automation scores are mostly clerical, driving and hospitality-management occupations that measured use ranks well below JSA.</li>
-<li><strong>Women and men.</strong> Women’s average usage-based exposure (0.14) is above men’s (0.10) in every earnings decile. This reflects the occupations they work in.</li>
-<li><strong>Western Australia.</strong> WA’s average (0.107) is below the national one (0.120), entirely because of occupation mix, mostly its smaller share of professionals.</li>
+<li><strong>Women and men.</strong> Women’s average usage-based exposure (0.14) is above men’s (0.10) in every earnings decile. This reflects the occupations they work in, not how individuals use AI.</li>
+<li><strong>Western Australia.</strong> WA’s average (0.107) is 11 per cent below the national one (0.120), entirely because of occupation mix, mostly its smaller share of professionals.</li>
 </ul>
 </section>
 <section id="what-this-does-not-show" class="level2">
 <h2 class="anchored" data-anchor-id="what-this-does-not-show">What this does not show</h2>
-<p>The usage data come from one product’s users, and the source classifies the task in each conversation, not the job of the person having it. Over half of the scored US occupations score zero, which means their tasks fell below a usage threshold or failed the capability gate, not that no one uses AI for them. The comparison with Eloundou et al.’s measure is partly mechanical, because the usage-based score already requires a task to be feasible on that measure. Nothing here estimates whether AI changes employment, earnings or hours.</p>
+<p>The usage data come from one provider’s users, and the source classifies the task in each conversation, not the job of the person having it. Who uses a platform shapes what its logs show, so part of the pattern may be specific to Claude’s users. Over half of the scored US occupations score zero, which means their tasks fell below a usage threshold or failed the capability gate, not that no one uses AI for them. Nothing here estimates whether AI changes employment, earnings or hours.</p>
 </section>
 <section id="read-more" class="level2">
 <h2 class="anchored" data-anchor-id="read-more">Read more</h2>
@@ -2241,7 +2242,7 @@ vertical-align: -.125em;
 <li>Working draft, appendix and occupation explorer: <a href="https://129313531343-bit.github.io/ai-wage-distribution/" class="uri">https://129313531343-bit.github.io/ai-wage-distribution/</a></li>
 <li>Code, data sources and decision log: <a href="https://github.com/129313531343-bit/ai-wage-distribution" class="uri">https://github.com/129313531343-bit/ai-wage-distribution</a></li>
 </ul>
-<p><em>Written with Claude Code, an AI coding assistant, which wrote the analysis and drafted this summary under the author’s direction; the author reviewed and approved it. See the repository’s “Contributions and AI use” section.</em></p>
+<p><em>No funding. The analysis code was written with Claude Code, an AI coding assistant, under the author’s direction, and Claude Code drafted parts of the text; the author wrote the revised framing and reviewed and approved all of it. Anthropic had no role in this work.</em></p>
 </section>
 
 </main>
