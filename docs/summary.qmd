@@ -23,15 +23,13 @@ format:
 source("../note/_setup.R")
 ```
 
-<!-- Target: about 800 words. Claude Code drafted the framework sections; Luc writes the question and every finding. Fill each [Luc to write] gap. -->
-
 **Descriptive; not a job-loss or career-risk score; not advice.**
 
 The data behind this work are US task-level Claude.ai use by self-selected users, from one product. No Australian occupational AI use is measured. The scores describe tasks in US occupations; this work applies them to the occupations Australians work in, and compares them with measures of what AI could do that do not come from Anthropic.
 
 ## The question
 
-*[Luc to write: two or three sentences, taken from the edited framing.]*
+How is measured AI use distributed across Australia's earnings distribution? And where does measured use run ahead of, or behind, what AI could do? Australian monitoring of generative AI has so far relied on measures of potential, such as Jobs and Skills Australia's exposure scores. Knowing which earners' occupations AI is actually used in comes before any question about wages or jobs.
 
 ## What was done
 
@@ -41,7 +39,14 @@ The scores cover `r pc("coverage")` of Australian employment. Every result is re
 
 ## What the figures show
 
-*[Luc to write: the main findings, in plain language, with numbers from the note. Suggested order: the usage-potential gap by earnings decile; the extensive margin; where usage and JSA disagree most; women and men; Western Australia.]*
+All figures are for the main specification. The alternatives are in the note's appendix.
+
+- **Usage against potential.** Measured use ranks the lowest-earning fifth of employment higher than two of the three potential measures do (JSA augmentation and Eloundou et al.) and the highest-earning fifth lower. Against JSA's automation scores the pattern runs the other way, and it is not robust at the bottom end across ways of linking the classifications.
+- **Higher earners.** Usage-based exposure averages `r num("usage_d1", 2)` in the bottom earnings decile and `r num("usage_d10", 2)` in the top, though not in a straight line. Most of the difference is whether an occupation's tasks show any measured use at all: that share rises from `r num("ext_d1", 2)` to `r num("ext_d10", 2)`. How heavily use shows up, once it does, has no clear pattern.
+- **Concentration.** Usage-based exposure is concentrated among higher earners (concentration index `r num("ci_usage", 2)`): less than Eloundou et al.'s measure, more than either JSA measure.
+- **Disagreements.** The largest disagreements with JSA's automation scores are mostly clerical, driving and hospitality-management occupations that measured use ranks well below JSA.
+- **Women and men.** Women's average usage-based exposure (`r num("usage_women", 2)`) is above men's (`r num("usage_men", 2)`) in every earnings decile. This reflects the occupations they work in.
+- **Western Australia.** WA's average (`r num("wa_mean_usage", 3)`) is below the national one (`r num("aus_mean_usage", 3)`), entirely because of occupation mix, mostly its smaller share of professionals.
 
 ## What this does not show
 
@@ -53,4 +58,4 @@ The usage data come from one product's users, and the source classifies the task
 - Occupation explorer: *[link when live]*
 - Code, data sources and decision log: *[link to repository]*
 
-*Built with Claude Code, an AI coding assistant, under the author's direction; see the repository's "Contributions and AI use" section.*
+*Written with Claude Code, an AI coding assistant, which wrote the analysis and drafted this summary under the author's direction; the author reviewed and approved it. See the repository's "Contributions and AI use" section.*

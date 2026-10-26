@@ -40,9 +40,19 @@ weights_all <- imap_dfr(schemes, function(s, key) {
 })
 
 # Grade of each unit: number of linked SOCs with usage-based exposure under scheme 1.
+# Also the share of the unit's linked US employment (OEWS) that has no usage-based score: when
+# it is large, the unit's value rests on a minority of its US counterparts (added in the D10
+# review, after the first results).
+unscored <- schemes$s1$links |>
+  distinct(unit, soc) |>
+  inner_join(soc_w, by = "soc") |>
+  left_join(soc_measures |> select(soc, usage_exposure), by = "soc") |>
+  group_by(unit) |>
+  summarise(unscored_weight_share = sum(w[is.na(usage_exposure)]) / sum(w), .groups = "drop")
 grades <- long |>
   filter(scheme == "s1", measure == "usage_exposure") |>
-  select(unit, n_valid, grade)
+  select(unit, n_valid, grade) |>
+  left_join(unscored, by = "unit")
 
 # AIOE, aggregate use only.
 aioe <- read_codes_csv(interim_path("aioe_soc_NOT_FOR_PUBLICATION.csv")) |> rename(soc = soc_aioe)

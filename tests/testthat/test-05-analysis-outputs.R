@@ -5,7 +5,8 @@ have_m3 <- file.exists(out_path("m3", "decile_profiles.csv"))
 test_that("each decile holds 10% of employment, within 0.5 pp, in every specification", {
   skip_if_not(have_m3, "M3 not run yet")
   dc <- read_codes_csv(interim_path("decile_share_check.csv"))
-  expect_equal(nrow(dc), 48 * 10)
+  sens <- read_codes_csv(out_path("m3", "sensitivity_table.csv"))
+  expect_equal(nrow(dc), nrow(sens) * 10)
   expect_true(all(abs(dc$share - 0.1) <= 0.005))
 })
 

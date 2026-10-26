@@ -38,7 +38,7 @@ ut <- emp |>
   select(unit, title, emp, emp_male, emp_female, emp_wa) |>
   left_join(earn |> select(unit, eeh_weekly_p, eeh13_hourly_p, ato_avg_sw, eeh_rse_max), by = "unit") |>
   left_join(jsa |> select(unit, jsa_automation, jsa_augmentation), by = "unit") |>
-  left_join(grades |> select(unit, grade, n_valid), by = "unit") |>
+  left_join(grades |> select(unit, grade, n_valid, unscored_weight_share), by = "unit") |>
   left_join(aioe_units |> filter(measure == "aioe") |> select(unit, aioe = score), by = "unit")
 
 scheme_values <- function(s) {
@@ -55,7 +55,9 @@ samples <- list(
   all = function(d) d,
   non_diffuse = function(d) filter(d, grade %in% c("one-to-one", "few-to-one")),
   excl_rse25 = function(d) filter(d, is.na(eeh_rse_max) | eeh_rse_max <= 0.25),
-  excl_owner_managers = function(d) filter(d, !unit %in% owner_manager_draft)
+  excl_owner_managers = function(d) filter(d, !unit %in% owner_manager_draft),
+  # Added after the first results (D10 review): drop units where most linked US employment has no score.
+  excl_unscored_majority = function(d) filter(d, is.na(unscored_weight_share) | unscored_weight_share <= 0.5)
 )
 potentials <- c("jsa_automation", "jsa_augmentation", "beta_gpt4")
 

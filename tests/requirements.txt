@@ -1,3 +1,4 @@
-# Python tools used only by tests/explorer_check.py (the explorer acceptance check).
+# Python tools for checks outside the R pipeline.
 # Install: pip install -r tests/requirements.txt && playwright install chromium
-playwright==1.64.1
+playwright==1.64.1   # explorer acceptance check (tests/explorer_check.py)
+sympy==1.14.0        # theory checks (theory/check_theory.py)

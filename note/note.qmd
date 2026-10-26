@@ -9,18 +9,31 @@ source("_setup.R")
 ```
 
 ::: {.callout-important}
-**Working draft, not for citation.** Descriptive; not a job-loss or career-risk score; not advice.
+**Working draft `v0.9`, comments welcome.** Descriptive; not a job-loss or career-risk score; not advice.
 :::
-
-<!-- LUC: the first paragraph below is required wording from the brief; edit freely but keep its content. -->
 
 The data behind this note are US task-level Claude.ai use by self-selected users, from one product. No Australian occupational AI use is measured. The usage-based exposure scores describe tasks in US occupations; this note applies them to the mix of occupations in Australian employment. Where the source data have Australian rows, those rows classify the task in a conversation, not the user's job. Every result is shown beside at least one measure that does not come from Anthropic.
 
-## Question and framing
+## Question and motivation {#sec-question}
 
-<!-- LUC: replace this section with your edited version of docs/drafts/framing_draft.md (sections 1 and 2). -->
+**Question.** How is measured AI use, as captured by usage-based exposure, distributed across Australia's earnings distribution? And where in that distribution does measured use run ahead of, or behind, measures of what AI could do?
 
-*[Luc to write: research question and framing.]*
+**Why it matters for Australia.** Earlier waves of technical change reshaped the occupational structure in ways that mattered for earnings inequality in Australia [@coelliborland2016]. Australian monitoring of generative AI so far rests on measures of potential. JSA's automation and augmentation scores rate what language models could do to each occupation's tasks [@jsa2025], and DEWR's monitoring framework uses them to track employment [@dewr2026]. e61 has argued that exposure metrics alone are a partial guide and that analysis should move beyond them [@gibbonspalan2026]. The e61 revenue scenarios assume any AI wage change is spread evenly across the income distribution [@nolanrankin2026]. Where measured use actually sits in the earnings distribution is a prior question for both: which earners' occupations does AI touch now, rather than which it could touch?
+
+**What is new.** Three pieces of work come closest:
+
+- **DEWR (2026)** converts Massenkoff and McCrory's usage-based observed exposure to ANZSCO unit groups and uses it as an alternative measure in a model of employment. It does not examine earnings.
+- **Demirev (2026)** maps an earlier Anthropic usage score to ANZSCO through three-digit ISCO, to study Australian job postings. It also does not examine earnings.
+- **US work** compares usage with capability (Massenkoff and McCrory 2026; Tomlinson et al. 2025). The closest is Levkoff [-@levkoff2026], who reports that observed exposure rises with US wage quintiles. Levkoff also shows that its agreement with Eloundou et al.'s capability measure comes mostly from the measure's own capability gate.
+
+This note adds four things:
+
+1. the usage-potential gap across employment-weighted Australian earnings deciles, against two independent potential measures and one that is partly mechanical;
+2. a split of usage-based exposure into an extensive margin (any measured use among linked US occupations) and intensity;
+3. how Western Australia differs from the national picture through occupation mix alone, and results for women and men;
+4. a crosswalk graded unit by unit and run under four weighting schemes, with every specification reported whether or not it holds.
+
+**Scope.** The note moves from what AI *could* be used for to what it *is* being used for. It does not move to labour-market outcomes, and it makes no causal claims.
 
 ## Data {#sec-data}
 
@@ -33,7 +46,7 @@ The score is built in steps, which matter for reading it:
 - Tasks that pass both gates are weighted between one half (augmentation only) and one (automation only).
 - The job score is the time-share-weighted sum over the job's tasks.
 
-So a zero means the job's tasks fell below the usage gate, or that none of its used tasks passed the capability gate. It does not mean no use at all. Zeros are flagged as "below usage threshold" wherever unit values are shown. The conversations are classified into US O*NET tasks, and the samples are global Claude.ai and API traffic, not Australian.
+So a zero means the job's tasks fell below the usage gate, or that none of its used tasks passed the capability gate. It does not mean no use at all. Zeros are flagged as "below usage threshold" wherever unit values are shown. The conversations are global Claude.ai and API traffic, classified into US O*NET tasks. Levkoff [-@levkoff2026] describes the usage as drawn from the Anthropic Economic Index releases up to November `2025`.
 
 **Australian usage composition.** For the comparison of usage with employment by occupation group (@sec-major-group), the note uses the `2026-06-26` release of the AEI geography file. It covers Claude.ai conversations in `r num("aei_months")` months, with `r num("aei_rows_aus")` rows for Australia and `r num("aei_rows_wa")` for Western Australia. For countries and subregions, detailed SOC rows are published only as shares of conversations. Collaboration measures, such as the automation share, exist for countries only at the SOC major-group level. Missing rows mean the cell was not published, not that it was zero.
 
@@ -45,7 +58,7 @@ So a zero means the job's tasks fell below the usage gate, or that none of its u
 
 **Employment.** Employment weights come from ABS Labour Force table `EQ08` [@abseq08]. It gives employed persons by ANZSCO `v1.2` unit group, sex and state each quarter. The weights average the `r num("eq08_quarters")` quarters from May `2025` to February `2026`: `r num("emp_total_m", 2)` million people employed, `r num("emp_wa_m", 2)` million of them in Western Australia. `EQ08` was the final release under that title. ABS has said the table is not published from April `2026` [@abs2026lfschanges], and Labour Force occupation data are coded to OSCA from the September `2026` reference period [@abs2026lfmethod]. Neither source states whether unit-group detail will be published.
 
-**Earnings.** Units are ranked by average weekly total cash earnings of all employees in the ABS Employee Earnings and Hours survey, May `2025` (data cube `11`) [@abseeh2025]. No EEH cube gives hourly earnings at unit-group level. Two alternative rankings are reported:
+**Earnings.** Units are ranked by average weekly total cash earnings of all employees in the ABS Employee Earnings and Hours survey, May `2025` (data cube `11`) [@abseeh2025]. No EEH cube gives hourly earnings at unit-group level. Two alternative rankings are reported in the appendix:
 
 - average hourly total cash earnings of full-time non-managerial adult employees (EEH cube `13`, published only for three-digit minor groups);
 - average salary or wage income from ATO Taxation Statistics `2023`-`24`, Table `15B` [@ato2026].
@@ -58,6 +71,15 @@ Every file's source, access date, checksum and licence are recorded in `data/raw
 
 ## Methods {#sec-methods}
 
+**Main specification.** All results in the body of the note use one specification:
+
+- weighting scheme `1` (US employment weights);
+- all unit groups;
+- EEH weekly earnings for the ranking;
+- JSA automation as the primary comparator.
+
+Each of these was fixed before any result was produced. Every alternative is in the appendix.
+
 ### Edition spine
 
 The analysis unit is the ANZSCO `v1.2` unit group, because employment by sex and state is published only in that edition. There are `r num("units")` unit groups.
@@ -68,7 +90,7 @@ The analysis unit is the ANZSCO `v1.2` unit group, because employment by sex and
 - **Merges and splits.** A `v1.2` unit fed by several newer units takes their mean, weighted by ATO individual counts. A newer unit split across several `v1.2` units passes its value to each.
 - **Missing earnings.** Units with no published EEH value after bridging (`r num("eeh_imputed")` units) take the employment-weighted mean of their published siblings in the same minor group. Each one is listed in the appendix.
 
-### Usage-based exposure for each unit (method A)
+### Usage-based exposure for each unit
 
 The usage-based exposure of unit $a$ is
 
@@ -80,10 +102,10 @@ where $S_a$ is the set of linked US occupations with a non-missing score, and th
 
 Four weighting schemes give four versions of every unit value:
 
-1. **OEWS employment weights** on the primary chain. This is the primary scheme.
+1. **US employment weights** on the primary chain. This is the main scheme.
 2. **Equal weights** on the same links.
 3. **Title-match-first.** For each ANZSCO occupation, only US occupations whose titles match are kept if any match; otherwise all its links are kept. `r num("s3_occupations")` occupations in `r num("s3_units")` units have a match.
-4. **The JSA correspondence links**, with OEWS weights. They cover `r num("s4_units")` units.
+4. **The JSA correspondence links**, with US employment weights. They cover `r num("s4_units")` units.
 
 The primary chain gives `r num("links1")` unit-to-occupation links through `r num("links1_isco")` `ISCO-08` units. Because `ISCO-08` is coarser than both SOC and ANZSCO, the chain smooths zeros into small positive values. Every unit is therefore graded by how many US occupations feed it:
 
@@ -93,34 +115,31 @@ The primary chain gives `r num("links1")` unit-to-occupation links through `r nu
 | Few-to-one | two to four | `r num("grade_n_fewtoone")` | `r pc("grade_emp_fewtoone")` |
 | Diffuse | five or more | `r num("grade_n_diffuse")` | `r pc("grade_emp_diffuse")` |
 
-Every headline result is rerun on non-diffuse units only.
+Each unit also carries the share of its linked US employment that has no score. When that share is high, the unit's value rests on a minority of its US counterparts.
 
-A second chain, through the ANZSCO `2022` correspondence to `ISCO-08`, gives identical links for `r num("val_identical")` units and different links for `r num("val_differ")`; the appendix lists them. Coverage is the share of employment in units with at least one scored US occupation. It is `r pc("coverage")`, against a target set in advance of `98%`. The `r num("units_unmatched")` unmatched units are listed in the appendix.
+A second chain, through the ANZSCO `2022` correspondence to `ISCO-08`, gives identical links for `r num("val_identical")` units and different links for `r num("val_differ")`. Coverage is the share of employment in units with at least one scored US occupation. It is `r pc("coverage")`, against a target of `98%` set in advance.
 
-### Earnings deciles and concentration (method B)
+### Earnings deciles and concentration
 
 - **Deciles.** Units are ranked by earnings and cut into employment-weighted deciles, so each decile holds a tenth of employment. A unit whose employment straddles a boundary is split between deciles in proportion. Decile means are employment-weighted. Decile intensity is mean exposure divided by mean extensive margin.
 - **Top minus bottom.** The difference between the top and bottom deciles is reported in percentage points, never as a ratio.
 - **Concentration index.** $CI = 2\,\mathrm{cov}(e, r)/\bar{e}$, with employment weights, where $r$ is the employment-weighted fractional earnings rank. A positive index means exposure is concentrated among higher earners. It is not reported for AIOE, which is a standardised score with negative values.
-- **Sensitivity runs.** Results are rerun excluding units whose EEH relative standard error is above `25%` (`r num("eeh_rse25")` units). They are also rerun excluding a draft list of `r num("owner_manager_units")` owner-operator units. ABS publishes form of employment only by occupation major group [@abswa2025], so the list is a judgement.
 
-### Usage against potential (method C)
+### Usage against potential
 
 For each unit, the usage-potential gap is the percentile rank of usage-based exposure minus the percentile rank of the potential measure.
 
 - Ranks are employment-weighted, and tied values share the mid-rank. In particular, every unit with zero usage-based exposure shares one rank.
 - Unit gaps are averaged within deciles, with employment weights.
-- A version using weighted z-scores is a check.
-- The comparison with Eloundou beta is partly mechanical, because usage-based exposure is itself gated on that beta. It compares use with feasibility inside the same task frame. JSA's scores and AIOE are the independent checks, and JSA automation is the primary comparator.
-- The note also reports employment-weighted rank correlations, and the fifteen largest rank disagreements with JSA whose sign is the same under all four schemes.
+- The comparison with Eloundou beta is partly mechanical, because usage-based exposure is itself gated on that beta [@levkoff2026]. It compares use with feasibility inside the same task frame. JSA's scores and AIOE are the independent checks.
 
-### Women and men, Western Australia, and usage by occupation group (method D)
+### Women and men, Western Australia, and usage by occupation group
 
 - **Women and men.** Deciles come from the persons earnings ranking. Within each decile, exposure is averaged with each sex's employment.
 - **Western Australia.** The difference between WA and national mean exposure is
   $$\Delta = \sum_a (s^{WA}_a - s^{AUS}_a)\, e_a,$$
-  where $s$ are employment shares. By construction it reflects occupation mix only, since every unit carries one national value. The difference is split by major and sub-major group. Sub-major groups with fewer than five thousand WA workers are not shown separately. No WA by sex results are produced.
-- **Usage by occupation group** (@sec-major-group). Each SOC major group's share of Claude.ai conversations is divided by its share of employment.
+  where $s$ are employment shares. By construction it reflects occupation mix only, since every unit carries one national value. Sub-major groups with fewer than five thousand WA workers are not shown separately, and no WA by sex results are produced.
+- **Usage by occupation group.** Each SOC major group's share of Claude.ai conversations is divided by its share of employment.
   - For Australia and WA, employment is `EQ08` allocated to SOC groups with the scheme `1` weights.
   - For the global row, it is US OEWS employment, because no global employment by SOC exists.
 
@@ -128,71 +147,126 @@ For each unit, the usage-potential gap is the percentile rank of usage-based exp
 
 These rules were fixed before any results were produced.
 
-- **Decile profiles.** A profile holds under a variant if its OLS slope across deciles has the same sign as the primary profile, and the Spearman correlation of the two sets of decile means is at least `0.7`.
+- **Decile profiles.** A profile holds under a variant if its OLS slope across deciles has the same sign as the main profile, and the Spearman correlation of the two sets of decile means is at least `0.7`.
 - **The gap.** The gap holds if its sign in the top and bottom quintiles is the same under every weighting scheme.
-- **Reporting.** Every specification is reported, including those that do not hold. There are `r num("specs")`: four schemes, four samples and three earnings rankings.
 
 ## Results
 
-<!-- LUC: write each takeaway in the marked spaces. The figure captions only describe what is plotted. -->
-
 ### The usage-potential gap by earnings decile
 
-![Percentile rank of usage-based exposure minus percentile rank of each potential measure, averaged within employment-weighted earnings deciles. The line is scheme 1; the bar shows the range across the four weighting schemes.](figures/fig1_gap_by_decile.png){#fig-gap}
+![Employment-weighted percentile rank of usage-based exposure minus that of each potential measure, averaged within earnings deciles (main specification).](figures/fig1_gap_by_decile.png){#fig-gap}
 
-*[Luc to write: takeaway for @fig-gap.]*
+Against JSA's augmentation scores and Eloundou beta, usage-based exposure ranks the bottom earnings quintile higher (by `r num("gapq1_jsa_augmentation", 1)` and `r num("gapq1_beta_gpt4", 1)` percentile points) and the top quintile lower (by `r ab("gapq5_jsa_augmentation")` and `r ab("gapq5_beta_gpt4")`). Against JSA's automation scores the signs reverse (`r sg("gapq1_jsa_automation")` at the bottom, `r sg("gapq5_jsa_automation")` at the top). The first two patterns keep their sign at both ends under all four weighting schemes. The bottom-quintile sign against JSA automation does not: scheme `4` gives `r sg("gapq1_s4_jsa_automation")`.
 
 ### Extensive margin and intensity
 
-![Usage-based exposure, extensive margin and intensity by earnings decile, scheme 1.](figures/fig2_margins_by_decile.png){#fig-margins}
+![Usage-based exposure, extensive margin and intensity by earnings decile, main specification.](figures/fig2_margins_by_decile.png){#fig-margins}
 
-*[Luc to write: takeaway for @fig-margins.]*
+Mean usage-based exposure is `r num("usage_d1", 3)` in the bottom decile and `r num("usage_d10", 3)` in the top, a difference of `r pp("tmb_pp")`. The profile is not monotonic: it peaks at `r num("usage_max", 3)` in decile `r num("usage_max_decile")`. The extensive margin rises from `r num("ext_d1", 2)` to `r num("ext_d10", 2)`, while intensity stays between `r num("int_min", 2)` and `r num("int_max", 2)` with no trend. Across deciles, differences in usage-based exposure follow whether linked tasks show any measured use more closely than how heavily they are used.
 
 ### Concentration
 
 ![Concentration curves of usage-based exposure, JSA automation exposure and Eloundou beta, with units ordered from lowest to highest earnings.](figures/fig3_concentration_curves.png){#fig-curves width="75%"}
 
-*[Luc to write: takeaway for @fig-curves.]*
+Usage-based exposure is concentrated among higher earners: its concentration index is `r num("ci_usage", 3)`. That is less than Eloundou beta (`r num("ci_beta_gpt4", 3)`) but more than JSA automation (`r num("ci_jsa_automation", 3)`) or JSA augmentation (`r num("ci_jsa_augmentation", 3)`). Because the index summarises the whole distribution, it depends less on single deciles than the top-minus-bottom difference does.
 
 ### Where usage and JSA disagree
 
 ![Employment-weighted percentile ranks of usage-based exposure against JSA automation exposure, one point per unit group. Labelled points are the largest disagreements whose sign holds under every weighting scheme.](figures/fig4_rank_scatter_jsa.png){#fig-scatter width="85%"}
 
-*[Luc to write: takeaway for @fig-scatter.]*
+Across units, usage-based exposure and JSA automation are positively rank-correlated (`r num("rho_jsa_automation", 2)`, employment-weighted). Of the `r num("dis_n")` largest disagreements whose sign holds under every scheme, `r num("dis_negative")` are units that usage ranks below JSA, mostly clerical, driving and hospitality-management occupations. The units ranked above JSA are photographers, visual artists and electrical distribution trades workers.
 
 ### Women and men, and Western Australia
 
 ![Usage-based exposure of women and men by earnings decile.](figures/fig5a_sex_by_decile.png){#fig-sex}
 
+Women's employment-weighted usage-based exposure (`r num("usage_women", 3)`) is above men's (`r num("usage_men", 3)`) overall and in all `r num("deciles_women_higher")` deciles. By construction this reflects the occupations women and men work in, not differences within occupations. JSA automation shows the same direction (`r num("jsa_women", 3)` and `r num("jsa_men", 3)`).
+
 ![Contribution of each occupation major group to the difference between WA and national mean usage-based exposure.](figures/fig5b_wa_decomposition.png){#fig-wa}
 
-*[Luc to write: takeaways for @fig-sex and @fig-wa.]*
+WA's mean usage-based exposure is `r num("wa_mean_usage", 3)`, against `r num("aus_mean_usage", 3)` nationally. That difference of `r sh("wa_gap_usage")` (×100) reflects occupation mix only. Professionals contribute `r sh("wa_contrib_prof", 2)` of it: they are `r pc("wa_share_prof")` of WA employment, against `r pc("aus_share_prof")` nationally. JSA automation and Eloundou beta show WA differences of the same sign (`r sh("wa_gap_jsa_automation")` and `r sh("wa_gap_beta_gpt4")`).
 
 ### Usage relative to employment by occupation group {#sec-major-group}
 
 ![Claude.ai conversation share divided by employment share for each SOC major group, for Australia, Western Australia and the global sample.](figures/fig6_major_group_usage_index.png){#fig-index}
 
-*[Luc to write: takeaway for @fig-index.]*
+Relative to employment, Australian Claude.ai conversations are most concentrated in Computer and Mathematical tasks (`r num("ui_aus_cm", 1)` times their employment share) and least in Construction and Extraction tasks (`r num("ui_aus_constr", 2)`). `r num("ui_aus_above1")` of `r num("ui_groups")` major groups take more than their employment share. WA's index for Computer and Mathematical tasks (`r num("ui_wa_cm", 1)`) is above Australia's and the global sample's (`r num("ui_global_cm", 1)`). These shares classify conversation tasks rather than users' jobs, and WA's cells are small.
 
-### Robustness
+## Robustness
 
-Of the `r num("specs")` specifications, `r num("specs_hold")` hold against the primary profile under the rule above. Under scheme `4`, `r num("specs_hold_s4")` of `r num("specs_s4")` hold. One unit accounts for this: Sales Assistants (General), which has `r pc("emp_share_6211")` of employment, most of it in the bottom decile. Under scheme `4` it links only to US Retail Salespersons, one of the score's known artefacts. Leaving it out moves the scheme `4` top-minus-bottom difference from `r pp("s4_tmb")` to `r pp("s4_tmb_no6211")`. This check was added after the first results were seen, and is reported as such. The full sensitivity table is in the appendix.
+`r num("specs_hold")` of `r num("specs")` specifications reproduce the main decile profile under the rule above. The appendix has every one: four schemes, three earnings rankings and five samples.
 
-*[Luc to write: takeaway on robustness.]*
+- **Steeper.** The non-diffuse units give a steeper gradient (`r pp("tmb_nondiffuse")`).
+- **Similar to the main result:**
+  - excluding units whose US counterparts are mostly unscored (`r pp("tmb_unscored")`);
+  - excluding units with imprecise earnings estimates (`r pp("tmb_rse")`);
+  - excluding the draft list of owner-operator units (`r pp("tmb_owner")`).
+- **Other earnings rankings:**
+  - The hourly ranking gives a flatter gradient (`r pp("tmb_eeh13")`).
+  - The ATO ranking gives a steeper one (`r pp("tmb_ato")`), but its decile profile does not hold (Spearman `r num("rho_ato_profile", 2)` with the main profile).
+- **Scheme `4`** reproduces the main profile in only `r num("specs_hold_s4")` of `r num("specs_s4")` runs, because of one unit. Sales Assistants (General) holds `r pc("emp_share_6211")` of employment, most of it in the bottom decile. Under that scheme it links only to US Retail Salespersons, a known artefact of the source scores. Leaving it out moves the scheme `4` top-minus-bottom difference from `r pp("s4_tmb")` to `r pp("s4_tmb_no6211")`.
+
+This influence check, and the exclusion of mostly unscored units, were added after the first results were seen. They are reported as such.
 
 ::: {.callout-note}
-## Theory box
+## A framework for reading the results: AI in a two-capital model of the skill premium
 
-*[Luc to write: one page relating these patterns to the two-capital model. Claude checks the algebra only.]*
+This box extends the model in Section 3 of the author's honours thesis [@taya2026thesis]. That model builds on the capital-skill complementarity framework of Krusell et al. [-@korv2000]. The extension below, its derivations and their checks were drafted for this note; the thesis is unchanged. Every result is verified symbolically and numerically in `theory/check_theory.py` (output in `theory/check_theory_output.txt`).
+
+**Model (thesis notation).** Output is a two-branch nested CES. Machinery $K^M$ is paired with unskilled labour and ICT $K^I$ with skilled labour:
+$$Y=\left[\omega V^{\rho}+(1-\omega)X^{\rho}\right]^{1/\rho},\quad V=\left[\lambda U^{\eta_V}+(1-\lambda)(K^M)^{\eta_V}\right]^{1/\eta_V},\quad X=\left[\mu S^{\eta_X}+(1-\mu)(K^I)^{\eta_X}\right]^{1/\eta_X},$$
+with $U=A^UN^U$, $S=A^SN^S$ and elasticities $\sigma_{VX}=1/(1-\rho)$, $\sigma_{VU}=1/(1-\eta_V)$ and $\sigma_{XS}=1/(1-\eta_X)$. With competitive wages, the skill premium is
+$$\pi=c_\pi\left(\tfrac{V}{X}\right)^{1/\sigma_{VX}}\left(\tfrac{X}{S}\right)^{1/\sigma_{XS}}\left(\tfrac{U}{V}\right)^{1/\sigma_{VU}}\tfrac{A^S}{A^U}.$$
+Let $s_I=(1-\mu)(K^I)^{\eta_X}/X^{\eta_X}$ be ICT's cost share in the skilled branch and $s_S=1-s_I$; define $s_M$ and $s_U=1-s_M$ likewise in the unskilled branch.
+
+**Lemma (benchmark).** Holding technology fixed,
+$$\frac{\partial\ln\pi}{\partial\ln K^I}=s_I\left(\frac{1}{\sigma_{XS}}-\frac{1}{\sigma_{VX}}\right),\qquad\frac{\partial\ln\pi}{\partial\ln K^M}=s_M\left(\frac{1}{\sigma_{VX}}-\frac{1}{\sigma_{VU}}\right).$$
+These are the thesis's structural coefficients on ICT and machinery, evaluated at the current point. The author reports production elasticities, after removing induced technology, of $\sigma_{VX}=$ `r num("th_sVX", 2)`, $\sigma_{XS}=$ `r num("th_sXS", 2)` and $\sigma_{VU}=$ `r num("th_sVU", 2)`. The bracketed terms are then `r sg("th_ict_term", 2)` and `r sg("th_mach_term", 2)`: ICT is a relative complement of skilled labour and machinery of unskilled labour. The thesis reports that a one standard deviation rise in ICT per skilled hour goes with a `r num("th_ict_effect", 1)`% higher premium, and the same rise in machinery with a `r ab("th_mach_effect")`% lower one.
+
+**Adding AI.** Assumptions:
+
+- (A1) AI capital $K^A$ is an additional input. Technologies and the other inputs are held fixed, so the results are comparative statics, not dynamics.
+- (A2) Factor markets are competitive, as in the thesis.
+- (A3) AI enters in one of two ways.
+  - **Scenario C, skill-complementing capital:** AI is ICT-type capital, $K^I\to K^I+\zeta K^A$ with $\zeta>0$.
+  - **Scenario D, skilled-task substitute:** AI performs skilled tasks, $S\to A^SN^S+\psi K^A$ with $\psi>0$.
+- (A4) Nothing here is estimated: $\zeta$, $\psi$ and the AI capital stock are unobserved.
+
+**Proposition 1 (scenario C).**
+$$\frac{\partial\ln\pi}{\partial\ln K^A}=\frac{\zeta K^A}{K^I+\zeta K^A}\,s_I\left(\frac{1}{\sigma_{XS}}-\frac{1}{\sigma_{VX}}\right).$$
+This is positive if and only if $\sigma_{XS}<\sigma_{VX}$, the same condition as for ICT, which the thesis's estimates satisfy. Under the thesis's directed-technical-change condition the planner takes capital as given, so the response is scaled by $\phi/(\phi-1)>1$ and its sign is unchanged.
+
+**Proposition 2 (scenario D).**
+$$\frac{\partial\ln\pi}{\partial\ln K^A}=-\frac{\psi K^A}{S}\left(\frac{s_S}{\sigma_{VX}}+\frac{1-s_S}{\sigma_{XS}}\right)<0$$
+for all admissible parameters. The bracket is a weighted average of $1/\sigma_{VX}$ and $1/\sigma_{XS}$; with the thesis's elasticities it lies between `r num("th_inv_sVX", 2)` and `r num("th_inv_sXS", 2)`. Because AI here enters the skilled efficiency unit itself, the planner's problem changes. The technology response is not derived, so this result is stated for given technology only.
+
+**Proposition 3 (both channels).** If AI enters both ways, the response of $\ln\pi$ is the sum of the responses in Proposition 1 and Proposition 2. Its sign depends on $\zeta$, $\psi$ and the branch shares.
+
+*Remark.* If AI instead performs unskilled tasks ($U\to A^UN^U+\psi K^A$), then $\partial\ln\pi/\partial\ln K^A=(\psi K^A/U)\left[s_U/\sigma_{VX}+(1-s_U)/\sigma_{VU}\right]>0$.
+
+**What the descriptive evidence can and cannot speak to.** The model's skilled and unskilled labour are not observed here; the note has occupations and earnings, not education. Read loosely, with higher-earning occupations as the skilled branch, the results bear on *where* AI is used.
+
+- **What it can speak to:** under both scenarios C and D, AI's use is located in the skilled branch. The rising extensive margin and the positive concentration index fit that location, and fit the remark's unskilled-task channel less well as a description of current use.
+- **What it cannot speak to:**
+  - It cannot tell scenario C from scenario D: both place use in the same occupations.
+  - The AEI's automation and augmentation labels describe conversation patterns, not substitution in production.
+  - Nothing here observes AI capital, its price, wages or elasticities, so the sign of Proposition 3 is not determined by these data.
+
+The evidence restricts where AI is used. It does not tell us what AI does to the skill premium.
 :::
 
 ## Limitations {#sec-limitations}
 
-**The usage data come from one product and its users.** Claude.ai and Anthropic's API serve a self-selected group of users. JSA reports that Claude.ai has under three per cent of Australian market share [@jsa2025, pp. 35-36]. Usage-based scores built from one platform mix how applicable AI is to a task with who happens to use that platform [@yinogut2026]. Nothing in the note measures how Australian workers in a given occupation use AI.
+**One product and its users.** Claude.ai and Anthropic's API serve a self-selected group of users. JSA reports that Claude.ai has under three per cent of Australian market share [@jsa2025, pp. 35-36]. Usage-based scores built from one platform mix how applicable AI is to a task with who uses that platform [@yinogut2026]. Nothing in the note measures how Australian workers in a given occupation use AI.
 
-**Tasks, not jobs.** The source classifies the task in each conversation, not the job of the person having it. A conversation about nutrition is not evidence that a nutritionist was involved. The Australian rows used in @sec-major-group carry the same caveat.
+**Tasks, not jobs.** The source classifies the task in each conversation, not the job of the person having it. The Australian rows used in @sec-major-group carry the same caveat.
 
-**Zeros and gates.** Over half of the scored US occupations have a score of exactly zero. A zero can mean the occupation's tasks fell below the usage gate in Anthropic's sample, or that its used tasks failed the capability gate. Because of that gate, the comparison with Eloundou beta is partly mechanical.
+**Zeros, gates and stability.**
+
+- Over half of the scored US occupations have a score of exactly zero. A zero can mean the tasks fell below the usage gate in Anthropic's sample, or that the used tasks failed the capability gate.
+- The gate also makes the comparison with Eloundou beta partly mechanical. Levkoff [-@levkoff2026] finds that most of the agreement between the two comes from the gate.
+- Levkoff also finds that detailed occupation rankings change between Anthropic data vintages, while broad group structure is stable. Unit-level values in the explorer should be read with that in mind.
+- Rebuilding the published scores from the published task data, with O*NET task weights in place of unpublished time shares, gives a rank correlation of `r num("g_spearman_equal", 2)` (appendix).
 
 **Known artefacts.** Some scores sit oddly beside related occupations:
 
@@ -202,16 +276,22 @@ Of the `r num("specs")` specifications, `r num("specs_hold")` hold against the p
 | Bartenders | zero | | |
 | Retail Salespersons | higher | Lawyers | lower |
 
-These pass through the crosswalk unchanged. The Retail Salespersons score dominates the result for Sales Assistants (General) under scheme `4`.
+These pass through the crosswalk unchanged. Retail Salespersons carries much of the weight of Sales Assistants (General), the single most influential unit.
 
-**Crosswalk smoothing.** The primary chain passes through `ISCO-08`, which is coarser than either end. Units fed by five or more US occupations hold `r pc("grade_emp_diffuse")` of employment. Results on non-diffuse units are reported beside the main results in the appendix.
+**Crosswalk.**
 
-**Earnings.** Ranking by earnings needs a few compromises:
+- The primary chain passes through `ISCO-08`, which is coarser than either end. Units fed by five or more US occupations hold `r pc("grade_emp_diffuse")` of employment.
+- The ABS correspondence includes partial matches. These can attach small weights to US occupations that look unrelated, such as beauty and teller occupations for general sales assistants.
+- `r num("unscored_units")` units, holding `r pc("unscored_emp")` of employment, have most of their linked US employment without a score. Aged and Disabled Carers is one: its main US counterparts have no score.
+
+All of these are reported in the appendix, and the main results are rerun without them.
+
+**Earnings.**
 
 - Weekly earnings mix hourly pay with hours worked. No hourly earnings are published at unit-group level.
-- EEH leaves out owner-managers, while `EQ08` counts them.
+- EEH leaves out owner-managers, while `EQ08` counts them. The owner-operator exclusion uses a judgement list, because ABS publishes form of employment only by major group [@abswa2025].
 - `r num("eeh_imputed")` units have no published EEH value and take their minor group's mean. `r num("eeh_rse25")` units have relative standard errors above `25%`.
-- In the ATO data, `r pc("ato_unmapped_share")` of individuals have a blank or unclassifiable occupation code. Of these, `r pc("ato_blank_share")` of all individuals are blank.
+- In the ATO data, `r pc("ato_unmapped_share")` of individuals have a blank or unclassifiable occupation code.
 
 **Sampling error.** `EQ08` publishes no standard errors. Unit-level employment, especially for Western Australia, is estimated with error that this note cannot show.
 
@@ -219,31 +299,31 @@ These pass through the crosswalk unchanged. The Retail Salespersons score domina
 
 | Source | Period |
 |---|---|
-| Usage-based scores | Anthropic conversation samples collected before the score was published in March `2026` |
+| Usage-based scores | Anthropic samples up to November `2025` |
 | Australian usage shares | April and May `2026` |
 | Employment | May `2025` to February `2026` |
 | Earnings | May `2025` (EEH) and `2023`-`24` (ATO) |
 
 **Occupation-group shares.** The published SOC major-group shares do not sum to one hundred per cent for any geography, even where all groups are published. The data documentation does not say what fills the gap.
 
+**Theory box.** It is a framework for reading the results, not a test. It holds technology fixed except where stated, and maps skill to earnings only loosely.
+
 **What the note does not do.** It describes; it does not estimate effects. It says nothing about employment, wages or hours responding to AI. It measures variation between occupations, not within them. It is not a forecast and not a job-loss or career-risk score.
 
 ## What did not work, and changes along the way
 
-- **The questions file.** A separate file of research questions and choices was dropped on `25` October `2026`. The method choices it would have held were logged in `decision_log.md` before any results were produced. The research question and framing were drafted after the first results.
-- **Hourly earnings.** These were the intended primary ranking but are not published at unit-group level. Weekly earnings are used instead.
-- **Owner-managers.** No unit-level data on owner-managers exist in published ABS tables, so that sensitivity run uses a judgement list.
+- **The questions file.** A separate file of research questions and choices was dropped on `25` October `2026`. The method choices it would have held were logged in `decision_log.md` before any results were produced. The research question, framing, takeaways and theory box were written after the first results.
+- **Hourly earnings.** These were the intended primary ranking but are not published at unit-group level.
+- **Owner-managers.** No unit-level data on owner-managers exist in published ABS tables, so that run uses a judgement list.
 - **The concentration index for AIOE** was dropped, for the reason given in @sec-methods.
 - **The JSA correspondence** turned out to be coded to ANZSCO `v1.2`, not `v1.3` as its archived web page implied.
-- **Weighting scheme `4`** does not reproduce the primary decile profile. The influence check that explains it was added after the results were seen.
-- **The JSA automation gap** does not keep its sign in the bottom quintile across schemes.
-- **Rebuilding the usage-based score** from the published task data, with O*NET task weights in place of the unpublished time shares, gave a rank correlation with the published scores below the target of `0.9` (appendix).
+- **Weighting scheme `4`** does not reproduce the main decile profile, and **the JSA automation gap** does not keep its sign in the bottom quintile across schemes.
+- **Rebuilding the usage-based score** from task data fell short of its target (rank correlation `r num("g_spearman_equal", 2)` against `0.9`).
+- **Added after the first results:** the influence check, the measure of unscored US counterparts, and the sensitivity run built on it. All three are labelled where they appear.
 
 ## Contributions and AI use
 
-<!-- LUC: this paragraph describes the finished note; it becomes true once your sections are in. -->
-
-Luc Taya chose the topic and data sources, made the judgement calls, edited the research question and framing, and wrote the interpretation, every takeaway and the theory box. Claude Code, an AI coding assistant, wrote the data pipeline under Luc's direction and drafted the data, methods, limitations and appendix sections for Luc to edit. The data analysed are published by Anthropic, and the pipeline was written with Claude Code, an Anthropic product. Anthropic had no role in this project and has not reviewed or endorsed it.
+Luc Taya chose the topic and data sources, set the project's direction and decisions, and reviewed and approved this note. Claude Code, an AI coding assistant, wrote the analysis code and drafted the framing, takeaways and theory box, as well as the data, methods, limitations and appendix sections. The data analysed are published by Anthropic, and the pipeline was written with Claude Code, an Anthropic product. Anthropic had no role in this project and has not reviewed or endorsed it.
 
 ## Credits
 

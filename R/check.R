@@ -56,7 +56,10 @@ strip_code <- function(lines) {
     l <- str_remove_all(l, "`[^`]*`")            # code spans
     l <- str_remove_all(l, "\\{#[^}]*\\}")       # cross-reference labels
     l <- str_remove_all(l, "@(fig|tbl|sec)-[A-Za-z0-9-]+")
+    l <- str_remove_all(l, "\\[[^\\]]*@[^\\]]*\\]")          # bracketed citations, with page locators
     l <- str_remove_all(l, "-?@[A-Za-z][A-Za-z0-9_:-]*")   # citation keys
+    l <- str_remove_all(l, "\\be61\\b")                      # organisation name (e61 Institute)
+    l <- str_remove_all(l, "\\(A[0-9]\\)")                    # assumption labels (A1)-(A4)
     l <- str_remove_all(l, "\\{[^}]*\\}")                   # Quarto attributes: {.callout-note}, {width="80%"}
     l <- str_remove_all(l, "^:::.*$")                      # fenced div markers
     l <- str_remove_all(l, "\\$[^$]+\\$")                  # inline maths
@@ -75,7 +78,7 @@ for (f in prose_files) {
     l <- text[i]
     if (!nzchar(l)) next
     l2 <- str_remove_all(l, "\\b(1[89]\\d\\d|20\\d\\d)\\b")
-    l2 <- str_remove_all(l2, "(?i)\\b(figure|fig\\.|table|section|chart|appendix|walk-through|scheme|m)\\s*[0-9]+[a-z]?\\b")
+    l2 <- str_remove_all(l2, "(?i)\\b(figure|fig\\.|table|section|chart|appendix|walk-through|scheme|proposition|lemma|m)\\s*[0-9]+[a-z]?\\b")
     if (str_detect(l2, "[0-9]")) fail(f, ":", i, ": bare digits in prose: ", str_trunc(str_squish(raw_lines[i]), 90))
     hits <- causal[str_detect(str_to_lower(l), fixed(str_to_lower(causal)))]
     if (length(hits) > 0 && !str_trim(raw_lines[i]) %in% allow) {

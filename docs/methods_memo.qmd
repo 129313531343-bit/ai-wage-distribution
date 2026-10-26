@@ -1,6 +1,6 @@
 ---
 title: "Methods memo: usage-based AI exposure across Australia's earnings distribution"
-subtitle: "Draft for comment"
+subtitle: "Draft for comment (working draft v0.9)"
 author: "Luc Taya, Economics (Honours) graduate, University of Western Australia"
 date: last-modified
 bibliography: ../note/references.bib
@@ -50,9 +50,9 @@ source("../note/_setup.R")
 
 ## First charts
 
-![Usage-potential rank gap by earnings decile. Line: scheme 1; bar: range across the four schemes.](../note/figures/fig1_gap_by_decile.png){width="100%"}
+![Usage-potential rank gap by earnings decile, main specification. The appendix shows the range across weighting schemes.](../note/figures/fig1_gap_by_decile.png){width="100%"}
 
-![Usage-based exposure, extensive margin and intensity by earnings decile, scheme 1.](../note/figures/fig2_margins_by_decile.png){width="100%"}
+![Usage-based exposure, extensive margin and intensity by earnings decile, main specification.](../note/figures/fig2_margins_by_decile.png){width="100%"}
 
 ## Questions for reviewers
 

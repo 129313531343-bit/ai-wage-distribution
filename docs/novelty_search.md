@@ -118,7 +118,7 @@ Key to the "Read" column: **FT** means full text converted and searched; **Page*
 | # | Work | What it does | Q-A | Q-B | Read |
 |---|---|---|---|---|---|
 | H1 | DEWR (2026), *AI and employment in Australia: Monitoring framework and evidence to date*, July 2026, CC BY 4.0. PDF: https://www.dewr.gov.au/download/17666/ai-and-employment-australia/43205/ai-and-employment-australia/pdf. The Word version was read (sha256 `f69bfc2d…e3e6dd`). | Uses JSA automation scores in a PPML model of EQ08 employment, Feb 2015 to Feb 2026. Massenkoff-McCrory observed exposure is converted to ANZSCO 4-digit (SOC 2018, then O*NET-SOC 2010, then an ANZSCO correspondence table), using a simple average where a unit links to several scored US occupations, then standardised. 91 JSA-scored units were unmatched. It is used as a robustness measure, with a near-zero coefficient that is not significant. | **Yes** | **Partly**: top-5 lists for JSA, AIOE and observed exposure, and score distributions by task group. No earnings, wages or deciles (wages are excluded explicitly, and "Investigating the AI-wages relationship" is listed as future work). No WA. | FT |
-| H2 | Demirev, G. (2026), *Generative AI and Labor Demand: Evidence from Online Job Markets*, SSRN 7054839 | Snippets say it uses online job postings from Europe and Australia, with Australian ads at ANZSCO 4-digit for each state. It matched the Scholar query for AEI and ANZSCO. | Probably | Unknown | Snip (**manual check**) |
+| H2 | Demirev, G. (2026), "AI and the Composition of Labor Demand: Evidence from Online Job Postings", draft of 9 Sep 2026, SSRN 7054839 | Studies how EU (CEDEFOP) and Australian (JSA Internet Vacancy Index) job postings changed after ChatGPT, by occupational AI exposure. It uses five exposure measures, among them the Handa et al. (2025) usage score. It is not Massenkoff-McCrory observed exposure. Australian ANZSCO vacancies are merged to the scores through a crosswalk at ISCO three-digit level. There is no earnings or wage-distribution analysis and no usage-versus-potential comparison. | **Yes** (usage score to ANZSCO via ISCO) | **No** | FT (read 26 Oct 2026, PDF supplied by Luc) |
 | H3 | Gross, Z. (2026), working paper summarised in "Kookaburras in the Coal Mine?", *Gross National Product* (Substack), 2 Jun 2026 | Links Census 2021 occupation to Single Touch Payroll. Looks at earnings growth and hiring by occupational AI exposure. The post does not name the exposure measure. DEWR cites it as Gross (2026). | Unknown | No sign of it | Page (**manual check**) |
 | H4 | Free, C. and Harris, L. (2026), *The Wired Belt: Where AI Could Reshape Australian Politics*, University of Sydney Business School | An electorate index combining JSA, ILO and AIOE (all potential measures) at ANZSCO 4-digit, weighted by Census occupation mix. Compared with household income across electorates. | No (no usage measure) | No | FT |
 | H5 | JSA (2025), *Our Gen AI Transition: Implications for Work and Skills* | Discusses Handa et al. (2025). Notes Claude.ai's small Australian market share and its global sample, and says replicating the analysis on ANZSCO would capture only a small share of Australian activity. No replication. | No | No | Snip (read in full in M1) |
@@ -148,7 +148,7 @@ Key to the "Read" column: **FT** means full text converted and searched; **Page*
 | # | Work | What it does | Read |
 |---|---|---|---|
 | H18 | Massenkoff, M. and McCrory, P. (2026), *Labor market impacts of AI*, Anthropic, 5 Mar 2026 | Observed exposure, and observed coverage against theoretical coverage. | Snip (appendix to be read in M1) |
-| H19 | Levkoff, S. (2026), SSRN 7217958 | "Observed AI exposure across 756 US occupations", compared with capability-based measures. Whether it reports by wage is unknown. | Snip (**manual check**) |
+| H19 | Levkoff, S. (2026), SSRN working paper 7217958, draft V4 (Sep 2026) | US only (OEWS May 2024).<br>- Observed exposure rises with wages (Spearman 0.29); the top wage quintile's mean (0.105) is nearly three times the bottom's (0.038).<br>- The correlation with Eloundou beta (0.705) is almost entirely produced by the capability gate. A permutation null gives 0.673.<br>- Within the capability envelope, use is associated with teleworkability, not with wages.<br>- Detailed occupation rankings churn across AEI vintages (agreement 0.58), while major-group structure is stable (0.85).<br>- No Australian or ANZSCO analysis. | FT (read 26 Oct 2026, PDF supplied by Luc) |
 | H20 | Sedai, A. (2026), *Exposure Is Not Adoption*, SSRN 7533251 | Usage-based adoption against exposure. Ranks are similar but levels diverge. | Snip |
 | H21 | Gong, X. (2026), *Exposure, Task Length and the Channel of AI Use*, SSRN 7574859 | Exposure indices against task-level usage. | Snip |
 | H22 | Yildirim, A. H. (2026), SSRN 7363301 | Reach and direction of occupational exposure. | Snip |
@@ -171,8 +171,8 @@ Key to the "Read" column: **FT** means full text converted and searched; **Page*
 
 These could not be read in full because of bot verification, or because the paper was not located. Suggested steps, to run in a normal browser:
 
-1. **Demirev (2026)**, SSRN 7054839. Does it report AEI-based exposure across Australian earnings or wages, or compare it with a potential measure?
-2. **Levkoff (2026)**, SSRN 7217958. Does it report the gap between observed and capability-based exposure by wage percentile?
+1. ~~**Demirev (2026)**~~ **Read in full on 26 Oct 2026.** It maps a usage score to ANZSCO for Australian job postings. It has no earnings analysis and no usage-potential gap.
+2. ~~**Levkoff (2026)**~~ **Read in full on 26 Oct 2026.** It is US only. It reports a wage-quintile gradient of observed exposure and shows the Eloundou correlation is mechanical. There is no Australian analysis.
 3. **Sedai (2026)**, SSRN 7533251, and **Gong (2026)**, SSRN 7574859. Any non-US coverage?
 4. **Gross (2026)**. Which exposure measure does the working paper use? Is it usage-based?
 5. **Seetahul (2026)**, the HILDA conference paper. Which measure, and is earnings in scope?
@@ -189,3 +189,11 @@ This assessment was prepared by Claude Code. The decision is Luc Taya's and is r
 - **(c) is partly triggered.** The National Skills Commission published an ANZSCO 2013 (v1.3) to O*NET-SOC 2019 correspondence on Labour Market Insights. It is not branded as part of the Australian Skills Classification, and it now survives only as an Internet Archive capture.
 
 **Decision (25 Oct 2026, Luc Taya):** continue with the narrowed novelty claim and cite DEWR (2026) as the mapping base. See D1 in `decision_log.md`.
+
+**Update (26 Oct 2026), after reading Demirev and Levkoff in full:** rule (b) is still not triggered. Neither paper reports usage-based exposure, or a usage-potential gap, across Australian earnings deciles.
+
+The claim is narrowed and cited as follows:
+
+- **Mapping.** DEWR (2026) and Demirev (2026) have both already mapped AEI usage-based scores onto ANZSCO, so the project claims no first mapping.
+- **Gap concept.** Levkoff (2026) is the closest US work on usage against capability and on the wage gradient. It is cited for the gap concept, and for quantifying how much of the agreement with Eloundou et al. is mechanical.
+- **What is new.** The descriptive comparison across the Australian earnings distribution, with the margins, sex and WA composition.

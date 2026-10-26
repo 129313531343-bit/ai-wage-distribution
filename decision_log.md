@@ -57,14 +57,48 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
   - The method choices Luc would have set there are now defaults set by Claude Code before any results (C1-C8 below).
   - The research question and framing are drafted by Claude Code after the first results, for Luc to edit. The README says so.
 
+### D11. Delegation of remaining decisions and writing (26 Oct 2026)
+
+- **Date:** 26 October 2026
+- **Decided by:** Luc Taya, in chat
+- **Decision:**
+  - D4, D7 and D9: "use your judgement. Pick whatever gives the clearest, most defensible main result and the least confusing presentation. Lead with one clean main specification", with every alternative in a labelled appendix table, nothing dropped, and each choice logged with its reason.
+  - D10: done by Claude using automated checks.
+  - Framing, takeaways and theory box: written by Claude.
+  - Walk-throughs 1-3: skipped, replaced by `docs/explainer.md`.
+  - Reviewers: the memo goes after release.
+  - Optional extras F and H: skipped.
+- **Consequence for the README:** "Contributions and AI use" now says Claude wrote the analysis code, framing, takeaways and theory section, and Luc reviewed and approved them. That statement must be true before the repository is made public.
+
+### D4. Earnings ranking in the main text (decided by Claude under D11, 26 Oct 2026)
+
+- **Choice:** the main text uses only the primary ranking, EEH weekly earnings (C1). EEH hourly (cube 13) and ATO average salary or wages appear in the appendix sensitivity table and an appendix chart.
+- **Reason:** C1 was fixed before any result was seen. Replacing it with whichever alternative looks cleanest after seeing results would invite a specification-search objection. Showing every alternative in one labelled table answers it.
+
+### Main specification (decided by Claude under D11, 26 Oct 2026)
+
+- **Choice:** weighting scheme 1 (OEWS employment weights), all units, EEH weekly ranking. The three potential measures (JSA automation, which is the primary comparator under C5; JSA augmentation; Eloundou beta) stay side by side in the main gap chart, because they are comparators, not alternative specifications.
+- **Moved to the appendix:** the range across schemes (an appendix chart), schemes 2-4, non-diffuse units, the RSE and owner-operator exclusions, and the Sales Assistants influence check.
+- **Reason:** every part of the main specification was fixed before results (C3-C5). The robustness results are reported in full, including where the rule in C6 fails.
+
+### D7. Licences (decided by Claude under D11, 26 Oct 2026)
+
+- **Choice:**
+  - Code: MIT (`LICENSE`).
+  - Text, figures and derived tables written for this project: CC BY 4.0 (`LICENSE-CONTENT.md`).
+  - Third-party data keep their own licences (`docs/credits.md`). AIOE values are not redistributed.
+- **Reason:** permissive licences let readers reuse and check the work. CC BY matches the licence of most inputs (ABS, JSA, O*NET, AEI as stated).
+
+### D9. Owner-operator list (decided by Claude under D11, 26 Oct 2026)
+
+- **Choice:** keep the draft list in `R/fn_owner_managers.R` (13 units) for the exclusion run.
+- **Reason:** ABS publishes form of employment only by occupation major group, so no data-based unit-level list exists. A short, transparent judgement list, with the exclusion's results shown in the appendix, is more defensible than an unexplained or longer one. The limitation is stated in the note.
+
 ### Pending decisions
 
 | ID | Question | Status |
 |---|---|---|
-| D4 | Which alternative earnings ranking (EEH cube 13 or ATO Table 15B) appears in the note | Both are built (C2); Luc chooses at review |
-| D7 | Licences for the repo's code and text | Needed before the repo goes public (M5) |
-| D9 | Approve or edit the draft owner-manager-heavy unit list (C10) | Awaiting Luc |
-| D10 | Sign off the 40 largest units (`data/out/m2/top40_units_review.csv`) | Awaiting Luc |
+| D10 | Top-40 review: done by Claude with automated checks under D11 (see N20) | Done |
 
 ## Method choices fixed before results
 
@@ -290,3 +324,33 @@ A fresh `git clone` of commit `66afec8` was tested at a colon-free path, with th
 - The key outputs are byte-for-byte identical to the working copy: decile profiles, gaps, sensitivity table, coverage, explorer data and note facts.
 
 renv's "out-of-sync" warning came from `dbplyr`, which renv detects as used. It is now installed and recorded, and the warning is gone.
+
+### N20. D10: automated review of the 40 largest units (26 Oct 2026, under D11)
+
+`R/16_top40_checks.R` runs seven checks on each of the 40 largest units, which hold 46.4% of employment. Each flag gets a resolution and a reason in `data/out/m2/top40_units_review.csv`, marked "reviewed_by: Claude (automated checks)".
+
+| Check | Rule | Units flagged |
+|---|---|---|
+| Unmatched | No linked SOC has a score | 1 |
+| Zero | Score is exactly 0 (below the usage gate) | 4 |
+| Diffuse | Five or more scored linked SOCs | 10 |
+| Scheme range | Spread across the four schemes above 0.10 | 9 |
+| Influence | Leaving the unit out moves the main top-minus-bottom gap by more than 1 pp, or the decile-profile Spearman falls below 0.9 | 6 |
+| Artefact | A flagged artefact SOC carries at least 25% of the weight | 3 |
+| Unscored majority | Over half of linked US employment has no score | 2 |
+| Title | No title word in common with the highest-weight SOC | 11 |
+
+**Resolution.** No mapping was edited by hand. The links come from official concordances, and the primary values were fixed before results.
+
+- The 11 title flags were inspected one by one. Most are wording differences ("solicitor"/"lawyer", "child carer"/"childcare worker"), and each has a note in the table.
+- **Two substantive issues came out of the review**, and both are now reported:
+  - **6211 Sales Assistants (General).** Retail Salespersons, a flagged artefact, and Fast Food and Counter Workers carry four-fifths of its weight. It is the largest single influence on the main profile: leaving it out moves the top-minus-bottom gap by +2.6 pp.
+  - **Units resting on a minority of their US counterparts.** 4221 Education Aides has none of its US counterparts scored. 4231 Aged and Disabled Carers has 95% of its linked US employment unscored (Home Health Aides and Personal Care Aides have no score).
+
+**Added after the first results** (reported as such):
+
+- the `unscored_weight_share` measure for every unit;
+- a sensitivity sample excluding the 25 units (5.9% of employment) where it exceeds one half;
+- this share as a column in the explorer.
+
+The grid of specifications grows from 48 to 60.

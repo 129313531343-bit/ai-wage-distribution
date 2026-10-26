@@ -23,6 +23,12 @@ num <- function(k, d = 0) formatC(fact(k), format = "f", digits = d, big.mark = 
 pc <- function(k, d = 1) paste0(formatC(100 * fact(k), format = "f", digits = d), "%")
 # A value already on the percentage-point scale.
 pp <- function(k, d = 1) paste0(formatC(fact(k), format = "f", digits = d, flag = "+"), " pp")
+# Signed value, and values on the x100 scale.
+sg <- function(k, d = 1) formatC(fact(k), format = "f", digits = d, flag = "+")
+h <- function(k, d = 1) formatC(100 * fact(k), format = "f", digits = d)
+sh <- function(k, d = 1) formatC(100 * fact(k), format = "f", digits = d, flag = "+")
+# Absolute value, for sentences that already say "lower" or "below".
+ab <- function(k, d = 1) formatC(abs(fact(k)), format = "f", digits = d)
 # A plain number not stored as a fact (counts in code, e.g. number of schemes).
 n <- function(x, d = 0) formatC(x, format = "f", digits = d, big.mark = ",")
 

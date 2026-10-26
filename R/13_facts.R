@@ -127,6 +127,55 @@ add("s4_tmb", inf$top_minus_bottom_pp[inf$scheme == "s4" & inf$left_out == "none
 add("s4_tmb_no6211", inf$top_minus_bottom_pp[inf$scheme == "s4" & inf$left_out == "6211"])
 add("emp_share_6211", emp$emp_share[emp$unit == "6211"])
 
+# Figures for the takeaways (main specification unless the key says otherwise) ---------------
+add("usage_max", max(dp$usage)); add("usage_max_decile", dp$decile[which.max(dp$usage)])
+add("int_min", min(dp$intensity)); add("int_max", max(dp$intensity))
+gq <- m3("gap_quintiles.csv")
+for (p in c("jsa_automation", "jsa_augmentation", "beta_gpt4")) {
+  r <- gq |> filter(scheme == "s1", sample == "all", ranking == "eeh", potential == p)
+  add(paste0("gapq1_", p), r$gap_rank_q1); add(paste0("gapq5_", p), r$gap_rank_q5)
+  s4 <- gq |> filter(scheme == "s4", sample == "all", ranking == "eeh", potential == p)
+  add(paste0("gapq1_s4_", p), s4$gap_rank_q1)
+  sc <- m3("gap_sign_check.csv") |> filter(sample == "all", ranking == "eeh", potential == p)
+  add(paste0("gap_holds_", p), as.numeric(sc$holds))
+}
+dis <- m3("largest_disagreements_jsa.csv")
+add("dis_n", nrow(dis)); add("dis_negative", sum(dis$gap_s1 < 0))
+so <- m3("sex_overall.csv"); sd <- m3("sex_deciles.csv")
+add("usage_women", so$women); add("usage_men", so$men); add("jsa_women", so$women_jsa); add("jsa_men", so$men_jsa)
+add("deciles_women_higher", sum(sd$women > sd$men))
+wa <- m3("wa_vs_national.csv")
+for (m in wa$measure) { add(paste0("wa_mean_", m), wa$mean_wa[wa$measure == m]); add(paste0("aus_mean_", m), wa$mean_aus[wa$measure == m]); add(paste0("wa_gap_", m), wa$wa_gap[wa$measure == m]) }
+wd <- m3("wa_decomposition.csv") |> filter(level == "major", measure == "usage")
+add("wa_contrib_prof", wd$contribution[wd$group == "2"]); add("wa_contrib_trades", wd$contribution[wd$group == "3"])
+add("wa_share_prof", wd$share_wa[wd$group == "2"]); add("aus_share_prof", wd$share_aus[wd$group == "2"])
+ui <- m3("soc_major_usage_index.csv")
+ui_aus <- ui |> filter(geo_id == "AUS", !is.na(usage_index)) |> arrange(desc(usage_index))
+add("ui_aus_top", ui_aus$usage_index[1]); add("ui_aus_second", ui_aus$usage_index[2]); add("ui_aus_bottom", ui_aus$usage_index[nrow(ui_aus)])
+add("ui_aus_cm", ui$usage_index[ui$geo_id == "AUS" & ui$soc_major == "15"])
+add("ui_wa_cm", ui$usage_index[ui$geo_id == "AU-WA" & ui$soc_major == "15"])
+add("ui_global_cm", ui$usage_index[ui$geo_id == "GLOBAL" & ui$soc_major == "15"])
+add("ui_aus_constr", ui$usage_index[ui$geo_id == "AUS" & ui$soc_major == "47"])
+add("ui_aus_above1", sum(ui_aus$usage_index > 1)); add("ui_groups", nrow(ui_aus))
+add("specs_s4_hold_all", sum(sens$holds[sens$scheme == "s4"]))
+gs <- function(s, smp, rk) sens$top_minus_bottom_pp[sens$scheme == s & sens$sample == smp & sens$ranking == rk]
+add("tmb_nondiffuse", gs("s1", "non_diffuse", "eeh")); add("tmb_unscored", gs("s1", "excl_unscored_majority", "eeh"))
+add("tmb_eeh13", gs("s1", "all", "eeh13")); add("tmb_ato", gs("s1", "all", "ato")); add("tmb_owner", gs("s1", "excl_owner_managers", "eeh"))
+add("tmb_rse", gs("s1", "excl_rse25", "eeh"))
+add("rho_ato_profile", sens$spearman_with_primary[sens$scheme == "s1" & sens$sample == "all" & sens$ranking == "ato"])
+add("inf_6211_s1", inf$top_minus_bottom_pp[inf$scheme == "s1" & inf$left_out == "6211"])
+g <- read_codes_csv(interim_path("unit_grades.csv")) |> left_join(emp |> select(unit, emp_share), by = "unit")
+add("unscored_units", sum(g$unscored_weight_share > 0.5, na.rm = TRUE))
+add("unscored_emp", sum(g$emp_share[g$unscored_weight_share > 0.5], na.rm = TRUE))
+gr <- read_codes_csv(out_path("g_replication.csv"))
+add("g_spearman_equal", gr$spearman[gr$weights == "equal"])
+# Theory box: thesis production elasticities as reported by the author (inputs, not estimates here).
+sVX <- 2.21; sXS <- 0.94; sVU <- 1.56
+add("th_sVX", sVX); add("th_sXS", sXS); add("th_sVU", sVU)
+add("th_ict_term", 1 / sXS - 1 / sVX); add("th_mach_term", 1 / sVX - 1 / sVU)
+add("th_inv_sVX", 1 / sVX); add("th_inv_sXS", 1 / sXS)
+add("th_ict_effect", 12.5); add("th_mach_effect", -2.8)   # thesis results as reported by the author
+
 out <- bind_rows(facts)
 write_csv(out, out_path("note_facts.csv"))
 message("Facts written: ", nrow(out))

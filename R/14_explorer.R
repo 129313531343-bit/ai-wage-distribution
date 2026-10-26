@@ -56,7 +56,7 @@ explorer <- emp |>
   left_join(scheme_range, by = "unit") |>
   left_join(jsa |> select(unit, jsa_automation, jsa_augmentation), by = "unit") |>
   left_join(earn |> select(unit, eeh_weekly_earnings = eeh_weekly_p, eeh_imputed), by = "unit") |>
-  left_join(grades |> select(unit, crosswalk_grade = grade, n_scored_socs = n_valid), by = "unit") |>
+  left_join(grades |> select(unit, crosswalk_grade = grade, n_scored_socs = n_valid, unscored_weight_share), by = "unit") |>
   left_join(socs, by = "unit") |>
   left_join(unscored, by = "unit") |>
   mutate(
@@ -69,12 +69,13 @@ explorer <- emp |>
     eeh_weekly_earnings = round(eeh_weekly_earnings),
     earnings_note = if_else(eeh_imputed == "none", "", "imputed from minor group"),
     linked_socs_without_score = coalesce(linked_socs_without_score, 0L),
-    contributing_socs = coalesce(contributing_socs, "")
+    contributing_socs = coalesce(contributing_socs, ""),
+    unscored_share_display = if_else(is.na(unscored_weight_share), "", sprintf("%.0f%%", 100 * unscored_weight_share))
   ) |>
   select(unit, title, major_group, usage_display, usage_band, below_usage_threshold, usage_range_display,
          extensive_display, jsa_automation, jsa_augmentation, eloundou_display, global_automation_display,
          employment_000, employment_wa_000, eeh_weekly_earnings, earnings_note, crosswalk_grade, n_scored_socs,
-         linked_socs_without_score, contributing_socs) |>
+         linked_socs_without_score, unscored_share_display, contributing_socs) |>
   arrange(unit)
 
 stopifnot(nrow(explorer) == 358, !anyDuplicated(explorer$unit), !any(grepl("aioe", names(explorer), ignore.case = TRUE)))

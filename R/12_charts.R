@@ -48,24 +48,37 @@ decile_axis <- scale_x_continuous(breaks = 1:10, name = "Earnings decile (1 = lo
 pot_labels <- c(jsa_automation = "JSA automation exposure", jsa_augmentation = "JSA augmentation exposure",
                 beta_gpt4 = "Eloundou et al. beta (GPT-4 rating)")
 
-# 1. Usage-potential rank gap by decile, with the range across weighting schemes ---------------
+# 1. Usage-potential rank gap by decile: main specification only (scheme 1, all units, EEH weekly).
+#    The range across weighting schemes is in appendix figure A3.
 gaps <- m3("gap_by_decile.csv") |> filter(sample == "all", ranking == "eeh", potential %in% names(pot_labels))
-g1 <- gaps |>
-  group_by(potential, decile) |>
-  summarise(lo = min(gap_rank), hi = max(gap_rank), primary = gap_rank[scheme == "s1"], .groups = "drop") |>
+g1 <- gaps |> filter(scheme == "s1") |>
   mutate(potential = factor(pot_labels[potential], levels = pot_labels))
-p1 <- ggplot(g1, aes(decile)) +
+p1 <- ggplot(g1, aes(decile, gap_rank)) +
   geom_hline(yintercept = 0, colour = ink$axis, linewidth = 0.4) +
-  geom_linerange(aes(ymin = lo, ymax = hi), colour = "#9ec5f4", linewidth = 2.2) +
-  geom_line(aes(y = primary), colour = pal["blue"], linewidth = 0.7) +
-  geom_point(aes(y = primary), colour = pal["blue"], size = 1.8) +
+  geom_col(fill = pal["blue"], width = 0.7) +
   facet_wrap(~potential, nrow = 1) +
   decile_axis +
   labs(title = "Usage-potential rank gap by earnings decile",
-       subtitle = "Percentile rank of usage-based exposure minus percentile rank of each potential measure.\nLine: scheme 1 (primary). Bar: range across the four weighting schemes.",
+       subtitle = "Employment-weighted percentile rank of usage-based exposure minus that of each potential measure.\nAbove zero: measured use ranks the decile's occupations higher than the potential measure does.",
        y = "Rank gap (percentile points)", caption = caption_src) +
   theme_note()
 save_fig(p1, "fig1_gap_by_decile", w = 8, h = 4)
+
+# A3. The same gap with the range across the four weighting schemes (appendix).
+g1r <- gaps |>
+  group_by(potential, decile) |>
+  summarise(lo = min(gap_rank), hi = max(gap_rank), primary = gap_rank[scheme == "s1"], .groups = "drop") |>
+  mutate(potential = factor(pot_labels[potential], levels = pot_labels))
+pa3 <- ggplot(g1r, aes(decile)) +
+  geom_hline(yintercept = 0, colour = ink$axis, linewidth = 0.4) +
+  geom_linerange(aes(ymin = lo, ymax = hi), colour = "#9ec5f4", linewidth = 2.2) +
+  geom_point(aes(y = primary), colour = pal["blue"], size = 1.8) +
+  facet_wrap(~potential, nrow = 1) +
+  decile_axis +
+  labs(title = "Usage-potential rank gap: range across weighting schemes",
+       subtitle = "Point: scheme 1 (main). Bar: range across schemes 1-4.", y = "Rank gap (percentile points)", caption = caption_src) +
+  theme_note()
+save_fig(pa3, "figA3_gap_scheme_range", w = 8, h = 4)
 
 # 2. Exposure, extensive margin and intensity by decile (three panels, no dual axis) -------------
 dp <- m3("decile_profiles.csv") |> filter(scheme == "s1", sample == "all", ranking == "eeh") |>
@@ -186,15 +199,41 @@ pa1 <- ggplot(ga, aes(decile, global_automation)) +
   theme_note()
 save_fig(pa1, "figA1_global_automation_by_decile", w = 7, h = 3.8)
 
-# Appendix A2. All units against non-diffuse units ---------------------------------------------
-gr <- m3("decile_profiles.csv") |> filter(scheme == "s1", ranking == "eeh", sample %in% c("all", "non_diffuse")) |>
-  mutate(sample = factor(sample, levels = c("all", "non_diffuse"), labels = c("All units", "Non-diffuse units (1-4 linked SOCs)")))
-pa2 <- ggplot(gr, aes(decile, usage, colour = sample)) +
-  geom_line(linewidth = 0.7) + geom_point(size = 1.8) +
-  scale_colour_manual(values = unname(pal[1:2])) + decile_axis +
-  labs(title = "Usage-based exposure by decile: all units and non-diffuse units",
-       subtitle = "Scheme 1. Deciles re-formed within each sample.", y = "Usage-based exposure", caption = caption_src) +
+# Appendix A4. Usage-based exposure by decile under each sample restriction (scheme 1, EEH weekly).
+sample_labels <- c(all = "All units (main)", non_diffuse = "Non-diffuse units", excl_rse25 = "Excl. RSE above 25%",
+                   excl_owner_managers = "Excl. owner-operators", excl_unscored_majority = "Excl. mostly unscored")
+gs <- m3("decile_profiles.csv") |> filter(scheme == "s1", ranking == "eeh") |>
+  mutate(sample = factor(sample_labels[sample], levels = sample_labels))
+pa4 <- ggplot(gs, aes(decile, usage)) +
+  geom_col(fill = pal["blue"], width = 0.7) +
+  facet_wrap(~sample, nrow = 1) + decile_axis +
+  labs(title = "Usage-based exposure by earnings decile under each sample restriction",
+       subtitle = "Scheme 1, EEH weekly ranking. Deciles are re-formed within each sample.", y = "Usage-based exposure", caption = caption_src) +
+  theme_note() + theme(strip.text = element_text(size = 7.5))
+save_fig(pa4, "figA4_samples", w = 9, h = 3.6)
+
+# Appendix A5. Usage-based exposure by decile under each earnings ranking (scheme 1, all units).
+rank_labels <- c(eeh = "EEH weekly, all employees (main)", eeh13 = "EEH hourly, full-time non-managerial (3-digit)", ato = "ATO average salary or wages")
+gr <- m3("decile_profiles.csv") |> filter(scheme == "s1", sample == "all") |>
+  mutate(ranking = factor(rank_labels[ranking], levels = rank_labels))
+pa5 <- ggplot(gr, aes(decile, usage)) +
+  geom_col(fill = pal["blue"], width = 0.7) +
+  facet_wrap(~ranking, nrow = 1) + scale_x_continuous(breaks = 1:10, name = "Earnings decile (1 = lowest)") +
+  labs(title = "Usage-based exposure by decile under each earnings ranking",
+       subtitle = "Scheme 1, all units.", y = "Usage-based exposure", caption = caption_src) +
   theme_note()
-save_fig(pa2, "figA2_grade_restricted", w = 7, h = 4)
+save_fig(pa5, "figA5_rankings", w = 8, h = 3.6)
+
+# Appendix A6. Usage-based exposure by decile under each weighting scheme (all units, EEH weekly).
+scheme_labels <- c(s1 = "1 OEWS weights (main)", s2 = "2 Equal weights", s3 = "3 Title-match-first", s4 = "4 JSA correspondence")
+gsc <- m3("decile_profiles.csv") |> filter(sample == "all", ranking == "eeh") |>
+  mutate(scheme = factor(scheme_labels[scheme], levels = scheme_labels))
+pa6 <- ggplot(gsc, aes(decile, usage)) +
+  geom_col(fill = pal["blue"], width = 0.7) +
+  facet_wrap(~scheme, nrow = 1) + decile_axis +
+  labs(title = "Usage-based exposure by decile under each weighting scheme",
+       subtitle = "All units, EEH weekly ranking.", y = "Usage-based exposure", caption = caption_src) +
+  theme_note()
+save_fig(pa6, "figA6_schemes", w = 9, h = 3.6)
 
 message("Charts written to note/figures/")
