@@ -98,6 +98,7 @@ for (f in published) {
   if (str_detect(f, "\\.csv$")) {
     h <- str_to_lower(names(read_csv(f, n_max = 0, show_col_types = FALSE)))
     if (any(h %in% unit_keys) && any(str_detect(h, "aioe"))) fail(f, ": unit-level AIOE column (AIOE is aggregate-only)")
+    if (any(h %in% unit_keys) && any(str_detect(h, "telework|workathome"))) fail(f, ": unit-level teleworkability column (GPL-3.0 source; aggregate-only)")
   } else {
     j <- jsonlite::fromJSON(f, simplifyVector = TRUE)
     if (is.data.frame(j) && any(str_to_lower(names(j)) %in% unit_keys) && any(str_detect(str_to_lower(names(j)), "aioe"))) {

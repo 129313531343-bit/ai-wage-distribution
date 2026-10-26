@@ -245,6 +245,61 @@ add("th_inv_sVX", 1 / sVX); add("th_inv_sXS", 1 / sXS)
 add("th_ict_effect", 12.5); add("th_mach_effect", -2.8)   # thesis results as reported by the author
 add("th_panel_countries", 24)                               # calibration panel, as reported by the author
 
+# v1.0 extensions (added after the first results) ------------------------------------------------
+# E1: another platform.
+op <- m3("other_platform_main.csv"); ops <- m3("other_platform_sensitivity.csv")
+add("rank_ci_copilot", op$rank_ci[op$measure == "copilot"]); add("rho_copilot_usage", op$spearman_with_usage[op$measure == "copilot"])
+add("rho_copilot_earnings", op$spearman_with_earnings[op$measure == "copilot"])
+add("rho_usage_earnings", op$spearman_with_earnings[op$measure == "usage"])
+add("copilot_units", op$units[op$measure == "copilot"])
+add("specs_copilot_pos", sum(ops$rank_ci_copilot > 0)); add("specs_composite_pos", sum(ops$rank_ci_composite > 0))
+add("copilot_rci_min", min(ops$rank_ci_copilot)); add("copilot_rci_max", max(ops$rank_ci_copilot))
+add("composite_rci_min", min(ops$rank_ci_composite)); add("composite_rci_max", max(ops$rank_ci_composite))
+add("composite_rci_main", ops$rank_ci_composite[ops$scheme == "s1" & ops$sample == "all" & ops$ranking == "eeh"])
+add("rho_usage_copilot_min", min(ops$spearman_usage_copilot)); add("rho_usage_copilot_max", max(ops$spearman_usage_copilot))
+for (rk in c("eeh", "eeh13", "ato")) add(paste0("specs_copilot_pos_", rk), sum(ops$rank_ci_copilot[ops$ranking == rk] > 0))
+# E3: uncertainty.
+sv_ <- m3("uncertainty_survival.csv"); rg <- m3("uncertainty_ranges.csv"); bd <- m3("bounds_unscored.csv")
+cal <- m3("uncertainty_alpha_calibration.csv"); t15 <- m3("uncertainty_top15.csv")
+add("unc_draws", sv_$draws[sv_$type == "both"]); add("unc_alpha", cal$alpha[cal$chosen])
+for (k in setdiff(names(sv_), c("type", "draws"))) for (ty in sv_$type) add(paste0("surv_", ty, "_", k), sv_[[k]][sv_$type == ty])
+for (ty in rg$type) for (k in setdiff(names(rg), "type")) add(paste0("unc_", ty, "_", k), rg[[k]][rg$type == ty])
+for (b in unique(bd$bound)) {
+  x <- bd |> filter(bound == b) |> slice(1)
+  add(paste0("bound_", b, "_tmb"), x$tmb); add(paste0("bound_", b, "_ci"), x$ci); add(paste0("bound_", b, "_rank_ci"), x$rank_ci)
+  add(paste0("bound_", b, "_peak"), x$peak_decile)
+}
+# Where unscored US counterparts sit: share of linked US employment unscored, by earnings decile.
+source("R/fn_analysis.R")
+ug <- emp |> select(unit, emp) |> left_join(read_codes_csv(interim_path("unit_grades.csv")) |> select(unit, unscored_weight_share), by = "unit") |>
+  left_join(earn |> select(unit, eeh_weekly_p), by = "unit") |> filter(!is.na(unscored_weight_share))
+ud <- decile_means(fractional_deciles(ug, "eeh_weekly_p"), ug, "unscored_weight_share") |> arrange(decile)
+add("unscored_max_decile", ud$decile[which.max(ud$mean)]); add("unscored_max_share", max(ud$mean))
+add("unscored_second_decile", ud$decile[order(-ud$mean)][2])
+tb <- t15 |> filter(type == "both")
+add("top15_stable90", sum(tb$share_in_top15 >= 0.9)); add("top15_min_share", min(tb$share_in_top15)); add("top15_n", nrow(tb))
+# E4: conditional gradient.
+cg <- m3("conditional_gradient.csv"); gb <- m3("conditional_gelbach.csv"); ov <- m3("conditional_oriv.csv"); as_ <- m3("conditional_associations.csv")
+co <- function(o, mdl, tm, col = "estimate") cg[[col]][cg$outcome == o & cg$model == mdl & cg$term == tm]
+add("cg_units", cg$units[1])
+add("cg_base", co("usage", "earnings", "y")); add("cg_base_se", co("usage", "earnings", "y", "se"))
+add("cg_tw", co("usage", "with_telework", "y")); add("cg_tw_se", co("usage", "with_telework", "y", "se"))
+add("cg_tw_coef", co("usage", "with_telework", "tw"))
+for (p in c("jsa_automation", "jsa_augmentation", "beta_gpt4", "aioe")) {
+  add(paste0("cg_", p), co("usage", paste0("with_", p), "y"))
+  add(paste0("cg_", p, "_tw"), co("usage", paste0("with_", p, "_telework"), "y"))
+  add(paste0("cg_", p, "_tw_se"), co("usage", paste0("with_", p, "_telework"), "y", "se"))
+}
+add("cg_ext_base", co("extensive", "earnings", "y")); add("cg_ext_tw", co("extensive", "with_telework", "y"))
+add("cg_cap_tw_min", min(sapply(c("jsa_augmentation", "beta_gpt4", "aioe"), \(p) co("usage", paste0("with_", p, "_telework"), "y"))))
+add("cg_cap_tw_max", max(sapply(c("jsa_augmentation", "beta_gpt4", "aioe"), \(p) co("usage", paste0("with_", p, "_telework"), "y"))))
+add("oriv_earnings", ov$earnings[ov$outcome == "u"])
+add("gelbach_aioe_via_pot", gb$via_potential[gb$outcome == "u" & gb$potential == "aioe"])
+add("gelbach_aioe_via_tw", gb$via_telework[gb$outcome == "u" & gb$potential == "aioe"])
+add("gelbach_jsa_via_tw", gb$via_telework[gb$outcome == "u" & gb$potential == "jsa_automation"])
+add("gelbach_jsa_via_pot", gb$via_potential[gb$outcome == "u" & gb$potential == "jsa_automation"])
+add("rho_tw_earnings", as_$spearman[as_$pair == "telework_earnings"]); add("rho_tw_usage", as_$spearman[as_$pair == "telework_usage"])
+
 out <- bind_rows(facts)
 write_csv(out, out_path("note_facts.csv"))
 message("Facts written: ", nrow(out))

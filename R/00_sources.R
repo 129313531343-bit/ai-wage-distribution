@@ -7,6 +7,11 @@ library(tibble)
 AEI_COMMIT <- "4e5f69fab13a9c3f7d0dcc31a6f893a9818738f6"
 ELOUNDOU_COMMIT <- "0471612fef3cc22b74fb884d27bff9dbd3770582"
 AIOE_COMMIT <- "adca5fc2cd0e9a659ff05278b7fa7a53f4f324c1"
+# v1.0 extensions (downloads approved by Luc on 26 Oct 2026)
+WWAI_COMMIT <- "550c00c9d1b054ac78b87da3a26165bace334779"
+DN_COMMIT <- "3ebab4f646ed45b01162ecd7794f00a518932c53"
+wwai <- function(path) sprintf("https://raw.githubusercontent.com/microsoft/working-with-ai/%s/%s", WWAI_COMMIT, path)
+dn <- function(path) sprintf("https://raw.githubusercontent.com/jdingel/DingelNeiman-workathome/%s/%s", DN_COMMIT, path)
 
 hf <- function(path) {
   sprintf("https://huggingface.co/datasets/Anthropic/EconomicIndex/resolve/%s/%s", AEI_COMMIT, path)
@@ -127,6 +132,25 @@ sources <- tribble(
   "https://web.archive.org/web/20240103062525/https://labourmarketinsights.gov.au/copyright/",
   "archived LMI copyright page (captured 3 Jan 2024)",
   "Original site no longer resolves. Required attribution (file Notes sheet): Jobs and Skills Australia, ANZSCO 2013 Version 1.2 to O*NET-SOC 2019 Taxonomy correspondence.",
+
+  # v1.0 extension E1: Copilot-based AI applicability (Tomlinson et al. 2025)
+  "wwai_applicability", "wwai/ai_applicability_scores.csv", wwai("ai_applicability_scores.csv"), "script", WWAI_COMMIT,
+  "CC BY 4.0", sprintf("https://github.com/microsoft/working-with-ai/blob/%s/LICENSE.txt", WWAI_COMMIT), "repository LICENSE.txt at pinned commit",
+  "Tomlinson et al. (2025) AI applicability score by SOC 2018 code. Attribution: cite the paper (LICENSE.txt).",
+  "wwai_soc_metrics", "wwai/soc_metrics.csv", wwai("soc_metrics.csv"), "script", WWAI_COMMIT,
+  "CC BY 4.0", sprintf("https://github.com/microsoft/working-with-ai/blob/%s/LICENSE.txt", WWAI_COMMIT), "repository LICENSE.txt at pinned commit",
+  "Components of the applicability score (coverage, completion, scope) by SOC 2018 code.",
+  "wwai_licence", "wwai/LICENSE.txt", wwai("LICENSE.txt"), "script", WWAI_COMMIT,
+  "CC BY 4.0", sprintf("https://github.com/microsoft/working-with-ai/blob/%s/LICENSE.txt", WWAI_COMMIT), "repository LICENSE.txt at pinned commit",
+  "",
+
+  # v1.0 extension E4: teleworkability (Dingel and Neiman 2020)
+  "dn_workathome", "dingelneiman/occupations_workathome.csv", dn("occ_onet_scores/output/occupations_workathome.csv"), "script", DN_COMMIT,
+  "GPL-3.0", sprintf("https://github.com/jdingel/DingelNeiman-workathome/blob/%s/LICENSE", DN_COMMIT), "repository LICENSE at pinned commit",
+  "O*NET-SOC 2010 codes. Copyleft software licence: not redistributed, unit-level values kept out of published files, aggregate use only.",
+  "dn_licence", "dingelneiman/LICENSE", dn("LICENSE"), "script", DN_COMMIT,
+  "GPL-3.0", sprintf("https://github.com/jdingel/DingelNeiman-workathome/blob/%s/LICENSE", DN_COMMIT), "repository LICENSE at pinned commit",
+  "",
 
   # Manual downloads (BLS returns 403 to scripts)
   "bls_soc_2010_2018", "manual/soc_2010_to_2018_crosswalk.xlsx",

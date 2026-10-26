@@ -24,6 +24,9 @@ build:
 	$(R) R/10_review.R
 	$(R) R/11_analysis.R
 	$(R) R/16_top40_checks.R
+	$(R) R/17_other_platform.R
+	$(R) R/18_uncertainty.R
+	$(R) R/19_conditional.R
 	$(R) R/12_charts.R
 	$(R) R/15_replicate_g.R
 	$(R) R/13_facts.R

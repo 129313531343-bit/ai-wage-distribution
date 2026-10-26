@@ -19,46 +19,22 @@ suppressPackageStartupMessages({
 source("R/utils.R")
 source("R/fn_analysis.R")
 source("R/fn_owner_managers.R")
+source("R/fn_units.R")
 
 out <- function(f) out_path("m3", f)
 dir.create(out_path("m3"), recursive = TRUE, showWarnings = FALSE)
 
-emp <- read_codes_csv(interim_path("emp_units.csv"))
-earn <- read_codes_csv(interim_path("earnings_units.csv"))
-jsa <- read_codes_csv(interim_path("jsa_units.csv"))
-grades <- read_codes_csv(interim_path("unit_grades.csv"))
 long <- read_codes_csv(interim_path("unit_measures_long.csv"))
-aioe_units <- read_codes_csv(interim_path("aioe_units_NOT_FOR_PUBLICATION.csv"))
 
 schemes <- c("s1", "s2", "s3", "s4")
 scheme_labels <- long |> distinct(scheme, scheme_label)
 
 # Unit table ------------------------------------------------------------------------
-ut <- emp |>
-  select(unit, title, emp, emp_male, emp_female, emp_wa) |>
-  left_join(earn |> select(unit, eeh_weekly_p, eeh13_hourly_p, ato_avg_sw, eeh_rse_max), by = "unit") |>
-  left_join(jsa |> select(unit, jsa_automation, jsa_augmentation), by = "unit") |>
-  left_join(grades |> select(unit, grade, n_valid, unscored_weight_share), by = "unit") |>
-  left_join(aioe_units |> filter(measure == "aioe") |> select(unit, aioe = score), by = "unit")
+ut <- unit_table()
+sv <- set_names(map(schemes, \(s) scheme_values(long, s)), schemes)
 
-scheme_values <- function(s) {
-  l <- long |> filter(scheme == s)
-  l |> filter(measure == "usage_exposure") |> select(unit, usage = score, extensive, intensity, usage_lb = score_lb) |>
-    left_join(l |> filter(measure == "beta_gpt4") |> select(unit, beta_gpt4 = score, beta_ext = extensive), by = "unit") |>
-    left_join(l |> filter(measure == "beta_human") |> select(unit, beta_human = score), by = "unit") |>
-    left_join(l |> filter(measure == "global_automation_pct") |> select(unit, global_automation = score), by = "unit")
-}
-sv <- set_names(map(schemes, scheme_values), schemes)
-
-rankings <- c(eeh = "eeh_weekly_p", eeh13 = "eeh13_hourly_p", ato = "ato_avg_sw")
-samples <- list(
-  all = function(d) d,
-  non_diffuse = function(d) filter(d, grade %in% c("one-to-one", "few-to-one")),
-  excl_rse25 = function(d) filter(d, is.na(eeh_rse_max) | eeh_rse_max <= 0.25),
-  excl_owner_managers = function(d) filter(d, !unit %in% owner_manager_draft),
-  # Added after the first results (D10 review): drop units where most linked US employment has no score.
-  excl_unscored_majority = function(d) filter(d, is.na(unscored_weight_share) | unscored_weight_share <= 0.5)
-)
+rankings <- spec_rankings
+samples <- spec_samples
 potentials <- c("jsa_automation", "jsa_augmentation", "beta_gpt4")
 
 # One specification: scheme x sample x ranking ------------------------------------------

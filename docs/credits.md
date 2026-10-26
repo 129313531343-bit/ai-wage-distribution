@@ -37,6 +37,14 @@ Eloundou, T., Manning, S., Mishkin, P. and Rock, D. (2024), "GPTs are GPTs: Labo
 
 Felten, E., Raj, M. and Seamans, R. AIOE data from https://github.com/AIOE-Data/AIOE. The repository states no licence. The data are used only in aggregate charts and correlations, and no per-occupation values are published.
 
+## Microsoft: AI applicability (added for v1.0)
+
+Tomlinson, K., Jaffe, S., Wang, W., Counts, S. and Suri, S. (2025), "Working with AI: Measuring the Applicability of Generative AI to Occupations", arXiv:2507.07935. Scores from https://github.com/microsoft/working-with-ai (commit `550c00c`), used under CC BY 4.0, which the repository's LICENSE.txt states; the licence asks users to cite the paper. The scores were mapped from US SOC codes to ANZSCO unit groups; the note and appendix report aggregate statistics only.
+
+## Dingel and Neiman: teleworkability (added for v1.0)
+
+Dingel, J. I. and Neiman, B. (2020), "How Many Jobs Can be Done at Home?", *Journal of Public Economics* 189: 104235. Classification from https://github.com/jdingel/DingelNeiman-workathome (commit `3ebab4f`). The repository carries the GNU General Public License v3, a software licence. The file is not redistributed, no per-occupation values are published, and the classification is used only in aggregate regressions and correlations.
+
 ## US Bureau of Labor Statistics
 
 SOC 2010 to 2018 crosswalk, ISCO-08 to SOC 2010 crosswalk, and Occupational Employment and Wage Statistics (May 2025). Source: U.S. Bureau of Labor Statistics.

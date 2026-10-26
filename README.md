@@ -4,7 +4,7 @@
 
 Luc Taya, Economics (Honours) graduate, University of Western Australia
 
-> **Status: working draft v0.9, comments welcome.**
+> **Status: working paper v1.0, comments welcome.**
 
 **Read it:** [website](https://129313531343-bit.github.io/ai-wage-distribution/) · [note (HTML)](https://129313531343-bit.github.io/ai-wage-distribution/note/_rendered/note.html) · [note (PDF)](note/_rendered/note.pdf) · [appendix](note/_rendered/appendix.pdf) · [occupation explorer](https://129313531343-bit.github.io/ai-wage-distribution/explorer/) · [summary](docs/_rendered/summary.pdf) · [methods memo](docs/_rendered/methods_memo.pdf) · [explainer](docs/explainer.md)
 
@@ -25,7 +25,8 @@ DEWR (2026) and Demirev (2026) have already mapped Anthropic usage-based scores 
 - the usage-potential gap across Australian earnings deciles, with concentration indices that compare measures on ranks;
 - the extensive margin and intensity;
 - Western Australia's occupation-mix difference from the national picture, and results by sex;
-- a graded crosswalk with four weighting schemes and every specification reported.
+- a graded crosswalk with four weighting schemes and every specification reported;
+- checks of whether the gradient is specific to one platform (Copilot-based applicability) and whether it reflects computer work rather than pay (teleworkability), with crosswalk and earnings uncertainty simulated (v1.0).
 
 See `docs/novelty.md` and the search log in `docs/novelty_search.md`.
 
@@ -38,7 +39,7 @@ Results in the body of the note use one specification, fixed before any result w
 - EEH weekly earnings for the ranking;
 - JSA automation as the primary comparator.
 
-The appendix reports every alternative: four weighting schemes, three earnings rankings and five samples, 60 specifications in all, including those that do not hold. It also reports an influence check and a top-40 unit review. Checks added after the first results are labelled as such. Every choice and its reason are in `decision_log.md`.
+The appendix reports every alternative: four weighting schemes, three earnings rankings and five samples, 60 specifications in all, including those that do not hold. It also reports an influence check, a top-40 unit review, the Copilot comparison, the uncertainty simulations and the teleworkability regressions. Checks added after the first results are labelled as such. Every choice and its reason are in `decision_log.md`.
 
 ## Reproducing
 
@@ -79,6 +80,7 @@ A fresh clone reproduces every published output byte for byte (decision log N19)
 - Luc reviewed and approved the final text.
 - The planned code walk-throughs were replaced by a written explainer (`docs/explainer.md`).
 - Every decision, and whether it was made before or after results were seen, is recorded in `decision_log.md`.
+- For v1.0, Luc approved the three extensions and the downloads they need; Claude Code built them and drafted their sections.
 - No funding.
 
 The data analysed are published by Anthropic, and the pipeline was written with Claude Code, an Anthropic product. Anthropic had no role in this project and has not reviewed or endorsed it.

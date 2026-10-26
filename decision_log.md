@@ -410,3 +410,34 @@ None of these was part of the method fixed before results. All are labelled wher
 - **Rebuild correlation among positive scores.** 0.82, against 0.87 overall.
 - **Smoothed profile over earnings percentiles,** with a unit-resampling band (seed 20261026).
 - **Figures.** The usage-potential gap figure now shows the range across schemes and adds AIOE in aggregate; the former appendix figure A3 is removed. Two new figures show every specification and the influence of single units. Figure titles now state findings, and the source line describes the data as in the note.
+
+### D14. v1.0 extensions and downloads (26 Oct 2026)
+
+- **Decided by:** Luc Taya, in chat: "Start v1.0 now. I approve downloading ai_applicability_scores.csv, soc_metrics.csv and LICENSE.txt from microsoft/working-with-ai, and occupations_workathome.csv and LICENSE from jdingel/DingelNeiman-workathome. I'll get the BLS workbook myself."
+- **Scope:** E1 (another platform), E3 (uncertainty) and E4 (earnings or computer work), as planned in `private/review_response.md`.
+- **Licences, read from the files at the pinned commits:**
+  - `microsoft/working-with-ai` (commit `550c00c`): "This repository is licensed under CC BY 4.0", with attribution by citing the paper.
+  - `jdingel/DingelNeiman-workathome` (commit `3ebab4f`): GNU GPL v3, a software licence. The data file is not redistributed (data/raw is not committed), no unit-level values are published, and `make check` fails if a published file has a unit-level teleworkability column.
+- **BLS AI exposure categories:** not used yet; Luc will download the workbook. The BLS composite is categorical (two medians, then clustering), so it will be reported as categories when added.
+
+### N22. v1.0 analyses (26 Oct 2026; added after the first results)
+
+All three were proposed in Luc's review of v0.9 and are labelled in the note as added after the first results.
+
+- **E1, another platform (`R/17_other_platform.R`).**
+  - Microsoft's AI applicability score is mapped through the same links and weights as the usage-based score, for all 60 specifications.
+  - Measures are compared on rank indices, with a composite equal to the mean of the two percentile ranks (with two sources the median is the mean).
+  - Result: Copilot applicability is rank-correlated with Claude usage across units (0.65), but its rank index is −0.011 under the main ranking. It is positive in 48 of 60 specifications: 8 of 20 under EEH weekly earnings and all 40 under the hourly and ATO rankings. The composite is positive in all 60.
+- **E3, uncertainty (`R/18_uncertainty.R`).**
+  - Crosswalk: Dirichlet(alpha × n × p) draws of each unit's scheme-1 weights over scored US occupations. alpha is chosen from {0.25, …, 16} so the employment-weighted spread of unit values across draws is closest to their spread across schemes 1–3; alpha = 1. A wider setting uses alpha/4.
+  - Earnings: EEH weekly × (1 + ε), with ε ~ N(0, RSE), independent across units; median RSE where none is published. Ranks and deciles are re-formed in every draw.
+  - Employment is held fixed (no EQ08 standard errors). 500 draws per setting, seed 20261027.
+  - The script checks that its fast rank and decile routines reproduce the pipeline's concentration index, rank index and decile means exactly before drawing.
+  - Bounds: unscored US occupations at zero (lower) and at one (upper). A first version used the highest score in the SOC minor group as the upper bound, but for 41 units that is below the renormalised value, so it is reported as a "high imputation", not a bound.
+  - Result: the concentration and rank indices are positive in every draw. The decile-7 peak survives in 36% of draws with both sources of uncertainty. Under the upper bound the level index falls to 0.010 and the peak moves to decile 3, because unscored US counterparts are most common in deciles 3 and 2; the rank index stays positive.
+- **E4, earnings or computer work (`R/19_conditional.R`).**
+  - Employment-weighted least squares on employment-weighted percentile ranks, HC1 standard errors, 352 units with every measure.
+  - Teleworkability (Dingel and Neiman 2020) is averaged from O*NET-SOC to SOC 2010 and mapped through the SOC 2010 links and US weights used for AIOE.
+  - Gelbach (2016) decomposition and an ORIV estimate (Gillen, Snowberg and Yariv 2019) with JSA augmentation and AIOE as two measures of capability.
+  - Result: the earnings slope of 0.22 falls to 0.01 with teleworkability held fixed and turns negative with any capability measure held fixed. These are partial associations across occupations, not effects; the note says so.
+- **Code organisation.** `R/fn_units.R` now holds the unit table and specification grid used by `R/11_analysis.R` and the three new scripts. After the move, `R/11_analysis.R` produces byte-identical outputs.

@@ -1,6 +1,6 @@
 # Explainer: how the pipeline works, and likely interview questions
 
-A plain-English guide to the project. Figures are from the v0.9 outputs, recorded in `data/out/note_facts.csv`.
+A plain-English guide to the project. Figures are from the v1.0 outputs, recorded in `data/out/note_facts.csv`.
 
 ## The pipeline in plain English
 
@@ -70,8 +70,15 @@ Partly. Anthropic's score only counts tasks Eloundou rates feasible. Levkoff (20
 - The concentration index is positive in all 60.
 - The non-diffuse units give a steeper gradient (+9.6 points, against +4.3 in the main result). Counting unscored US counterparts as zero gives +3.9.
 - The JSA-based weighting scheme mostly fails, because of one unit. Sales Assistants (General), 3.9% of employment, links under that scheme only to US Retail Salespersons, whose score is high relative to related occupations. Leaving it out turns −2.4 points into +7.7, and the profile then holds.
+- In 500 simulated draws of crosswalk weights and earnings, the concentration index is positive every time. The decile-7 peak survives in only 36% of draws, so I don't lean on it.
 
 All of this is in the appendix.
+
+**7a. Is it just Claude?**
+Possibly in part. I ran Microsoft's Copilot-based applicability scores through the same crosswalk. Across occupations the two measures agree reasonably well (rank correlation 0.65), but Copilot's measure isn't concentrated among higher earners under the main earnings ranking (rank index −0.011, against 0.073 for Claude). It is under the hourly and ATO rankings. The two measures are built differently as well as coming from different platforms, so I can't split the difference between who uses each platform and how each measure is built.
+
+**7b. Is it earnings, or computer work?**
+Mostly computer work, across occupations. Regressing usage rank on earnings rank gives a slope of 0.22. Holding teleworkability fixed, a proxy for whether the work runs through a computer, it falls to 0.01. That matches Levkoff's (2026) US result. It's a partial association across 352 occupations, not an effect.
 
 **8. Why weekly earnings, which mix hours and pay?**
 No ABS earnings series gives hourly pay at the 4-digit occupation level. The hourly series exists only at the 3-digit level, and I report it as an alternative; it gives a flatter gradient. The ATO ranking gives a steeper one, but its profile doesn't hold.
@@ -91,18 +98,19 @@ My thesis models the skill premium with ICT paired with skilled labour and machi
 - **as ICT-type capital:** this raises the premium when ICT is a relative complement of skilled labour, as the thesis finds;
 - **as a substitute for skilled tasks:** this always lowers the premium.
 
-The data show where AI is used, mostly in higher-earning occupations, which fits both channels. They can't tell which channel operates or what AI does to the premium.
+The data show where AI is used, mostly in higher-earning occupations that run through a computer, which fits both channels. They can't tell which channel operates or what AI does to the premium.
 
 **13. What would you do with better data?**
 
-- Australian usage by occupation from a survey or several platforms.
+- Usage data that separate platforms and surfaces (Claude.ai, API, Copilot) at the task level.
+- Australian occupations' own task lists, so the ISCO step no longer smooths the scores.
 - OSCA-coded employment once ABS publishes it.
 - Census TableBuilder, to see how much earnings vary within occupations.
 
 **14. How was AI used in this project, and how do you know the code is right?**
-Claude Code wrote the analysis code and drafted parts of the text under my direction. I reviewed the first draft, wrote the revised structure and framing, and approved all of it. The checks:
+Claude Code wrote the analysis code and drafted parts of the text under my direction. I reviewed the first draft, wrote the revised structure and framing, chose the three v1.0 extensions, and approved all of it. The checks:
 
-- 98 tests;
+- 106 tests;
 - a clean-clone rebuild with identical outputs;
 - every number in the note pulled from script output rather than typed;
 - a decision log recording each choice and whether it was made before or after seeing results;
@@ -112,7 +120,8 @@ The data come from Anthropic, and the tool is an Anthropic product. Both are dis
 
 **15. What are the biggest weaknesses?**
 
-- The usage data come from one provider's self-selected users, and platform choice shapes what logs show (Yin and Ogut 2026).
+- The usage data come from one provider's self-selected users, and platform choice shapes what logs show (Yin and Ogut 2026); a Copilot-based measure doesn't show the same earnings gradient.
+- The earnings gradient largely tracks computer-based work.
 - The scores classify conversation tasks.
 - The crosswalk is coarse.
 - 25 units, holding 5.9% of employment, rest mostly on US occupations with no score.

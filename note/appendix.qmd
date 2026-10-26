@@ -199,6 +199,120 @@ m3("soc_major_usage_index.csv") |> filter(!is.na(usage_index)) |>
   tab()
 ```
 
+## Another platform: Copilot-based applicability
+
+Added for `v1.0`, after the first results. Microsoft's AI applicability score (Tomlinson et al. 2025, CC BY `4.0`) is mapped to ANZSCO through the same links and weights as the usage-based score. Measures are compared on employment-weighted ranks. The composite is the mean of each unit's two percentile ranks; with two sources the median equals the mean.
+
+```{r platform_main}
+lab_o <- c(usage = "Claude usage-based exposure", copilot = "Copilot AI applicability", jsa_automation = "JSA automation",
+           jsa_augmentation = "JSA augmentation", beta_gpt4 = "Eloundou beta", aioe = "AIOE")
+m3("other_platform_main.csv") |>
+  mutate(measure = factor(lab_o[measure], levels = lab_o)) |> arrange(measure) |>
+  transmute(Measure = measure, Units = units, `Rank index` = sprintf("%.3f", rank_ci),
+            `Rank correlation with Claude usage` = sprintf("%.2f", spearman_with_usage),
+            `Rank correlation with earnings` = sprintf("%.2f", spearman_with_earnings)) |>
+  tab()
+```
+
+Every specification: rank indices on the units with both measures.
+
+```{r platform_specs}
+m3("other_platform_sensitivity.csv") |>
+  arrange(scheme, factor(sample, names(lab_m)), factor(ranking, names(lab_r))) |>
+  transmute(Scheme = lab_s[scheme], Sample = lab_m[sample], Ranking = lab_r[ranking], Units = units,
+            `Claude` = round(rank_ci_usage, 3), `Copilot` = round(rank_ci_copilot, 3), Composite = round(rank_ci_composite, 3),
+            `Rank correlation` = round(spearman_usage_copilot, 2)) |>
+  tab()
+```
+
+## Uncertainty: design and ranges
+
+Added for `v1.0`, after the first results.
+
+- **Crosswalk weights.** Each unit's scheme-`1` weights $p$ over its $n$ scored US occupations are redrawn from $\mathrm{Dirichlet}(\alpha n p)$. The concentration $\alpha$ is chosen from a grid so that the employment-weighted average spread of unit values across draws is closest to their spread across schemes `1` to `3`. The wider setting uses $\alpha/4$.
+- **Earnings.** Each unit's EEH weekly earnings are multiplied by $1+\varepsilon$, with $\varepsilon$ normal with standard deviation equal to the unit's published relative standard error (the median where none is published), independently across units. Ranks and deciles are re-formed in every draw.
+- **Employment** is held fixed. `EQ08` publishes no standard errors.
+- **Draws.** `r num("unc_draws")` per setting, with a fixed seed, so reruns give identical results.
+
+```{r alpha}
+m3("uncertainty_alpha_calibration.csv") |>
+  transmute(alpha, `Spread across draws` = round(mean_sd, 4), `Spread across schemes 1-3` = round(target_sd, 4),
+            Chosen = if_else(chosen, "yes", "")) |>
+  tab()
+```
+
+Ranges over draws (`5`th, `50`th and `95`th percentiles).
+
+```{r ranges}
+lab_u <- c(crosswalk = "Crosswalk", crosswalk_wide = "Crosswalk, wider", earnings = "Earnings", both = "Both")
+m3("uncertainty_ranges.csv") |> mutate(type = factor(lab_u[type], levels = lab_u)) |> arrange(type) |>
+  transmute(Draws = type,
+            `Top minus bottom` = sprintf("%.1f / %.1f / %.1f", tmb_p05, tmb_p50, tmb_p95),
+            CI = sprintf("%.3f / %.3f / %.3f", ci_p05, ci_p50, ci_p95),
+            `Rank CI` = sprintf("%.3f / %.3f / %.3f", rank_ci_p05, rank_ci_p50, rank_ci_p95)) |>
+  tab()
+```
+
+**Bounds for unscored links.** Lower: unscored US occupations count as zero. Upper: they count as one, the highest possible score. The high imputation gives them the highest score in their SOC minor group (major group if the minor group has none); it is not a bound, because for some units that score is below the mean of their scored links.
+
+```{r bounds}
+lab_b <- c(lower = "Lower bound (zero)", main = "Main (renormalised)", high_imputation = "High imputation", upper = "Upper bound (one)")
+m3("bounds_unscored.csv") |> distinct(bound, tmb, ci, rank_ci, peak_decile, holds) |>
+  mutate(bound = factor(lab_b[bound], levels = lab_b)) |> arrange(bound) |>
+  transmute(Version = bound, `Top minus bottom` = round(tmb, 1), CI = round(ci, 3), `Rank CI` = round(rank_ci, 3),
+            `Peak decile` = peak_decile, `Holds under the rule` = if_else(holds, "yes", "no")) |>
+  tab()
+```
+
+**Largest disagreements.** Share of draws in which each of the fifteen largest sign-stable disagreements with JSA automation stays among the fifteen largest.
+
+```{r top15}
+m3("uncertainty_top15.csv") |> pivot_wider(names_from = type, values_from = share_in_top15) |>
+  left_join(v12, by = "unit") |>
+  transmute(Unit = unit, Title = title, Crosswalk = scales::percent(crosswalk, 1), Both = scales::percent(both, 1)) |>
+  tab()
+```
+
+## Earnings, capability and computer work: full results
+
+Added for `v1.0`, after the first results. Employment-weighted least squares on employment-weighted percentile ranks (`0` to `100`), HC`1` standard errors, `r num("cg_units")` units with every measure. Teleworkability is the classification by Dingel and Neiman (2020) of O\*NET-SOC occupations, averaged to SOC `2010` codes and mapped to units through the SOC `2010` links and US employment weights used for AIOE. Its licence is a software licence (`GPL-3.0`), so no unit-level values are published.
+
+```{r conditional_full}
+lab_t <- c(y = "Earnings", tw = "Teleworkability", jsa_automation = "JSA automation", jsa_augmentation = "JSA augmentation",
+           beta_gpt4 = "Eloundou beta", aioe = "AIOE")
+ctrl <- function(m) {
+  if (m == "earnings") return("None")
+  parts <- strsplit(sub("^with_", "", m), "_telework")[[1]]
+  lab <- if (parts[1] == "" || parts[1] == "telework") character() else lab_t[[parts[1]]]
+  out <- paste(c(lab, if (grepl("telework", m)) "teleworkability"), collapse = ", ")
+  paste0(toupper(substr(out, 1, 1)), substring(out, 2))
+}
+m3("conditional_gradient.csv") |> filter(term != "(intercept)") |>
+  mutate(Controls = vapply(model, ctrl, character(1))) |>
+  transmute(Outcome = if_else(outcome == "usage", "Usage-based exposure", "Extensive margin"), Controls,
+            Term = lab_t[term], Estimate = round(estimate, 3), SE = round(se, 3)) |>
+  tab()
+```
+
+**Gelbach decomposition.** The change in the earnings slope when a potential measure and teleworkability are added, split between them (Gelbach 2016). The two parts add to the change.
+
+```{r gelbach}
+m3("conditional_gelbach.csv") |>
+  transmute(Outcome = if_else(outcome == "u", "Usage-based exposure", "Extensive margin"), `Potential measure` = lab_t[potential],
+            `Slope without controls` = round(base, 3), `Slope with controls` = round(full, 3),
+            `Through the potential measure` = round(via_potential, 3), `Through teleworkability` = round(via_telework, 3)) |>
+  tab()
+```
+
+**Two measures of capability.** JSA augmentation and AIOE treated as two error-prone measures of one capability; the two regressions are stacked and each measure is instrumented with the other (Gillen, Snowberg and Yariv 2019). Both regressions hold teleworkability fixed.
+
+```{r oriv}
+m3("conditional_oriv.csv") |>
+  transmute(Outcome = if_else(outcome == "u", "Usage-based exposure", "Extensive margin"),
+            Earnings = round(earnings, 3), Capability = round(capability, 3), Teleworkability = round(telework, 3)) |>
+  tab()
+```
+
 ## Review of the forty largest units
 
 Automated checks on the forty largest units (decision `D10` in the decision log, carried out by Claude Code and reviewed by the author). The full table, with a resolution and reason for each flag, is `data/out/m2/top40_units_review.csv`.

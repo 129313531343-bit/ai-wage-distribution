@@ -286,4 +286,52 @@ pa7 <- ggplot(sm, aes(percentile)) +
   theme_note() + theme(plot.title = element_text(size = 10))
 save_fig(pa7, "figA7_smoothed_profile", w = 8, h = 3.8)
 
+# 10. Another platform (v1.0, E1): every measure on one rank scale, two panels of at most three series.
+rd <- m3("other_platform_rank_deciles.csv")
+obs_lab <- c(usage = "Claude usage-based exposure", copilot = "Copilot AI applicability")
+pot_lab <- c(jsa_automation = "JSA automation", jsa_augmentation = "JSA augmentation", beta_gpt4 = "Eloundou et al. beta")
+rd2 <- bind_rows(
+  rd |> filter(measure %in% names(obs_lab)) |> mutate(panel = "Measured use (two platforms)", series = obs_lab[measure]),
+  rd |> filter(measure %in% names(pot_lab)) |> mutate(panel = "Potential measures", series = pot_lab[measure])
+) |> mutate(series = factor(series, levels = c(obs_lab, pot_lab)), panel = factor(panel, levels = c("Measured use (two platforms)", "Potential measures")))
+# Each panel has at most three series in the validated slots 1-3; line type separates the panels.
+series_col <- setNames(c(unname(pal[c("blue", "orange")]), unname(pal[c("blue", "orange", "aqua")])), c(obs_lab, pot_lab))
+series_lty <- setNames(c("solid", "solid", "22", "22", "22"), c(obs_lab, pot_lab))
+# Direct labels just right of decile 10, spread apart where lines end close together.
+lab10 <- rd2 |> filter(decile == 10) |> group_by(panel) |> arrange(mean_rank, .by_group = TRUE) |>
+  mutate(label_y = { y <- mean_rank; for (i in seq_along(y)[-1]) y[i] <- max(y[i], y[i - 1] + 4); y }) |> ungroup()
+p10 <- ggplot(rd2, aes(decile, mean_rank, colour = series, linetype = series)) +
+  geom_hline(yintercept = 50, colour = ink$axis, linewidth = 0.4) +
+  geom_line(linewidth = 0.7) + geom_point(size = 1.6) +
+  geom_text(data = lab10, aes(x = 10.35, y = label_y, label = series), hjust = 0, size = 2.6, colour = ink$secondary,
+            inherit.aes = FALSE) +
+  scale_colour_manual(values = series_col, guide = "none") +
+  scale_linetype_manual(values = series_lty, guide = "none") +
+  facet_wrap(~panel, nrow = 1) +
+  scale_x_continuous(breaks = 1:10, name = "Earnings decile (1 = lowest, EEH weekly earnings)") +
+  coord_cartesian(xlim = c(1, 10), clip = "off") +
+  labs(title = "Under the main earnings ranking, Copilot-based applicability does not rise with earnings; Claude usage does",
+       subtitle = "Mean employment-weighted percentile rank of each measure, by earnings decile, main specification. Ranks put measures on\ndifferent scales onto one scale; 50 is the average. Added after the first results.",
+       y = "Mean percentile rank", caption = paste0(src_usage, "\nCopilot AI applicability: Tomlinson et al. (2025), CC BY 4.0, same crosswalk and weights.")) +
+  theme_note() + theme(plot.title = element_text(size = 10), panel.spacing.x = unit(7.5, "lines"),
+                       plot.margin = margin(5.5, 95, 5.5, 5.5))
+save_fig(p10, "fig10_other_platform", w = 8.5, h = 4.4)
+
+# 11. Uncertainty bands (v1.0, E3): decile profile with the 5th-95th percentile range over draws of crosswalk
+#     weights and earnings.
+bd <- m3("uncertainty_bands.csv") |> filter(type == "both")
+bd_long <- bind_rows(
+  bd |> transmute(decile, measure = "Usage-based exposure", main = usage_main, lo = usage_p05, hi = usage_p95),
+  bd |> transmute(decile, measure = "Extensive margin", main = extensive_main, lo = extensive_p05, hi = extensive_p95)
+) |> mutate(measure = factor(measure, levels = c("Usage-based exposure", "Extensive margin")))
+p11 <- ggplot(bd_long, aes(decile)) +
+  geom_linerange(aes(ymin = lo, ymax = hi), colour = "#9ec5f4", linewidth = 2.6) +
+  geom_point(aes(y = main), colour = pal["blue"], size = 1.8) +
+  facet_wrap(~measure, nrow = 1, scales = "free_y") + decile_axis +
+  labs(title = "Under crosswalk and earnings uncertainty the rise from the bottom decile survives; the decile-7 peak does not",
+       subtitle = "Point: main specification. Bar: 5th to 95th percentile over 500 draws of crosswalk weights (Dirichlet, centred on scheme 1)\nand EEH earnings (from published relative standard errors), with deciles re-formed in each draw. Added after the first results.",
+       y = NULL, caption = caption_src) +
+  theme_note() + theme(plot.title = element_text(size = 10))
+save_fig(p11, "fig11_uncertainty_bands", w = 8.5, h = 3.9)
+
 message("Charts written to note/figures/")
