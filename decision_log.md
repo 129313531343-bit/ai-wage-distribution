@@ -419,6 +419,7 @@ None of these was part of the method fixed before results. All are labelled wher
   - `microsoft/working-with-ai` (commit `550c00c`): "This repository is licensed under CC BY 4.0", with attribution by citing the paper.
   - `jdingel/DingelNeiman-workathome` (commit `3ebab4f`): GNU GPL v3, a software licence. The data file is not redistributed (data/raw is not committed), no unit-level values are published, and `make check` fails if a published file has a unit-level teleworkability column.
 - **BLS AI exposure categories:** not used yet; Luc will download the workbook. The BLS composite is categorical (two medians, then clustering), so it will be reported as categories when added.
+- **Approval:** Luc read the v1.0 note and appendix and approved them for release on 26 Oct 2026 ("I've read the v1.0 note and appendix and approve them").
 
 ### N22. v1.0 analyses (26 Oct 2026; added after the first results)
 

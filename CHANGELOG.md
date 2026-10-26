@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.0 (working paper; not yet released)
+## v1.0 (working paper, 26 Oct 2026)
 
 - **Another platform (E1):** Microsoft's Copilot-based AI applicability scores (Tomlinson et al. 2025, CC BY 4.0) run through the same crosswalk, weights, rankings and samples; rank indices for every specification and a two-platform composite.
 - **Uncertainty (E3):** Dirichlet draws of crosswalk weights calibrated to the spread across schemes, EEH earnings draws from published relative standard errors, a survival table for every headline result, bands on the decile profile, and lower and upper bounds for unscored links.
