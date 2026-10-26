@@ -22,3 +22,6 @@ note/*_files/
 
 # Private drafts and planning (never published)
 private/
+
+# Private CV wording (kept local, not published)
+CV_ENTRY.md
