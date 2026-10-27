@@ -60,7 +60,7 @@ The usage data come from one provider's users, and the source classifies the tas
 
 ## Read more
 
-- Working draft, appendix and occupation explorer: <https://129313531343-bit.github.io/ai-wage-distribution/>
-- Code, data sources and decision log: <https://github.com/129313531343-bit/ai-wage-distribution>
+- Working draft, appendix and occupation explorer: <https://luc-taya.github.io/ai-wage-distribution/>
+- Code, data sources and decision log: <https://github.com/luc-taya/ai-wage-distribution>
 
 *No funding. Anthropic had no role in this work and has not reviewed or endorsed it.*

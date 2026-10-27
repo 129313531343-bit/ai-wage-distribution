@@ -6,7 +6,7 @@ Luc Taya, Economics (Honours) graduate, University of Western Australia
 
 > **Status: working paper v1.0, comments welcome.**
 
-**Read it:** [website](https://129313531343-bit.github.io/ai-wage-distribution/) · [note (HTML)](https://129313531343-bit.github.io/ai-wage-distribution/note/_rendered/note.html) · [note (PDF)](note/_rendered/note.pdf) · [appendix](note/_rendered/appendix.pdf) · [occupation explorer](https://129313531343-bit.github.io/ai-wage-distribution/explorer/) · [summary](docs/_rendered/summary.pdf) · [methods memo](docs/_rendered/methods_memo.pdf) · [explainer](docs/explainer.md)
+**Read it:** [website](https://luc-taya.github.io/ai-wage-distribution/) · [note (HTML)](https://luc-taya.github.io/ai-wage-distribution/note/_rendered/note.html) · [note (PDF)](note/_rendered/note.pdf) · [appendix](note/_rendered/appendix.pdf) · [occupation explorer](https://luc-taya.github.io/ai-wage-distribution/explorer/) · [summary](docs/_rendered/summary.pdf) · [methods memo](docs/_rendered/methods_memo.pdf) · [explainer](docs/explainer.md)
 
 The data behind this project are task-level Claude.ai and first-party API use by self-selected users of one provider, classified to US occupational tasks. No Australian occupational AI use is measured. The usage-based exposure scores describe tasks in US occupations and are applied to Australian occupation mixes. Where the source data have Australian rows, those rows classify the task in a conversation, not the user's job. Every result is shown next to at least one measure that does not come from Anthropic.
 
