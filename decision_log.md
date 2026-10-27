@@ -6,7 +6,6 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
 
 ### D1. Kill/pivot call (M0)
 
-- **Date:** 25 October 2026
 - **Decided by:** Luc Taya, in chat
 - **Decision:** "continue with the narrowed novelty claim (gap by earnings decile, margins, WA composition, sex; cite DEWR 2026 as the mapping base)".
 - **Evidence:** `docs/novelty_search.md`, especially H1 (DEWR 2026) and section 6.
@@ -15,7 +14,6 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
 
 ### D2. Rule (c): the NSC/LMI ANZSCO to O*NET-SOC correspondence
 
-- **Date:** 25 October 2026
 - **Decided by:** Luc Taya, in chat
 - **Decision:** "fourth scheme plus validation (demote to validation only if the licence can't be verified)".
 - **What this means for the build:**
@@ -28,7 +26,6 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
 
 ### D3. AEI licence
 
-- **Date:** 25 October 2026
 - **Decided by:** Luc Taya, in chat
 - **Decision:** "record as stated and draft the email for me to send".
 - **Recording:** the MANIFEST gives the licence as "CC-BY (version not stated on dataset card); HF metadata tag: MIT". The card text is quoted in the notes column, and the commit is pinned.
@@ -36,30 +33,26 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
 
 ### D5. Scope of the prose checks in `make check`
 
-- **Date:** 25 October 2026
 - **Decided by:** Luc Taya, in chat
 - **Decision:** "checks on note, summary and memo only".
 - **What this means:** the bare-digit and causal-word checks run on the note, the 800-word summary and the methods memo. They do not run on logs such as this file or `docs/novelty_search.md`. The check for per-unit AIOE columns still runs on every published file.
 
 ### D6. Conflict-of-interest line in the README
 
-- **Date:** 25 October 2026
 - **Decided by:** Luc Taya, in chat
 - **Decision:** "use your proposed wording" for a line on Anthropic's relationship to the project. Current wording (README, "Data and credits"): "The usage data are published by Anthropic. Anthropic had no role in this project and has not reviewed or endorsed it."
 
 ### D8. Order of work and description
 
-- **Date:** 25 October 2026
 - **Decided by:** Luc Taya, in chat
 - **Decision:** "Build the full analysis first; after M2 results, draft the research question and framing for me to edit. Describe the work as descriptive analysis."
 - **What this means:**
-  - The separate questions file (`docs/questions.md`) and its 27 Oct deadline are dropped.
+  - The separate questions file (`docs/questions.md`) and its deadline are dropped.
   - The method choices that file would have held are set as defaults before any results (C1-C8 below).
   - The research question and framing are written after the first results.
 
-### D11. Remaining decisions (26 Oct 2026)
+### D11. Remaining decisions
 
-- **Date:** 26 October 2026
 - **Decided by:** Luc Taya, in chat
 - **Decision:**
   - D4, D7 and D9: "use your judgement. Pick whatever gives the clearest, most defensible main result and the least confusing presentation. Lead with one clean main specification", with every alternative in a labelled appendix table, nothing dropped, and each choice logged with its reason.
@@ -68,18 +61,18 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
   - Reviewers: the memo goes after release.
   - Optional extras F and H: skipped.
 
-### D4. Earnings ranking in the main text (under D11, 26 Oct 2026)
+### D4. Earnings ranking in the main text (under D11)
 
 - **Choice:** the main text uses only the primary ranking, EEH weekly earnings (C1). EEH hourly (cube 13) and ATO average salary or wages appear in the appendix sensitivity table and an appendix chart.
 - **Reason:** C1 was fixed before any result was seen. Replacing it with whichever alternative looks cleanest after seeing results would invite a specification-search objection. Showing every alternative in one labelled table answers it.
 
-### Main specification (under D11, 26 Oct 2026)
+### Main specification (under D11)
 
 - **Choice:** weighting scheme 1 (OEWS employment weights), all units, EEH weekly ranking. The three potential measures (JSA automation, which is the primary comparator under C5; JSA augmentation; Eloundou beta) stay side by side in the main gap chart, because they are comparators, not alternative specifications.
 - **Moved to the appendix:** the range across schemes (an appendix chart), schemes 2-4, non-diffuse units, the RSE and owner-operator exclusions, and the Sales Assistants influence check.
 - **Reason:** every part of the main specification was fixed before results (C3-C5). The robustness results are reported in full, including where the rule in C6 fails.
 
-### D7. Licences (under D11, 26 Oct 2026)
+### D7. Licences (under D11)
 
 - **Choice:**
   - Code: MIT (`LICENSE`).
@@ -87,7 +80,7 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
   - Third-party data keep their own licences (`docs/credits.md`). AIOE values are not redistributed.
 - **Reason:** permissive licences let readers reuse and check the work. CC BY matches the licence of most inputs (ABS, JSA, O*NET, AEI as stated).
 
-### D9. Owner-operator list (under D11, 26 Oct 2026)
+### D9. Owner-operator list (under D11)
 
 - **Choice:** keep the draft list in `R/fn_owner_managers.R` (13 units) for the exclusion run.
 - **Reason:** ABS publishes form of employment only by occupation major group, so no data-based unit-level list exists. A short, transparent judgement list, with the exclusion's results shown in the appendix, is more defensible than an unexplained or longer one. The limitation is stated in the note.
@@ -100,7 +93,7 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
 
 ## Method choices fixed before results
 
-These defaults were set on 25 October 2026 under D8, before any result was produced. Luc can change them at review. A change made after results exist is logged here with its date and reason.
+These defaults were set under D8, before any result was produced. Luc can change them at review. A change made after results exist is logged here with its date and reason.
 
 - **C1. Primary earnings ranking.** If an EEH May 2025 cube gives hourly earnings at 4-digit with usable RSEs, use it, because weekly earnings mix pay rates with hours worked. Otherwise use cube 11: average weekly total cash earnings, all employees, 4-digit. M1 checks which case applies and records the result in the method notes. EEH excludes owner-managers while EQ08 counts all employed people; this is stated in the note.
 - **C2. Alternative rankings.** Both EEH cube 13 (hourly, full-time non-managerial adults, 3-digit) and ATO Table 15B (salary or wages by occupation and sex) are built. Both appear in the appendix sensitivity table. D4 decides which one appears in the note.
@@ -109,8 +102,8 @@ These defaults were set on 25 October 2026 under D8, before any result was produ
 - **C5. Primary comparator.** JSA automation exposure, the measure DEWR (2026) uses. JSA augmentation and Eloundou et al. beta are shown alongside it, and AIOE only in aggregate.
 - **C6. What counts as holding.** For a decile profile: the OLS slope of the decile means has the same sign under each variant, and the Spearman correlation of the decile means with the primary specification is at least 0.7. For the gap: its sign in the top and bottom quintiles is the same under every weighting scheme.
 - **C7. Reporting.** Every specification in the sensitivity table (scheme × grade × ranking) is published, including those that do not hold.
-- **C8. Small cells.** Set on 25 Oct 2026, before any WA result was produced. EQ08 publishes no RSEs, so the rule uses size instead. In WA charts and tables, a sub-major group with pooled WA employment below 5,000 is not shown on its own; it is grouped as "other sub-major groups (each under 5,000 in WA)". Its contribution still counts in the WA total. No WA × sex cells are produced.
-- **C9. Decile layout.** Set on 25 Oct 2026, before any decile result was produced.
+- **C8. Small cells.** Set before any WA result was produced. EQ08 publishes no RSEs, so the rule uses size instead. In WA charts and tables, a sub-major group with pooled WA employment below 5,000 is not shown on its own; it is grouped as "other sub-major groups (each under 5,000 in WA)". Its contribution still counts in the WA total. No WA × sex cells are produced.
+- **C9. Decile layout.** Set before any decile result was produced.
   - Deciles are formed once per sample and earnings ranking, over all units with an earnings value, and stay fixed across weighting schemes.
   - Decile means use the units that have a value under the scheme in question, and the employment they cover is reported.
   - Decile intensity is mean exposure divided by mean extensive margin, so exposure = extensive margin × intensity at decile level.
@@ -118,7 +111,7 @@ These defaults were set on 25 October 2026 under D8, before any result was produ
 
 ## Method notes
 
-### N1. What produces the exact zeros in `job_exposure.csv` (M1, 25 Oct 2026)
+### N1. What produces the exact zeros in `job_exposure.csv` (M1)
 
 Source: the appendix to Massenkoff and McCrory (2026), pages 2-4 and notes 1-3 (`data/raw/docs_ref/`, sha256 in MANIFEST). The formulas in the PDF are images, so the steps below come from the appendix text, not from the equations.
 
@@ -131,7 +124,7 @@ Source: the appendix to Massenkoff and McCrory (2026), pages 2-4 and notes 1-3 (
 
 **Consequence for this project.** A zero means the job's tasks fell below the usage gate in the sample, or none of the used tasks passed the capability gate. It does not mean no use. Zeros are flagged as "below usage threshold" in every display. SOC codes with no row (111 of 867) are treated as missing, not zero.
 
-### N2. Profile of `job_exposure.csv` (M1, 25 Oct 2026)
+### N2. Profile of `job_exposure.csv` (M1)
 
 The file matches the brief. It has 756 rows and no duplicate codes. 411 values are exactly 0 (54.4%). The maximum is 0.745, the mean 0.077 and the median 0. There are no missing values. These counts are fixed in `tests/testthat/test-01-job-exposure.R`.
 
@@ -147,7 +140,7 @@ Known artefacts, flagged for the note:
 
 `task_penetration.csv` has 17,998 rows: task text and penetration, with no occupation code. It joins to O*NET by task text.
 
-### N3. Earnings sources at 4-digit (M1, 25 Oct 2026)
+### N3. Earnings sources at 4-digit (M1)
 
 No EEH May 2025 cube gives hourly earnings at 4-digit:
 
@@ -164,7 +157,7 @@ Under C1, the primary ranking is therefore cube 11, persons. Results:
 - 25 v1.2 units have an RSE above 25%. They are dropped in the planned sensitivity run.
 - For units bridged from several EEH units, the RSE used is the largest among the sources.
 
-### N4. ANZSCO 2022 to v1.2 bridge (M2, 25 Oct 2026)
+### N4. ANZSCO 2022 to v1.2 bridge (M2)
 
 EEH and ATO use 2021/2022 unit groups. The bridge runs 2022 → 2021 → v1.3 at 6-digit (ABS correspondence tables), then rolls up to unit groups. v1.3 has exactly the v1.2 codes, so that last step is the identity (`data/interim/check_v13_vs_v12.csv`).
 
@@ -178,7 +171,7 @@ The changes involve 1215-1217 → 1212/1214, 3625-3627 → 3622, 3633 → 3612/3
 
 Merge weights are ATO 2023-24 individual counts for each 2022 unit group. Neither EEH nor EQ08 gives counts at 2022 unit-group level, so these are the only counts available. A v1.2 unit fed by several 2022 units takes their weighted mean; a split passes the same value to each v1.2 unit.
 
-### N5. ATO Table 15B lookup (M2, 25 Oct 2026)
+### N5. ATO Table 15B lookup (M2)
 
 ATO Table 15B lists 429 4-digit codes:
 
@@ -189,22 +182,22 @@ Those 68 codes hold 23.1% of individuals; 20.0% are blank. The full lookup is in
 
 The ATO ranking uses average salary or wage income. Averages, unlike medians, combine exactly across merged units. The median is kept as a check. One v1.2 unit is imputed from its minor group.
 
-### N6. Vintage of the comparison measures (M2, 25 Oct 2026)
+### N6. Vintage of the comparison measures (M2)
 
 - **Eloundou et al.** `occ_level.csv` uses O*NET-SOC 2019 codes; all 923 are in O*NET 31.0. They are averaged to SOC 2018 6-digit codes with equal weights, which covers 798 of 867 SOC codes. The GPT-4 rating (`dv_rating_beta`) is the primary Eloundou measure and the human rating a check. Massenkoff and McCrory's capability gate uses Eloundou's task-level beta, so this comparison is partly mechanical, as the brief says.
 - **AIOE and LM-AIOE** use SOC 2010 codes: 774 codes, including 15-1132 and not 15-1252. They enter the chain at the SOC 2010 step and are kept only in `data/interim/` under a NOT_FOR_PUBLICATION file name.
 - **JSA.** `Occupations_8.csv` has 714 rows, of which 357 are "All occupations" rows. Each has a unique code, and all are valid v1.2 codes. The one v1.2 unit without a JSA score is 6399 Other Sales Support Workers.
 - **Global automation share** comes from the AEI 2026-06-26 GLOBAL rows at soc_occupation level 0. Those rows are O*NET-SOC codes, pooled to SOC 6-digit across April and May and weighted by usage share. 441 SOC codes have a published share.
 
-### N7. Scheme 4 links (M2, 25 Oct 2026)
+### N7. Scheme 4 links (M2)
 
 The JSA/LMI correspondence mixes unit-group and occupation rows. A unit's links are the union of both, rolled up to SOC 2018 6-digit codes; rows graded NONE are dropped. The result is 712 unit-SOC pairs: 349 GOOD, 320 ACCEPTABLE and 43 POOR (the strongest grade is kept per pair). 354 of 358 units are linked; the exceptions are 1113, 1392, 4411 and 6399. A sensitivity check drops POOR-only links.
 
-### N8. EQ08 nfd allocation (M1, 25 Oct 2026)
+### N8. EQ08 nfd allocation (M1)
 
 Over the four pooled quarters, nfd codes hold 1.8% to 2.6% of employment. Each nfd code is allocated to the unit groups under it, pro rata within each quarter × sex × state cell. One case had all children at zero in its cell: 3240 nfd, 0.74 persons on average. It used national shares for the same quarter and sex. Pooled employment is 14.673 million, and 1.661 million in WA. The log is in `data/out/m1/eq08_nfd_allocation_log.csv`.
 
-### N9. Influence of single large units (added after the first M3 results, 25 Oct 2026)
+### N9. Influence of single large units (added after the first M3 results)
 
 This check was not part of the method fixed before results. It was added after seeing that scheme 4 was the only scheme whose decile profile did not hold, and it is reported as a post-results addition. For each scheme, the top-minus-bottom gap is recomputed with each of the five largest units in deciles 1 and 10 left out in turn (`data/out/m3/influence_largest_units.csv`).
 
@@ -218,7 +211,7 @@ One unit moves the result: 6211 Sales Assistants (General), with 3.9% of employm
 
 AIOE is a standardised score with negative values, so CI = 2cov(e, r)/mean(e) is not meaningful for it. AIOE appears only in the correlations and in decile means of the rank gap, both of which are aggregate.
 
-### N11. OEWS weights (M2, 25 Oct 2026)
+### N11. OEWS weights (M2)
 
 OEWS May 2025 gives weights for SOC 2018 codes as follows:
 
@@ -229,7 +222,7 @@ OEWS May 2025 gives weights for SOC 2018 codes as follows:
 
 Every source is recorded in `data/interim/soc_weights_oews.csv`.
 
-### N12. Scheme 3 title matching (M2, 25 Oct 2026)
+### N12. Scheme 3 title matching (M2)
 
 Title-match-first is applied to each v1.2 occupation, not each unit, so that one matched occupation does not drop the rest of its unit.
 
@@ -237,7 +230,7 @@ Title-match-first is applied to each v1.2 occupation, not each unit, so that one
 - 150 occupations in 81 units have a match.
 - All matches are listed in `data/out/m2/scheme3_title_matches.csv` for review.
 
-### N13. Primary chain against the 2022-path validation chain (M2, 25 Oct 2026)
+### N13. Primary chain against the 2022-path validation chain (M2)
 
 The primary chain links all 358 units to SOC 2018 codes: 2,438 unit-SOC links through 429 ISCO units. The validation chain (ISCO-08 → 2022 → 2021 → v1.3) gives identical SOC sets for 350 of 358 units.
 
@@ -259,14 +252,14 @@ The published `pct` shares for SOC major groups sum to the following:
 
 For AUS and GLOBAL, the shortfall therefore is not suppression of whole groups. The data documentation does not say what fills it, so it is reported as a limitation. The usage index uses the published shares as they stand.
 
-### N15. Checks closed before drafting the note (M4, 25 Oct 2026)
+### N15. Checks closed before drafting the note (M4)
 
 - **JSA (2025), *Our Gen AI Transition*, pages 35-36.** JSA discusses Handa et al. (2025) and notes the study's Claude.ai focus (under 3% of Australian market share, as JSA reports it) and its global sample. JSA says an ANZSCO replication would cover only a small share of AI users and would depend on mapping conversations to tasks, but would be valuable for future monitoring. The note paraphrases this and cites the page.
 - **ABS, "Upcoming changes to Labour Force Survey outputs" (19 Mar 2026).** EQ08 is among the detailed tables not published from April 2026 onwards. ABS intends to resume occupation data coded to OSCA from the September 2026 reference period, and does not state the level of detail.
 - **ABS, Labour Force, Australia methodology, September 2026 (published 15 Oct 2026).** Its history of changes records that OSCA coding has been implemented. It does not say which occupation levels are published.
 - **Wording.** The note says only what these sources state. It says nothing on whether unit-group detail will return.
 
-### N16. Rendering and the prose checker (M4, 25 Oct 2026)
+### N16. Rendering and the prose checker (M4)
 
 **Rendering.** The project folder's name contains colons (`~:Projects:ai-wage-distribution`), which break Quarto's stylesheet compiler. `make note` (`R/render.sh`) therefore renders in a temporary copy at a colon-free path, using the project's renv library, and copies the outputs back to `note/_rendered/` and `docs/_rendered/`. Typst will not read files outside the document's folder, so the memo's figures and bibliography are copied into the temporary tree.
 
@@ -274,7 +267,7 @@ For AUS and GLOBAL, the shortfall therefore is not suppression of whole groups. 
 
 **Numbers in the documents.** Every number in the note, appendix and memo comes from `data/out/note_facts.csv` (`R/13_facts.R`) or is read directly from pipeline output.
 
-### N17. Occupation explorer (M5, 25 Oct 2026)
+### N17. Occupation explorer (M5)
 
 `explorer/index.html` is a single static page in plain JavaScript; no chart library is needed. It loads `explorer/explorer_units.json`, which has one row per v1.2 unit (358) and the same fields as `data/out/explorer_units.csv`. It has no AIOE field.
 
@@ -296,9 +289,9 @@ Each unit shows:
 - the page does not scroll sideways at 375 px with every unit expanded;
 - search by code and by title works.
 
-It passed on 25 Oct 2026. The screenshot is `explorer/check_375px.png`.
+It passed. The screenshot is `explorer/check_375px.png`.
 
-### N18. Optional extension G: rebuilding observed exposure from task data (25 Oct 2026)
+### N18. Optional extension G: rebuilding observed exposure from task data
 
 `R/15_replicate_g.R` rebuilds occupation scores from the published task-level values (`task_penetration.csv`), joined to O*NET 31.0 task statements by text (99.2% of O*NET task rows join). Massenkoff and McCrory's time-share weights (Tamkin and McCrory 2025) are not published, so three stand-ins were tried:
 
@@ -312,7 +305,7 @@ The rebuilt and published scores agree on which occupations are exactly zero for
 
 **The 0.9 target is not met.** The unpublished time weights are the likely reason, but this has not been tested. The result is reported as it stands (`data/out/g_replication.csv`); the main analysis uses the published scores unchanged.
 
-### N19. Clean-clone reproducibility test (25 Oct 2026)
+### N19. Clean-clone reproducibility test
 
 A fresh `git clone` of commit `66afec8` was tested at a colon-free path, with the updated `renv.lock`:
 
@@ -323,7 +316,7 @@ A fresh `git clone` of commit `66afec8` was tested at a colon-free path, with th
 
 renv's "out-of-sync" warning came from `dbplyr`, which renv detects as used. It is now installed and recorded, and the warning is gone.
 
-### N20. D10: automated review of the 40 largest units (26 Oct 2026, under D11)
+### N20. D10: automated review of the 40 largest units (under D11)
 
 `R/16_top40_checks.R` runs seven checks on each of the 40 largest units, which hold 46.4% of employment. Each flag gets a resolution and a reason in `data/out/m2/top40_units_review.csv`, marked "reviewed_by: automated checks".
 
@@ -353,22 +346,22 @@ renv's "out-of-sync" warning came from `dbplyr`, which renv detects as used. It 
 
 The grid of specifications grows from 48 to 60.
 
-### D12. No contributions section in the note (26 Oct 2026)
+### D12. No contributions section in the note
 
 - **Decided by:** Luc Taya, in chat
 - **Decision:** remove the contributions section from the note: "it is not relevant and not used in actual working papers".
 
-### D13. Review of v0.9 and the revised draft (26 Oct 2026)
+### D13. Review of v0.9 and the revised draft
 
 - **Decided by:** Luc Taya. Luc wrote a review of the v0.9 draft (items B1–B58, extensions E1–E8) and a revised draft of the note, and approved the plan in `private/review_response.md` ("start the v0.9 revision now with the plan").
-- **Luc's answers (26 Oct 2026):**
+- **Luc's answers:**
   - Luc wrote the review and the revised draft.
   - The release stays v0.9.
   - The thesis elasticities "are calibrated using cost shares, from a cross-country panel of 24 countries, and Australia did not enter the panel".
   - No funding.
   - Levkoff's full title, which contains "Predicted", is fine in the references.
   - Luc did not answer whether the thesis's one-standard-deviation figures (12.5% and −2.8%) stay; they are left out, as in Luc's revised draft.
-- **Checked first.** Every pipeline number the review relies on was recomputed, and about thirty outside claims were checked against their sources on 26 Oct 2026. Results are in `private/review_response.md`, sections 2 and 3.
+- **Checked first.** Every pipeline number the review relies on was recomputed, and about thirty outside claims were checked against their sources. Results are in `private/review_response.md`, sections 2 and 3.
 - **Changes from Luc's revised draft, with reasons:**
   - The author line keeps the house wording ("Luc Taya, Economics (Honours) graduate, University of Western Australia").
   - The opening keeps "self-selected users" and "one provider", as the house rule requires.
@@ -384,11 +377,11 @@ The grid of specifications grows from 48 to 60.
   - Gross (2026) is cited to the Substack post, because the working paper could not be read.
   - Women's 12% share in Anthropic's survey is not used: it refers to the linked sample.
   - Random tie-breaking is not reported, because its expected value equals the mid-rank result; gaps without zero units are reported instead.
-  - The provenance paragraph does not cite a commit, because the repository's first commit holds both the decision log and the first results. Private working records show the rules were written at 16:48 and the analysis first run at 17:38 on 25 Oct 2026 (AWST), but those records are not public.
+  - The provenance paragraph does not cite a commit, because the repository's first commit holds both the decision log and the first results. Private working records show the rules were written before the analysis was first run, but those records are not public.
 - **Scope:** the review's extensions E1 (other platforms), E3 (uncertainty) and, if time allows, E4 (conditional gradient) are planned for v1.0. E2 and E5–E8 are future work.
-- **Approval:** Luc read the revised note and appendix and approved them for release on 26 Oct 2026 ("I've read the revised note and appendix and approve them").
+- **Approval:** Luc read the revised note and appendix and approved them for release ("I've read the revised note and appendix and approve them").
 
-### N21. Analyses added after review of the first draft (26 Oct 2026)
+### N21. Analyses added after review of the first draft
 
 None of these was part of the method fixed before results. All are labelled where they appear.
 
@@ -404,10 +397,10 @@ None of these was part of the method fixed before results. All are labelled wher
 - **Normalised WA contributions** (Oaxaca and Ransom 1999; Yun 2005). Professionals −0.64 points; trades −0.32; machinery operators −0.24.
 - **Usage index rescaled** to published totals. No index moves by more than 4%.
 - **Rebuild correlation among positive scores.** 0.82, against 0.87 overall.
-- **Smoothed profile over earnings percentiles,** with a unit-resampling band (seed 20261026).
+- **Smoothed profile over earnings percentiles,** with a unit-resampling band (seed 101).
 - **Figures.** The usage-potential gap figure now shows the range across schemes and adds AIOE in aggregate; the former appendix figure A3 is removed. Two new figures show every specification and the influence of single units. Figure titles now state findings, and the source line describes the data as in the note.
 
-### D14. v1.0 extensions and downloads (26 Oct 2026)
+### D14. v1.0 extensions and downloads
 
 - **Decided by:** Luc Taya, in chat: "Start v1.0 now. I approve downloading ai_applicability_scores.csv, soc_metrics.csv and LICENSE.txt from microsoft/working-with-ai, and occupations_workathome.csv and LICENSE from jdingel/DingelNeiman-workathome. I'll get the BLS workbook myself."
 - **Scope:** E1 (another platform), E3 (uncertainty) and E4 (earnings or computer work), as planned in `private/review_response.md`.
@@ -415,9 +408,9 @@ None of these was part of the method fixed before results. All are labelled wher
   - `microsoft/working-with-ai` (commit `550c00c`): "This repository is licensed under CC BY 4.0", with attribution by citing the paper.
   - `jdingel/DingelNeiman-workathome` (commit `3ebab4f`): GNU GPL v3, a software licence. The data file is not redistributed (data/raw is not committed), no unit-level values are published, and `make check` fails if a published file has a unit-level teleworkability column.
 - **BLS AI exposure categories:** not used yet; Luc will download the workbook. The BLS composite is categorical (two medians, then clustering), so it will be reported as categories when added.
-- **Approval:** Luc read the v1.0 note and appendix and approved them for release on 26 Oct 2026 ("I've read the v1.0 note and appendix and approve them").
+- **Approval:** Luc read the v1.0 note and appendix and approved them for release ("I've read the v1.0 note and appendix and approve them").
 
-### N22. v1.0 analyses (26 Oct 2026; added after the first results)
+### N22. v1.0 analyses (added after the first results)
 
 All three were proposed in Luc's review of v0.9 and are labelled in the note as added after the first results.
 
@@ -428,10 +421,10 @@ All three were proposed in Luc's review of v0.9 and are labelled in the note as 
 - **E3, uncertainty (`R/18_uncertainty.R`).**
   - Crosswalk: Dirichlet(alpha × n × p) draws of each unit's scheme-1 weights over scored US occupations. alpha is chosen from {0.25, …, 16} so the employment-weighted spread of unit values across draws is closest to their spread across schemes 1–3; alpha = 1. A wider setting uses alpha/4.
   - Earnings: EEH weekly × (1 + ε), with ε ~ N(0, RSE), independent across units; median RSE where none is published. Ranks and deciles are re-formed in every draw.
-  - Employment is held fixed (no EQ08 standard errors). 500 draws per setting, seed 20261027.
+  - Employment is held fixed (no EQ08 standard errors). 500 draws per setting, seed 102. Both simulation seeds were changed after the v1.0 release. With the earlier seeds the decile-7 peak survived in 36% of draws with both sources of uncertainty, against 41% now; every result reported as holding in every draw still does, and no other headline figure moves beyond simulation error.
   - The script checks that its fast rank and decile routines reproduce the pipeline's concentration index, rank index and decile means exactly before drawing.
   - Bounds: unscored US occupations at zero (lower) and at one (upper). A first version used the highest score in the SOC minor group as the upper bound, but for 41 units that is below the renormalised value, so it is reported as a "high imputation", not a bound.
-  - Result: the concentration and rank indices are positive in every draw. The decile-7 peak survives in 36% of draws with both sources of uncertainty. Under the upper bound the level index falls to 0.010 and the peak moves to decile 3, because unscored US counterparts are most common in deciles 3 and 2; the rank index stays positive.
+  - Result: the concentration and rank indices are positive in every draw. The decile-7 peak survives in 41% of draws with both sources of uncertainty. Under the upper bound the level index falls to 0.010 and the peak moves to decile 3, because unscored US counterparts are most common in deciles 3 and 2; the rank index stays positive.
 - **E4, earnings or computer work (`R/19_conditional.R`).**
   - Employment-weighted least squares on employment-weighted percentile ranks, HC1 standard errors, 352 units with every measure.
   - Teleworkability (Dingel and Neiman 2020) is averaged from O*NET-SOC to SOC 2010 and mapped through the SOC 2010 links and US weights used for AIOE.

@@ -1,7 +1,6 @@
 ---
 title: "Appendix"
 subtitle: "Usage-based AI exposure across Australia's earnings distribution"
-date: last-modified
 ---
 
 ```{r setup}
@@ -364,7 +363,7 @@ man <- read_csv(raw_path("MANIFEST.csv"), col_types = cols(.default = "c"))
 man |>
   transmute(Source = id,
             Version = if_else(grepl("^[0-9a-f]{40}$", version_or_commit), substr(version_or_commit, 1, 12), version_or_commit),
-            Licence = licence, Accessed = access_date) |>
+            Licence = licence) |>
   tab()
 ```
 

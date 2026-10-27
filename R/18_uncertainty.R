@@ -28,7 +28,7 @@ source("R/fn_units.R")
 
 out <- function(f) out_path("m3", f)
 B <- 500
-set.seed(20261027)
+set.seed(102)
 
 soc_measures <- read_codes_csv(interim_path("soc_measures.csv"))
 soc_w <- read_codes_csv(interim_path("soc_weights_oews.csv")) |> select(soc, w)

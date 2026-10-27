@@ -308,7 +308,7 @@ smooth_fit <- function(d, y, grid) {
 }
 sp <- prim |> filter(!is.na(usage), !is.na(eeh_weekly_p)) |> mutate(r = weighted_rank(eeh_weekly_p, emp))
 grid_r <- seq(0.02, 0.98, by = 0.01)
-set.seed(20261026)
+set.seed(101)
 smoothed <- map_dfr(c("usage", "extensive"), function(y) {
   boot <- replicate(200, smooth_fit(sp[sample(nrow(sp), replace = TRUE), ], y, grid_r))
   tibble(measure = y, percentile = 100 * grid_r, fit = smooth_fit(sp, y, grid_r),

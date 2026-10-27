@@ -70,7 +70,7 @@ Partly. Anthropic's score only counts tasks Eloundou rates feasible. Levkoff (20
 - The concentration index is positive in all 60.
 - The non-diffuse units give a steeper gradient (+9.6 points, against +4.3 in the main result). Counting unscored US counterparts as zero gives +3.9.
 - The JSA-based weighting scheme mostly fails, because of one unit. Sales Assistants (General), 3.9% of employment, links under that scheme only to US Retail Salespersons, whose score is high relative to related occupations. Leaving it out turns −2.4 points into +7.7, and the profile then holds.
-- In 500 simulated draws of crosswalk weights and earnings, the concentration index is positive every time. The decile-7 peak survives in only 36% of draws, so I don't lean on it.
+- In 500 simulated draws of crosswalk weights and earnings, the concentration index is positive every time. The decile-7 peak survives in only 41% of draws, so I don't lean on it.
 
 All of this is in the appendix.
 

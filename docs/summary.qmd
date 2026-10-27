@@ -2,7 +2,6 @@
 title: "Usage-based AI exposure across Australia's earnings distribution"
 subtitle: "Summary of a working draft"
 author: "Luc Taya, Economics (Honours) graduate, University of Western Australia"
-date: last-modified
 lang: en-AU
 tbl-colwidths: false
 filters:

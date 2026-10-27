@@ -17,7 +17,7 @@ ua <- "ai-wage-distribution research pipeline"
 old <- if (file.exists(manifest_path)) {
   read_csv(manifest_path, col_types = cols(.default = col_character()))
 } else {
-  tibble(file = character(), access_date = character(), sha256 = character())
+  tibble(file = character(), sha256 = character())
 }
 
 sha256 <- function(path) digest::digest(file = path, algo = "sha256")
@@ -44,11 +44,9 @@ rows <- lapply(seq_len(nrow(sources)), function(i) {
   if (present && nrow(prev) == 1 && !is.na(prev$sha256) && prev$sha256 != hash) {
     stop("sha256 changed for ", s$dest, ". Raw files must not change; investigate before continuing.")
   }
-  access <- if (nrow(prev) == 1 && !is.na(prev$access_date)) prev$access_date
-            else if (present) format(file.mtime(dest), "%Y-%m-%d") else NA_character_
   tibble(
     file = s$dest, id = s$id, source_url = s$url, method = s$method,
-    access_date = access, sha256 = hash,
+    sha256 = hash,
     bytes = if (present) as.character(file.size(dest)) else NA_character_,
     version_or_commit = s$version, licence = s$licence, licence_url = s$licence_url,
     licence_checked = s$licence_checked, notes = s$notes

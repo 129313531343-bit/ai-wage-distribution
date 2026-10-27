@@ -1,12 +1,13 @@
 # Changelog
 
-## v1.0 (working paper, 26 Oct 2026)
+## v1.0 (working paper)
 
 - **Another platform (E1):** Microsoft's Copilot-based AI applicability scores (Tomlinson et al. 2025, CC BY 4.0) run through the same crosswalk, weights, rankings and samples; rank indices for every specification and a two-platform composite.
 - **Uncertainty (E3):** Dirichlet draws of crosswalk weights calibrated to the spread across schemes, EEH earnings draws from published relative standard errors, a survival table for every headline result, bands on the decile profile, and lower and upper bounds for unscored links.
 - **Earnings or computer work (E4):** employment-weighted rank regressions with teleworkability (Dingel and Neiman 2020; GPL-3.0, aggregate use only) and each potential measure, a Gelbach decomposition and an ORIV estimate.
 - Abstract, key findings, introduction, theory reading, limitations and conclusion updated for the new results; three appendix sections; two figures.
 - `R/fn_units.R` holds the unit table and specification grid shared by the analysis scripts; 106 tests.
+- Revised after release: the simulation seeds were changed. The decile-7 peak now survives in 41% of draws (36% with the earlier seeds); no other headline result changes. The title-page date stamp and the manifest's access dates were removed.
 
 ## v0.9 (working draft, comments welcome)
 

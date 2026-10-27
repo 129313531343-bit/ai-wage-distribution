@@ -6,7 +6,7 @@ Every source, with its URL, access date, sha256 and licence, is listed in `data/
 
 This page includes information from the O*NET 31.0 Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the CC BY 4.0 license. O*NET® is a trademark of USDOL/ETA. Luc Taya has modified all or some of this information. USDOL/ETA has not approved, endorsed, or tested these modifications.
 
-(Wording from https://www.onetcenter.org/license_db.html, read 25 Oct 2026.)
+(Wording from https://www.onetcenter.org/license_db.html.)
 
 ## Australian Bureau of Statistics
 

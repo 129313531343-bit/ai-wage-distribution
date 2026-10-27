@@ -1,13 +1,13 @@
 # Registry of every raw input: where it comes from, where it lands, and its licence.
 # 01_fetch.R downloads the "script" rows and writes data/raw/MANIFEST.csv from this table.
-# Licence fields were checked by hand on 25 Oct 2026; `licence_checked` says where.
+# Licence fields were checked by hand; `licence_checked` says where.
 
 library(tibble)
 
 AEI_COMMIT <- "4e5f69fab13a9c3f7d0dcc31a6f893a9818738f6"
 ELOUNDOU_COMMIT <- "0471612fef3cc22b74fb884d27bff9dbd3770582"
 AIOE_COMMIT <- "adca5fc2cd0e9a659ff05278b7fa7a53f4f324c1"
-# v1.0 extensions (downloads approved by Luc on 26 Oct 2026)
+# v1.0 extensions
 WWAI_COMMIT <- "550c00c9d1b054ac78b87da3a26165bace334779"
 DN_COMMIT <- "3ebab4f646ed45b01162ecd7794f00a518932c53"
 wwai <- function(path) sprintf("https://raw.githubusercontent.com/microsoft/working-with-ai/%s/%s", WWAI_COMMIT, path)

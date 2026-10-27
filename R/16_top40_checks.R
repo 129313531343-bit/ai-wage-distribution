@@ -104,15 +104,15 @@ review <- checks |>
     resolution = if (any(c_across(all_of(flag_cols)))) paste(resolutions[flag_cols[c_across(all_of(flag_cols))]], collapse = " ") else "No flags: kept as is.",
   ) |>
   ungroup() |>
-  mutate(reviewed_by = "automated checks", reviewed_on = "2026-10-26",
+  mutate(reviewed_by = "automated checks",
          across(c(usage, starts_with("usage_"), scheme_range, top_soc_weight, artefact_weight, unscored_weight_share), ~ round(.x, 3)),
          loo_tmb_change_pp = round(loo_tmb_change_pp, 2), loo_profile_spearman = round(loo_profile_spearman, 3),
          emp = round(emp, 1), emp_share = round(emp_share, 4)) |>
   select(unit, title, emp_000 = emp, emp_share, usage_s1 = usage, usage_s2, usage_s3, usage_s4, scheme_range,
          grade, n_valid, unscored_weight_share, top_soc, top_soc_title, top_soc_weight, artefact_weight, loo_tmb_change_pp, loo_profile_spearman,
-         all_of(flag_cols), flags, resolution, reviewed_by, reviewed_on)
+         all_of(flag_cols), flags, resolution, reviewed_by)
 
-# Notes written after inspecting each flagged unit's linked US occupations (26 Oct 2026).
+# Notes written after inspecting each flagged unit's linked US occupations.
 unit_notes <- tribble(
   ~unit, ~unit_note,
   "6211", "Retail Salespersons (a flagged artefact, 0.32) and Fast Food and Counter Workers (0.00) carry four-fifths of the weight; partial ISCO links in the ABS correspondence add small weights on beauty, teller and postal occupations. Largest single influence on the main profile; leave-one-out result reported.",

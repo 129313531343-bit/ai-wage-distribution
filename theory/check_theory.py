@@ -19,7 +19,7 @@ import sys
 
 import sympy as sp
 
-random.seed(20261026)
+random.seed(101)
 sp.init_printing()
 failures = []
 

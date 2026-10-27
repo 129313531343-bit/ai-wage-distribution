@@ -2,7 +2,6 @@
 title: "Methods memo: usage-based AI exposure across Australia's earnings distribution"
 subtitle: "Draft for comment (working draft v0.9)"
 author: "Luc Taya, Economics (Honours) graduate, University of Western Australia"
-date: last-modified
 bibliography: ../note/references.bib
 lang: en-AU
 tbl-colwidths: false
@@ -66,7 +65,7 @@ source("../note/_setup.R")
 3. **The gap.** Is a difference in employment-weighted percentile ranks the right way to compare a usage measure with potential measures on different scales? Would you prefer z-scores or levels?
 4. **Zeros.** Over half of the scored US occupations are exactly zero because of a usage gate. Should the extensive margin, rather than the score, be the headline?
 5. **Independent potential measures.** Beyond JSA and AIOE, is there a measure of AI potential for Australian occupations that is independent of Eloundou et al.'s task ratings?
-6. **Related work.** Are you aware of work that reports usage-based exposure by Australian earnings, which a search on `25` October `2026` may have missed?
+6. **Related work.** Are you aware of work that reports usage-based exposure by Australian earnings, which my search may have missed?
 
 *No funding. Anthropic had no role in this work and has not reviewed or endorsed it.*
 

@@ -1,5 +1,5 @@
 type,draws,ci_positive,rank_ci_positive,tmb_positive,peak_at_decile_7,profile_holds,extensive_rises,intensity_lower_at_top,jsa_automation_top_positive,jsa_automation_bottom_negative,capability_pattern,between_families,women_higher_every_decile,women_higher_overall,wa_lower
-both,500,1,1,0.974,0.36,0.862,1,0.91,0.968,0.996,1,1,0.646,1,1
-crosswalk,500,1,1,0.994,0.996,1,1,0.914,1,1,1,1,0.962,1,1
-crosswalk_wide,500,1,1,0.902,0.914,0.98,1,0.732,0.996,0.998,0.956,1,0.846,1,1
-earnings,500,1,1,1,0.438,0.908,1,0.998,0.998,1,1,1,0.674,1,1
+both,500,1,1,0.966,0.408,0.9,1,0.914,0.966,0.998,1,1,0.644,1,1
+crosswalk,500,1,1,0.994,0.972,1,1,0.934,1,1,1,1,0.978,1,1
+crosswalk_wide,500,1,1,0.918,0.932,0.974,1,0.72,0.994,0.998,0.974,1,0.85,1,1
+earnings,500,1,1,1,0.422,0.902,1,1,0.998,0.998,1,1,0.684,1,1
