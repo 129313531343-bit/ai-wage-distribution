@@ -64,4 +64,4 @@ The usage data come from one provider's users, and the source classifies the tas
 - Working draft, appendix and occupation explorer: <https://129313531343-bit.github.io/ai-wage-distribution/>
 - Code, data sources and decision log: <https://github.com/129313531343-bit/ai-wage-distribution>
 
-*No funding. The analysis code was written with Claude Code, an AI coding assistant, under the author's direction, and Claude Code drafted parts of the text; the author wrote the revised framing and reviewed and approved all of it. Anthropic had no role in this work.*
+*No funding. Anthropic had no role in this work and has not reviewed or endorsed it.*

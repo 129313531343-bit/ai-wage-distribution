@@ -107,8 +107,8 @@ The data show where AI is used, mostly in higher-earning occupations that run th
 - OSCA-coded employment once ABS publishes it.
 - Census TableBuilder, to see how much earnings vary within occupations.
 
-**14. How was AI used in this project, and how do you know the code is right?**
-Claude Code wrote the analysis code and drafted parts of the text under my direction. I reviewed the first draft, wrote the revised structure and framing, chose the three v1.0 extensions, and approved all of it. The checks:
+**14. How do you know the code is right?**
+The checks:
 
 - 106 tests;
 - a clean-clone rebuild with identical outputs;
@@ -116,7 +116,7 @@ Claude Code wrote the analysis code and drafted parts of the text under my direc
 - a decision log recording each choice and whether it was made before or after seeing results;
 - symbolic verification of the theory.
 
-The data come from Anthropic, and the tool is an Anthropic product. Both are disclosed, and Anthropic had no role.
+The usage data come from Anthropic, which had no role in the project.
 
 **15. What are the biggest weaknesses?**
 

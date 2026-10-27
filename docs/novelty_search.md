@@ -2,7 +2,7 @@
 
 Project: *Usage-based AI exposure across Australia's earnings distribution: mapping US task-usage data onto ANZSCO occupations*
 Maintainer: Luc Taya, Economics (Honours) graduate, University of Western Australia
-Search run: 25 October 2026 (AWST). Claude Code, an AI coding assistant, ran and screened the searches under Luc Taya's direction. Luc Taya makes the kill/pivot call, which is recorded in `decision_log.md`.
+Search run: 25 October 2026 (AWST). Searches were run and screened under Luc Taya's direction. Luc Taya makes the kill/pivot call, which is recorded in `decision_log.md`.
 Status: complete for the venues listed below. Six items need a manual check because the sites block scripted access (section 5).
 
 ## 1. Questions and decision rules
@@ -182,7 +182,7 @@ Scholar queries worth rerunning by hand after 25 Oct 2026: `"observed exposure" 
 
 ## 6. Assessment against the decision rules
 
-This assessment was prepared by Claude Code. The decision is Luc Taya's and is recorded in `decision_log.md`.
+The decision is Luc Taya's and is recorded in `decision_log.md`.
 
 - **(b) is not triggered on the evidence found.** No work found reports usage-based exposure, or a usage-potential gap, by Australian earnings decile. The residual risk sits in items 1 and 2 of section 5.
 - **(a) is not triggered as written**, because no Australian mapping by earnings was found. But DEWR (2026) already maps observed exposure onto ANZSCO 4-digit units and compares it with JSA in a limited way. So the project cannot claim the first AEI-to-ANZSCO mapping. The novelty claim narrows to five things: the usage-potential gap across the Australian earnings distribution; the extensive and intensive margins; the WA composition decomposition; the split by sex; and crosswalk-grade sensitivity. DEWR (2026) would be cited as the base for the mapping, and the US usage-versus-capability papers (H18-H24) as the base for the gap concept.

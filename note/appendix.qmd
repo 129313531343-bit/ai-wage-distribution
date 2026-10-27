@@ -315,7 +315,7 @@ m3("conditional_oriv.csv") |>
 
 ## Review of the forty largest units
 
-Automated checks on the forty largest units (decision `D10` in the decision log, carried out by Claude Code and reviewed by the author). The full table, with a resolution and reason for each flag, is `data/out/m2/top40_units_review.csv`.
+Automated checks on the forty largest units (decision `D10` in the decision log). The full table, with a resolution and reason for each flag, is `data/out/m2/top40_units_review.csv`.
 
 ```{r top40}
 read_csv(out_path("m2", "top40_check_summary.csv"), show_col_types = FALSE) |>

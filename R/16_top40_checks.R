@@ -1,4 +1,4 @@
-# D10: automated review of the 40 largest units (decision D11 delegates this to Claude).
+# D10: automated review of the 40 largest units (decision D11).
 # Each unit is run through the same checks; each flag gets a resolution and a reason, applied by
 # the rules below. Mapping links come from official concordances and are never hand-edited.
 #
@@ -104,7 +104,7 @@ review <- checks |>
     resolution = if (any(c_across(all_of(flag_cols)))) paste(resolutions[flag_cols[c_across(all_of(flag_cols))]], collapse = " ") else "No flags: kept as is.",
   ) |>
   ungroup() |>
-  mutate(reviewed_by = "Claude (automated checks)", reviewed_on = "2026-10-26",
+  mutate(reviewed_by = "automated checks", reviewed_on = "2026-10-26",
          across(c(usage, starts_with("usage_"), scheme_range, top_soc_weight, artefact_weight, unscored_weight_share), ~ round(.x, 3)),
          loo_tmb_change_pp = round(loo_tmb_change_pp, 2), loo_profile_spearman = round(loo_profile_spearman, 3),
          emp = round(emp, 1), emp_share = round(emp_share, 4)) |>

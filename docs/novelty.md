@@ -11,7 +11,7 @@ It adds:
 
 e61 (22 May 2026) argued for moving beyond exposure metrics. This project moves only from "could be used" to "is being used", not to labour-market outcomes. e61's revenue scenarios (7 August 2026) assume any AI wage change is equal across the income distribution. This project describes, without forecasting, how usage-based exposure is spread across earnings deciles.
 
-No Australian occupational AI use is measured. The scores are US task-level Claude.ai use by self-selected users of one product.
+No Australian occupational AI use is measured. The scores are task-level Claude.ai and first-party API use by self-selected users of one provider, classified to US occupational tasks.
 
 ## References
 

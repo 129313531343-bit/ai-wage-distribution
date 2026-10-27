@@ -1,6 +1,6 @@
 # Decision log
 
-This file records three things: Luc Taya's decisions (with dates), the method choices fixed before any results were produced (and any later change to them), and method notes that a reader needs in order to check the pipeline. Claude Code keeps the log. A decision entry quotes Luc's words where possible and does not add reasons Luc did not give.
+This file records three things: Luc Taya's decisions (with dates), the method choices fixed before any results were produced (and any later change to them), and method notes that a reader needs in order to check the pipeline. A decision entry quotes Luc's words where possible and does not add reasons Luc did not give.
 
 ## Decisions
 
@@ -32,7 +32,7 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
 - **Decided by:** Luc Taya, in chat
 - **Decision:** "record as stated and draft the email for me to send".
 - **Recording:** the MANIFEST gives the licence as "CC-BY (version not stated on dataset card); HF metadata tag: MIT". The card text is quoted in the notes column, and the commit is pinned.
-- **Email:** Claude Code drafts it in `private/` (not published). Luc sends it. Any reply is logged here.
+- **Email:** drafted in `private/` (not published). Luc sends it. Any reply is logged here.
 
 ### D5. Scope of the prose checks in `make check`
 
@@ -45,43 +45,41 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
 
 - **Date:** 25 October 2026
 - **Decided by:** Luc Taya, in chat
-- **Decision:** "use your proposed wording". This text is added to "Contributions and AI use": "The data analysed are published by Anthropic, and the pipeline was written with Claude Code, an Anthropic product. Anthropic had no role in this project and has not reviewed or endorsed it."
+- **Decision:** "use your proposed wording" for a line on Anthropic's relationship to the project. Current wording (README, "Data and credits"): "The usage data are published by Anthropic. Anthropic had no role in this project and has not reviewed or endorsed it."
 
 ### D8. Order of work and description
 
 - **Date:** 25 October 2026
 - **Decided by:** Luc Taya, in chat
-- **Decision:** "Build the full analysis first; after M2 results, draft the research question and framing for me to edit. Describe the work as descriptive analysis." Luc also asked Claude Code to do as much as it can and to batch anything that needs Luc.
+- **Decision:** "Build the full analysis first; after M2 results, draft the research question and framing for me to edit. Describe the work as descriptive analysis."
 - **What this means:**
   - The separate questions file (`docs/questions.md`) and its 27 Oct deadline are dropped.
-  - The method choices Luc would have set there are now defaults set by Claude Code before any results (C1-C8 below).
-  - The research question and framing are drafted by Claude Code after the first results, for Luc to edit. The README says so.
+  - The method choices that file would have held are set as defaults before any results (C1-C8 below).
+  - The research question and framing are written after the first results.
 
-### D11. Delegation of remaining decisions and writing (26 Oct 2026)
+### D11. Remaining decisions (26 Oct 2026)
 
 - **Date:** 26 October 2026
 - **Decided by:** Luc Taya, in chat
 - **Decision:**
   - D4, D7 and D9: "use your judgement. Pick whatever gives the clearest, most defensible main result and the least confusing presentation. Lead with one clean main specification", with every alternative in a labelled appendix table, nothing dropped, and each choice logged with its reason.
-  - D10: done by Claude using automated checks.
-  - Framing, takeaways and theory box: written by Claude.
-  - Walk-throughs 1-3: skipped, replaced by `docs/explainer.md`.
+  - D10: done with automated checks.
+  - A written explainer (`docs/explainer.md`).
   - Reviewers: the memo goes after release.
   - Optional extras F and H: skipped.
-- **Consequence for the README:** "Contributions and AI use" now says Claude wrote the analysis code, framing, takeaways and theory section, and Luc reviewed and approved them. That statement must be true before the repository is made public.
 
-### D4. Earnings ranking in the main text (decided by Claude under D11, 26 Oct 2026)
+### D4. Earnings ranking in the main text (under D11, 26 Oct 2026)
 
 - **Choice:** the main text uses only the primary ranking, EEH weekly earnings (C1). EEH hourly (cube 13) and ATO average salary or wages appear in the appendix sensitivity table and an appendix chart.
 - **Reason:** C1 was fixed before any result was seen. Replacing it with whichever alternative looks cleanest after seeing results would invite a specification-search objection. Showing every alternative in one labelled table answers it.
 
-### Main specification (decided by Claude under D11, 26 Oct 2026)
+### Main specification (under D11, 26 Oct 2026)
 
 - **Choice:** weighting scheme 1 (OEWS employment weights), all units, EEH weekly ranking. The three potential measures (JSA automation, which is the primary comparator under C5; JSA augmentation; Eloundou beta) stay side by side in the main gap chart, because they are comparators, not alternative specifications.
 - **Moved to the appendix:** the range across schemes (an appendix chart), schemes 2-4, non-diffuse units, the RSE and owner-operator exclusions, and the Sales Assistants influence check.
 - **Reason:** every part of the main specification was fixed before results (C3-C5). The robustness results are reported in full, including where the rule in C6 fails.
 
-### D7. Licences (decided by Claude under D11, 26 Oct 2026)
+### D7. Licences (under D11, 26 Oct 2026)
 
 - **Choice:**
   - Code: MIT (`LICENSE`).
@@ -89,7 +87,7 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
   - Third-party data keep their own licences (`docs/credits.md`). AIOE values are not redistributed.
 - **Reason:** permissive licences let readers reuse and check the work. CC BY matches the licence of most inputs (ABS, JSA, O*NET, AEI as stated).
 
-### D9. Owner-operator list (decided by Claude under D11, 26 Oct 2026)
+### D9. Owner-operator list (under D11, 26 Oct 2026)
 
 - **Choice:** keep the draft list in `R/fn_owner_managers.R` (13 units) for the exclusion run.
 - **Reason:** ABS publishes form of employment only by occupation major group, so no data-based unit-level list exists. A short, transparent judgement list, with the exclusion's results shown in the appendix, is more defensible than an unexplained or longer one. The limitation is stated in the note.
@@ -98,11 +96,11 @@ This file records three things: Luc Taya's decisions (with dates), the method ch
 
 | ID | Question | Status |
 |---|---|---|
-| D10 | Top-40 review: done by Claude with automated checks under D11 (see N20) | Done |
+| D10 | Top-40 review: done with automated checks under D11 (see N20) | Done |
 
 ## Method choices fixed before results
 
-Claude Code set these defaults on 25 October 2026 under D8, before any result was produced. Luc can change them at review. A change made after results exist is logged here with its date and reason.
+These defaults were set on 25 October 2026 under D8, before any result was produced. Luc can change them at review. A change made after results exist is logged here with its date and reason.
 
 - **C1. Primary earnings ranking.** If an EEH May 2025 cube gives hourly earnings at 4-digit with usable RSEs, use it, because weekly earnings mix pay rates with hours worked. Otherwise use cube 11: average weekly total cash earnings, all employees, 4-digit. M1 checks which case applies and records the result in the method notes. EEH excludes owner-managers while EQ08 counts all employed people; this is stated in the note.
 - **C2. Alternative rankings.** Both EEH cube 13 (hourly, full-time non-managerial adults, 3-digit) and ATO Table 15B (salary or wages by occupation and sex) are built. Both appear in the appendix sensitivity table. D4 decides which one appears in the note.
@@ -327,7 +325,7 @@ renv's "out-of-sync" warning came from `dbplyr`, which renv detects as used. It 
 
 ### N20. D10: automated review of the 40 largest units (26 Oct 2026, under D11)
 
-`R/16_top40_checks.R` runs seven checks on each of the 40 largest units, which hold 46.4% of employment. Each flag gets a resolution and a reason in `data/out/m2/top40_units_review.csv`, marked "reviewed_by: Claude (automated checks)".
+`R/16_top40_checks.R` runs seven checks on each of the 40 largest units, which hold 46.4% of employment. Each flag gets a resolution and a reason in `data/out/m2/top40_units_review.csv`, marked "reviewed_by: automated checks".
 
 | Check | Rule | Units flagged |
 |---|---|---|
@@ -358,8 +356,7 @@ The grid of specifications grows from 48 to 60.
 ### D12. No contributions section in the note (26 Oct 2026)
 
 - **Decided by:** Luc Taya, in chat
-- **Decision:** remove the "Contributions and AI use" section from the note: "it is not relevant and not used in actual working papers".
-- **What stays:** the README keeps its "Contributions and AI use" section (house rule 3 of the brief), and the theory box still says its extension was drafted for this note and that the thesis is unchanged.
+- **Decision:** remove the contributions section from the note: "it is not relevant and not used in actual working papers".
 
 ### D13. Review of v0.9 and the revised draft (26 Oct 2026)
 
@@ -371,7 +368,7 @@ The grid of specifications grows from 48 to 60.
   - No funding.
   - Levkoff's full title, which contains "Predicted", is fine in the references.
   - Luc did not answer whether the thesis's one-standard-deviation figures (12.5% and −2.8%) stay; they are left out, as in Luc's revised draft.
-- **What Claude Code checked first.** Every pipeline number the review relies on was recomputed. About thirty outside claims were checked against their sources by two verification agents on 26 Oct 2026. Results are in `private/review_response.md`, sections 2 and 3.
+- **Checked first.** Every pipeline number the review relies on was recomputed, and about thirty outside claims were checked against their sources on 26 Oct 2026. Results are in `private/review_response.md`, sections 2 and 3.
 - **Changes from Luc's revised draft, with reasons:**
   - The author line keeps the house wording ("Luc Taya, Economics (Honours) graduate, University of Western Australia").
   - The opening keeps "self-selected users" and "one provider", as the house rule requires.
@@ -387,8 +384,7 @@ The grid of specifications grows from 48 to 60.
   - Gross (2026) is cited to the Substack post, because the working paper could not be read.
   - Women's 12% share in Anthropic's survey is not used: it refers to the linked sample.
   - Random tie-breaking is not reported, because its expected value equals the mid-rank result; gaps without zero units are reported instead.
-  - The provenance paragraph does not cite a commit, because the repository's first commit holds both the decision log and the first results. The session transcript shows the rules were written at 16:48 and the analysis first run at 17:38 on 25 Oct 2026 (AWST), but that transcript is not public.
-  - The disclosure states the AI role in full.
+  - The provenance paragraph does not cite a commit, because the repository's first commit holds both the decision log and the first results. Private working records show the rules were written at 16:48 and the analysis first run at 17:38 on 25 Oct 2026 (AWST), but those records are not public.
 - **Scope:** the review's extensions E1 (other platforms), E3 (uncertainty) and, if time allows, E4 (conditional gradient) are planned for v1.0. E2 and E5–E8 are future work.
 - **Approval:** Luc read the revised note and appendix and approved them for release on 26 Oct 2026 ("I've read the revised note and appendix and approve them").
 

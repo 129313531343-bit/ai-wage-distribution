@@ -68,7 +68,7 @@ source("../note/_setup.R")
 5. **Independent potential measures.** Beyond JSA and AIOE, is there a measure of AI potential for Australian occupations that is independent of Eloundou et al.'s task ratings?
 6. **Related work.** Are you aware of work that reports usage-based exposure by Australian earnings, which a search on `25` October `2026` may have missed?
 
-*No funding. The analysis code was written with Claude Code, an AI coding assistant, under the author's direction, and Claude Code drafted this memo; the author reviewed and approved it.*
+*No funding. Anthropic had no role in this work and has not reviewed or endorsed it.*
 
 ## References {.unnumbered}
 

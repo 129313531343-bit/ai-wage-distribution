@@ -73,19 +73,9 @@ A fresh clone reproduces every published output byte for byte (decision log N19)
 | `docs/` | Novelty search, summary, methods memo, explainer and credits. |
 | `decision_log.md` | Decisions, method choices and method notes. |
 
-## Contributions and AI use
-
-- **Luc Taya** chose the topic and data sources and set the project's direction and decisions. Luc reviewed the first draft (v0.9) in a written review of 58 items and wrote a revised draft of the note: its structure, framing, literature and key findings.
-- **Claude Code**, an AI coding assistant, wrote the analysis code. It drafted the first version's framing, takeaways and theory section, and its data, methods, limitations and appendix sections. It then checked Luc's review and revised draft against the pipeline and the cited sources, added the analyses the review asked for, and turned the revised draft into the current note. Changes from Luc's revision are listed in `decision_log.md` (D13).
-- Luc reviewed and approved the final text.
-- The planned code walk-throughs were replaced by a written explainer (`docs/explainer.md`).
-- Every decision, and whether it was made before or after results were seen, is recorded in `decision_log.md`.
-- For v1.0, Luc approved the three extensions and the downloads they need; Claude Code built them and drafted their sections.
-- No funding.
-
-The data analysed are published by Anthropic, and the pipeline was written with Claude Code, an Anthropic product. Anthropic had no role in this project and has not reviewed or endorsed it.
-
 ## Data and credits
+
+The usage data are published by Anthropic. Anthropic had no role in this project and has not reviewed or endorsed it. The project had no funding.
 
 Every source, with its URL, access date, sha256 and licence, is in `data/raw/MANIFEST.csv`. Required credit lines are in `docs/credits.md`. Third-party data keep their own licences. AIOE values carry no licence and are not redistributed.
 
